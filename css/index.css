@@ -183,6 +183,9 @@
   }
 }
 
+.forloeb-kort img {
+  margin-top: 5rem;
+}
 /* ============================================================
    2. BÅND / BJÆLKE
    Hele båndet er ét stort <a>-link til bookingsystemet.
@@ -296,6 +299,7 @@
   padding: 1.2rem;
   font-style: italic;
   margin: 1.2rem 0 0 0;
+  margin-bottom: 3rem;
 }
 
 .galleri blockquote cite {

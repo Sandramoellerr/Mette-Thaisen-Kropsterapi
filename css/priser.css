@@ -346,6 +346,7 @@ main .sidebanner {
   background-color: var(--sand);
   border: 1.5px solid var(--petroleum);
   border-radius: 18px;
+  margin: 3rem;
 }
 .betingelser h2 {
   text-align: center;
@@ -410,4 +411,3 @@ main .sidebanner {
 .gruppe .kort-ikon {
   background-color: var(--creme);
 }
-

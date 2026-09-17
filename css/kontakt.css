@@ -9,23 +9,40 @@
    #kontaktinfo beholder sit id, fordi "Book"-knappen i banneret
    linker til #kontaktinfo.)
    ============================================================ */
+.sidebanner {
+  margin-block-start: 3rem;
+}
+.sidebanner p {
+  margin-bottom: 4rem;
+}
 
+.hero-knapper {
+  margin-inline: 4rem;
+}
 /* ============================================================
    1. KONTAKTINFO
    ============================================================ */
 .kontaktinfo {
   display: grid;
   gap: 1.2rem;
+  color: var(--creme);
+  background-color: var(--petroleum);
+
+  padding-block: 6rem;
 }
 
 .kontakt-foto {
   border-radius: 16px;
+  width: 80%;
+  height: 500px;
+  margin-inline: auto;
 }
 
 .kontakt-boks {
-  background-color: var(--sand);
+  background-color: var(--petroleum-moerk);
   border-radius: 16px;
   padding: 1.5rem;
+  margin-top: 3rem;
 }
 
 .kontakt-boks dl {
@@ -58,8 +75,7 @@
    2. TRYGT RUM
    ============================================================ */
 .tryg-rum {
-  background-color: var(--petroleum-moerk);
-  color: var(--hvid);
+  background-color: var(--creme);
   text-align: center;
 }
 

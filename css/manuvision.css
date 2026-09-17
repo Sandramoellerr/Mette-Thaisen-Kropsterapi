@@ -65,11 +65,12 @@
    forsiden). Indholdet holdes i midterspalten.
    ============================================================ */
 .hvad-er-manuvision {
-  background-color: var(--salvie);
+  background-color: var(--creme);
   max-width: none;
   margin-inline: 0;
   margin-top: 0; /* flush op til headeren */
   padding: 3.5rem 1.8rem;
+  padding-block: 4rem;
 }
 .hvad-er-manuvision > * {
   max-width: 78rem;
@@ -85,14 +86,18 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  padding-block: 4rem;
 }
-
+main section {
+  background-color: var(--salvie);
+}
 .chok-badges {
   position: relative;
   align-self: center; /* centreret over teksten på mobil */
   width: 190px;
   height: 175px;
   flex-shrink: 0;
+  margin-bottom: 2rem;
 }
 .chok-badges .badge {
   position: absolute;
@@ -117,6 +122,8 @@
 .forskning {
   position: relative;
   overflow: hidden;
+  background-color: var(--sand);
+  padding-block: 4rem;
 }
 
 /* ============================================================

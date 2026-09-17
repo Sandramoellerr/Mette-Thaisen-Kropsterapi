@@ -137,11 +137,12 @@
   padding-inline: 1.8rem;
 }
 
-/* Gren-vandmærker ude i den tomme luft i hver side.
-   Grenen fra footeren brugt som maske – her i hvid. */
+/* Gren-vandmærker ude i den tomme luft i hver side. Kun på
+   tablet/desktop – på mobil er der ikke plads nok til dem uden at
+   de klipper ind i teksten, så der er de usynlige (content: none). */
 .sporgsmaal-svar::before,
 .sporgsmaal-svar::after {
-  content: "";
+  content: none;
   position: absolute;
   width: 22rem;
   height: 22rem;
@@ -166,6 +167,7 @@
 @media (min-width: 900px) {
   .sporgsmaal-svar::before,
   .sporgsmaal-svar::after {
+    content: ""; /* grenene vises fra her og op */
     width: 32rem;
     height: 32rem;
   }
@@ -256,14 +258,14 @@
    Fire farvede trin-kort – samme grøn/blå-skala som "Mine ydelser".
    ============================================================ */
 .forloebets-gang {
-  background-color: var(--sand);
+  background-color: var(--creme);
   position: relative;
   overflow: hidden;
   max-width: none;
   /* ingen margin – sektionen skal støde helt op til "Spørgsmål/svar"
      ovenfor (ingen lys creme-stribe) og til footeren nedenfor */
   margin: 0;
-  padding: 0 0 5rem; /* ingen top-padding – den hvide bjælke er flush med toppen */
+  padding: 0rem; /* ingen top-padding – den hvide bjælke er flush med toppen */
 }
 
 /* alt indhold (undtagen den hvide titel-bjælke og det afsluttende
@@ -274,11 +276,11 @@
   padding-inline: 1.8rem;
 }
 
-/* Hvid titel-bjælke i fuld bredde øverst */
+/*  titel-bjælke i fuld bredde øverst */
 .forloebets-gang-top {
   position: relative;
   overflow: hidden;
-  background-color: var(--hvid);
+  background-color: var(--creme);
   padding-block: 2.4rem;
   margin-bottom: 3rem;
 }
@@ -363,12 +365,11 @@
    ------------------------------------------------------------ */
 .forloeb-cta {
   max-width: 34rem;
-  margin: 4rem 1.8rem 0; /* lidt luft ud til skærmkanten på mobil */
   padding: 2.6rem 1.8rem 3rem;
   background-color: var(--hvid);
-  border-radius: 20px;
   box-shadow: 0 16px 38px rgba(63, 95, 104, 0.14);
   text-align: center;
+  margin-bottom: 0;
 }
 
 .forloeb-cta-gren {

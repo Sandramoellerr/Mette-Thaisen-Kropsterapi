@@ -30,10 +30,11 @@
 
 .om-intro figure img {
   width: 100%;
-  height: 260px;
+  height: 500px;
   object-fit: cover;
   object-position: center 30%;
   border-radius: 20px;
+  margin-top: 2rem;
 }
 
 .om-intro-tekst .kicker {
@@ -47,6 +48,7 @@
 
 .om-intro-tekst h1 {
   margin-bottom: 0.7rem;
+  margin-top: 2rem;
 }
 
 @media (min-width: 700px) {
@@ -159,9 +161,6 @@
    Desktop: venstre spalte med de to forskudte fotos + knap,
    højre spalte med overskrift og tekst.
    ============================================================ */
-.historie {
-  margin-top: 6rem;
-}
 
 /* venstre spalte: fotos + knap */
 .historie-venstre {
@@ -174,6 +173,7 @@
    ind over foto 1, så det ikke bare er to klodser oven på hinanden */
 .historie-billeder {
   position: relative;
+  margin-top: 2rem;
 }
 
 .historie-billeder img {
@@ -187,17 +187,17 @@
 }
 
 .historie-billeder .historie-foto-2 {
-  width: 82%;
-  margin: -2.5rem 0 0 auto; /* trukket op og skubbet til højre */
+  width: 50%;
+  margin: -2.5rem 1rem 0 auto; /* trukket op og skubbet til højre */
   position: relative;
   z-index: 1;
   border: 5px solid var(--creme); /* lille lys kant, så de adskilles */
 }
 
-/* knappen: bordeaux, versaler – som på skitsen */
+/* knappen: bordeaux */
 .historie .knap {
-  align-self: flex-start;
-  margin: 0;
+  align-self: center;
+  margin: 3rem 0 0;
   padding: 1rem 2.3rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -206,6 +206,7 @@
 
 .historie-tekst h2 {
   margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 @media (min-width: 700px) {

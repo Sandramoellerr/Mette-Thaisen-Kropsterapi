@@ -250,7 +250,15 @@ main .sidebanner {
   .pris-gruppe {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.4rem;
-    align-items: start;
+    align-items: stretch; /* alle tre kort lige høje, uanset indhold */
+  }
+  .gruppe {
+    display: flex;
+    flex-direction: column;
+  }
+  .gruppe .gruppe-note {
+    margin-top: auto; /* skubber noten (hvis der er en) ned i bunden, så kortene bunder ens */
+    padding-top: 0.9rem;
   }
 }
 
@@ -332,9 +340,10 @@ main .sidebanner {
 
 /* ============================================================
    6. BETINGELSER FOR AFBESTILLING
-   Ramme uden fyld.
+   Lys sandfarvet boks med kant, som på skitsen.
    ============================================================ */
 .betingelser {
+  background-color: var(--sand);
   border: 1.5px solid var(--petroleum);
   border-radius: 18px;
 }

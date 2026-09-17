@@ -464,13 +464,13 @@ main .hero {
 
 .hero figure img {
   width: 100%;
-  height: 60vw;
+  height: 100vw; /* højere/mere lodret udsnit, så Mette ikke bliver mast sammen */
   object-fit: cover;
 }
 
 /* Strandbilledet er meget bredt, og Mette står i venstre side. */
 .hero figure img[src*="foto-strand-banner"] {
-  object-position: 22% center;
+  object-position: 28% center;
 }
 
 .hero-tekst {
@@ -530,9 +530,14 @@ main .hero {
   }
 
   .hero figure img {
-    height: 36vw;
-    min-height: 420px;
-    max-height: 620px;
+    /* over 50vw holder udsnittet sig SMALLERE end billedets egne
+       proportioner (2:1) hele vejen op gennem normale skærmbredder,
+       så det bliver ved med at zoome ind på Mette i stedet for at
+       vise hele det brede strandbillede fladt ud (og undgår samtidig
+       opskalering, som gjorde det uskarpt). */
+    height: 55vw;
+    min-height: 480px;
+    max-height: 900px;
   }
 
   .hero-tekst {

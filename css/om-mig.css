@@ -128,6 +128,29 @@
   border-bottom: none;
 }
 
+/* "Se relevante kurser" – bruger den generiske sand-farvede
+   details-boks fra base.css, så den ikke drukner det hvide kort. */
+.certificering-kurser {
+  margin-top: 1.4rem;
+}
+.certificering-kurser li {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Tekst-link med understregning i stedet for knap-look (bruges i
+   "Min historie" til linket til kropsterapiuddannelsen) */
+.tekst-link {
+  color: var(--bordeaux);
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--bordeaux);
+  text-decoration: none;
+}
+.tekst-link:hover {
+  color: var(--bordeaux-moerk);
+  border-bottom-color: var(--bordeaux-moerk);
+}
+
 @media (min-width: 700px) {
   .certificering {
     margin-top: 8rem;
@@ -254,6 +277,21 @@
     z-index: 1;
     border: 8px solid var(--creme);
   }
+}
+
+/* ============================================================
+   3a. HVEM JEG HJÆLPER
+   Enkel tekst-sektion – ingen billeder, bare god læsbarhed.
+   ============================================================ */
+.hvem-hjaelper p {
+  max-width: 46rem;
+}
+
+.hvem-hjaelper-signatur {
+  margin-top: 1.4rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
 }
 
 /* ============================================================

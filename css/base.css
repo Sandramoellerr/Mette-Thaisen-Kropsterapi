@@ -22,6 +22,7 @@
    1. GRUNDLAG
    ============================================================ */
 :root {
+  --lyscreme: #f6f2e8; /* baggrund, det lyse beige */
   --creme: #f5eee2; /* baggrund, det lyse beige */
   --sand: #ece1cd; /* lidt mørkere beige til bokse */
   --salvie-lys: #bcd6c9; /* lyseste grønblå (ydelse 1) */
@@ -31,7 +32,7 @@
   --bordeaux: #7c2c48; /* vinrød til knapper og bånd */
   --bordeaux-moerk: #5c1f36; /* mørkere vinrød til hover */
   --tekst: #2c2620; /* næsten sort tekstfarve */
-  --hvid: #ffffff;
+  --hvid: #fdfbf6; /* ikke skarp, ren hvid – en rolig, varm creme-hvid i stedet */
 }
 
 * {
@@ -70,6 +71,13 @@ h3 {
   font-size: 1.15rem;
 }
 
+/* Fremhævet ord i en overskrift – kursiv og accentfarve, giver
+   personlighed. Bruges kun på ét ord i sidens vigtigste overskrift. */
+.ord-fremhaevet {
+  font-style: italic;
+  color: var(--bordeaux);
+}
+
 p {
   margin: 0 0 1em 0;
 }
@@ -99,6 +107,7 @@ main section,
 main .sidebanner {
   max-width: 78rem;
   margin-inline: auto; /* vandret centreret på store skærme */
+  margin-block: 4rem; /* luft mellem sektionerne, også på mobil */
   padding: 2.5rem 1.8rem; /* luft indeni – også i top og bund */
 }
 
@@ -149,7 +158,7 @@ main .sidebanner {
    ============================================================ */
 header {
   position: relative; /* så mobilmenuen kan spænde ud fra HELE headeren, ikke kun burger-ikonet */
-  background-color: var(--sand);
+  background-color: var(--lyscreme);
   padding: 1rem 1.2rem;
   z-index: 10;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
@@ -180,14 +189,6 @@ header nav details {
   background-color: transparent;
   padding: 0;
   margin: 0;
-}
-
-/* Kun "Praktisk information" på computer skal have sin egen
-   positionerings-kontekst (dens undermenu ligger absolut lige
-   under den selv). Mobilmenuen positioneres i stedet ud fra HELE
-   headeren – se .mobilmenu .menu-links herunder. */
-.praktisk-detaljer-desktop {
-  position: relative;
 }
 
 /* Burgerknappen (kun ikonet ☰ / ✕). ">" så det kun rammer
@@ -247,10 +248,9 @@ header nav details {
   text-align: center;
 }
 
-/* "Praktisk information"-dropdownen (både mobil og computer).
-   Summary'en skal ligne de andre menu-links. */
-.praktisk-detaljer summary,
-.praktisk-detaljer-desktop summary {
+/* "Praktisk information"-dropdownen (kun mobil – på computer er
+   punkterne foldet ud som almindelige links, se .skrivebord-links). */
+.praktisk-detaljer summary {
   list-style: none;
   cursor: pointer;
   font-size: 0.95rem;
@@ -259,49 +259,19 @@ header nav details {
   text-decoration: none;
 }
 
-.praktisk-detaljer summary::-webkit-details-marker,
-.praktisk-detaljer-desktop summary::-webkit-details-marker {
+.praktisk-detaljer summary::-webkit-details-marker {
   display: none;
 }
 
-.praktisk-detaljer summary::after,
-.praktisk-detaljer-desktop summary::after {
+.praktisk-detaljer summary::after {
   content: "▾";
   display: inline-block;
   margin-left: 0.35rem;
   font-size: 0.7em;
 }
 
-.praktisk-detaljer[open] summary::after,
-.praktisk-detaljer-desktop[open] summary::after {
+.praktisk-detaljer[open] summary::after {
   content: "▴";
-}
-
-/* På computer folder undermenuen sig ud som en lille hvid boks */
-.praktisk-links-desktop {
-  position: absolute;
-  left: 0;
-  top: 2.2rem;
-  background-color: var(--sand);
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  padding: 1rem 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  min-width: 230px;
-  z-index: 5;
-}
-
-.praktisk-links-desktop a {
-  text-decoration: none;
-  color: var(--hvid);
-  font-size: 0.95rem;
-  white-space: nowrap;
-}
-
-.praktisk-links-desktop a:hover {
-  color: var(--bordeaux);
 }
 
 /* I mobilmenuen folder undermenuen sig ud på linje med et let indryk.
@@ -346,8 +316,12 @@ header nav details {
 
   .skrivebord-links {
     display: flex;
+    flex: 1; /* fylder resten af headeren, så linkene kan centreres i den plads */
     align-items: center;
-    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.6rem;
+    column-gap: 1.1rem;
   }
 
   /* Book-knappen holdes UDENFOR med :not(), så den beholder sin
@@ -355,7 +329,8 @@ header nav details {
   .skrivebord-links a:not(.book-knap-desktop) {
     text-decoration: none;
     color: var(--tekst);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
   }
 
   .skrivebord-links a:not(.book-knap-desktop):hover {
@@ -363,7 +338,7 @@ header nav details {
   }
 
   header nav {
-    gap: 2rem;
+    gap: 1.2rem;
   }
 }
 
@@ -371,6 +346,16 @@ header nav details {
 @media (min-width: 1000px) {
   header nav {
     margin: 0;
+    gap: 2rem;
+  }
+
+  .skrivebord-links {
+    flex-wrap: nowrap;
+    column-gap: 1.8rem;
+  }
+
+  .skrivebord-links a:not(.book-knap-desktop) {
+    font-size: 0.95rem;
   }
 }
 
@@ -409,18 +394,21 @@ header nav details {
 }
 
 .knap-lys {
-  display: block;
-  width: fit-content; /* så knappen kun er så bred som teksten */
-  margin: 2rem auto 6rem; /* top · auto = centreret · bund */
+  display: inline-block;
   background-color: var(--hvid);
   color: var(--petroleum-moerk);
+  text-decoration: none;
+  padding: 0.85rem 1.7rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  text-align: center;
+  margin-top: 0.5rem;
   border: 2px solid var(--petroleum-moerk);
 }
 
 .knap-lys:hover {
   background-color: var(--petroleum-moerk);
   color: var(--hvid);
-  border: 2px solid var(--petroleum-moerk);
 }
 
 .knap-hul {
@@ -442,7 +430,7 @@ header nav details {
 }
 
 /* Ekstra bundluft under "Læs mere om mig"-knappen på forsiden */
-.om-mig-kort .knap {
+.om-mig-kort .knap-lys {
   margin-bottom: 3rem;
 }
 
@@ -473,7 +461,7 @@ main .hero {
 
 .hero figure img {
   width: 100%;
-  height: 100vw; /* højere/mere lodret udsnit, så Mette ikke bliver mast sammen */
+  height: 65vw; /* tættere på det originale billedes egne proportioner + skarpere, da der zoomes mindre ind */
   object-fit: cover;
 }
 
@@ -488,10 +476,11 @@ main .hero {
 
 .hero-tekst .kicker {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.75rem;
+  letter-spacing: 0.16em; /* matcher kicker-stilen på om mig/forløb */
+  font-size: 0.7rem;
   color: var(--petroleum-moerk);
   font-weight: 600;
+  margin-bottom: 0.4rem;
 }
 
 /* Knappe-rækken bruges både i hero og i sidebanner */
@@ -668,14 +657,28 @@ footer {
   align-items: center;
   gap: 1.8rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
   margin: 0;
   padding: 4rem;
 }
 
-.footer-dekoration {
-  display: none; /* pynte-grenen vises kun fra computer-bredde */
+/* Wrapper om logo/kontakt/adresse, så de tre kan ligge i en række
+   på desktop, mens CVR-linjen ligger for sig selv nederst i footeren
+   – på alle sider, både mobil og desktop. */
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  width: 100%;
+}
+
+.footer-cvr {
+  width: 100%;
+  margin: 0;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  opacity: 0.7;
 }
 
 footer h2 {
@@ -723,12 +726,21 @@ footer a {
 /* --- 7. tablet: footer som én vandret linje --- */
 @media (min-width: 700px) {
   footer {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    align-items: stretch; /* så .footer-top og .footer-cvr kan fylde hele bredden */
     text-align: left;
     padding-inline: 6rem;
     padding-block: 8rem;
+  }
+
+  .footer-top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-cvr {
+    text-align: center;
+    margin-top: 1.5rem;
   }
 
   .footer-logo {
@@ -747,17 +759,6 @@ footer a {
   .footer-kontakt p,
   .footer-adresse p {
     justify-content: flex-start;
-  }
-
-  .footer-dekoration {
-    display: block;
-    position: absolute;
-    right: 2rem;
-    bottom: -1.5rem;
-    height: 140%;
-    width: auto;
-    opacity: 0.55;
-    pointer-events: none;
   }
 }
 

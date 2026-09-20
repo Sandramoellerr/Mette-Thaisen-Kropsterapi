@@ -147,6 +147,10 @@ main .sidebanner {
 /* ============================================================
    3. INDIVIDUEL BEHANDLING
    ============================================================ */
+.individuel {
+  margin-top: 4rem; /* lidt mere luft ned til nyhedskortet på mobil */
+}
+
 .pris-liste {
   display: grid;
   gap: 1.2rem;
@@ -201,6 +205,23 @@ main .sidebanner {
   .pris-liste {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.6rem;
+    color: var(--creme);
+  }
+  .individuel {
+    background-color: var(--petroleum); /* byttet med kortenes tidligere kant-farve */
+    margin-top: 15rem;
+    max-width: none;
+    color: var(--creme);
+  }
+  .pris-kort {
+    border-color: var(--petroleum-moerk); /* byttet med sektionens tidligere baggrundsfarve */
+  }
+  /* .spar og .pris-note var mørk petroleum-tekst, tænkt til en lys
+     baggrund – på den nye mørkere sektions-baggrund var de næsten
+     ulæselige. Lys creme-tekst matcher resten af kortets tekst. */
+  .pris-kort .spar,
+  .pris-note {
+    color: var(--creme);
   }
 }
 
@@ -212,6 +233,14 @@ main .sidebanner {
   background: none;
 }
 
+@media (max-width: 699px) {
+  /* fra 1000px har sektionen sin egen margin-top: 0 (den er
+     fuldbredde og støder op til "Individuel behandling"). Denne er
+     kun til mobil, hvor der ellers ikke er nogen luft. */
+  .prisvalg {
+    margin-top: 4rem;
+  }
+}
 .pris-gruppe {
   display: grid;
   gap: 1.2rem;
@@ -260,6 +289,22 @@ main .sidebanner {
     margin-top: auto; /* skubber noten (hvis der er en) ned i bunden, så kortene bunder ens */
     padding-top: 0.9rem;
   }
+  .prisvalg {
+    background-color: var(--sand);
+    max-width: none;
+    margin-top: 0;
+    padding-block: 12rem;
+    margin-bottom: auto;
+  }
+  .individuel {
+    margin-bottom: 0;
+  }
+  .gruppe h3 {
+    margin-bottom: 2rem;
+  }
+  .linje-titel {
+    margin-bottom: 2rem;
+  }
 }
 
 /* ============================================================
@@ -269,6 +314,15 @@ main .sidebanner {
   display: flex;
   flex-direction: column;
   gap: 1.8rem;
+}
+
+@media (max-width: 699px) {
+  /* fra 700px op har sektionen allerede sin luft fra "main section"
+     (margin-block: 8rem i base.css) – denne er kun til mobil, hvor
+     den luft ikke findes endnu. */
+  .book-cta {
+    margin-top: 4rem;
+  }
 }
 
 .book-foto {
@@ -347,6 +401,8 @@ main .sidebanner {
   border: 1.5px solid var(--petroleum);
   border-radius: 18px;
   margin: 3rem;
+  margin-top: 4rem; /* lidt mere luft op til "book din tid", som de andre sektioner */
+  padding-bottom: 3.2rem; /* lidt mere luft under sidste punkt */
 }
 .betingelser h2 {
   text-align: center;
@@ -362,6 +418,17 @@ main .sidebanner {
 .betingelser li {
   margin: 0.7rem 0;
   font-size: 0.92rem;
+}
+
+@media (min-width: 700px) {
+  .betingelser {
+    /* margin: 3rem (fast på begge sider) er det, der forhindrer
+       centrering – med en max-width mindre end skærmen bliver
+       boksen presset ud til venstre i stedet for at stå i midten.
+       margin-inline: auto centrerer den i den normale spalte. */
+    margin: 3rem auto;
+    padding-bottom: 4.5rem; /* lidt mere luft under sidste punkt på desktop */
+  }
 }
 
 /* ============================================================
@@ -388,13 +455,6 @@ main .sidebanner {
   opacity: 0.45;
 }
 
-@media (min-width: 700px) {
-  .linje-titel {
-    font-size: 1.2rem;
-    gap: 2rem;
-  }
-}
-
 /* Rundt logo-ikon øverst på priskortene */
 .kort-ikon {
   display: block;
@@ -410,4 +470,23 @@ main .sidebanner {
 }
 .gruppe .kort-ikon {
   background-color: var(--creme);
+}
+
+@media (min-width: 700px) {
+  .linje-titel {
+    font-size: 1.2rem;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .linje-titel::before,
+  .linje-titel::after {
+    background-color: var(--creme);
+  }
+  .kort-ikon {
+    margin-bottom: 2rem;
+    background-color: var(--creme);
+  }
+  .gruppe .kort-ikon {
+    background-color: var(--creme);
+  }
 }

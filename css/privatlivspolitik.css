@@ -1,0 +1,31 @@
+/* ============================================================
+   PRIVATLIVSPOLITIK – privatlivspolitik.html
+   Ren tekstside – ingen billeder. Genbruger den generiske
+   sektions-bredde/luft fra base.css.
+   ============================================================ */
+.privatliv-intro,
+.privatliv-afsnit {
+  max-width: 52rem;
+}
+
+.privatliv-intro {
+  padding-bottom: 0;
+}
+
+.privatliv-afsnit h3 {
+  margin-top: 1.6rem;
+}
+
+.privatliv-afsnit ul {
+  margin: 0 0 1em 0;
+}
+
+.privatliv-afsnit li {
+  margin-bottom: 0.4rem;
+}
+
+.privatliv-afsnit address {
+  font-style: normal;
+  line-height: 1.7;
+  margin: 0 0 1em 0;
+}

@@ -364,12 +364,13 @@
    baggrund, så den ikke bare svæver alene. Centreret.
    ------------------------------------------------------------ */
 .forloeb-cta {
-  max-width: 34rem;
-  padding: 2.6rem 1.8rem 3rem;
+  max-width: none; /* helt ud til kanten, også på mobil */
+  margin-inline: 0;
+  margin-block: 0; /* flush på mobil – margin tilføjes kun fra 700px, se nedenfor */
+  padding: 3.5rem 1.8rem 4rem; /* lidt mere luft i top/bund, nu hvor den går ud til kanten */
   background-color: var(--hvid);
   box-shadow: 0 16px 38px rgba(63, 95, 104, 0.14);
   text-align: center;
-  margin-bottom: 0;
 }
 
 .forloeb-cta-gren {
@@ -404,14 +405,19 @@
 
 @media (min-width: 700px) {
   .forloeb-cta {
-    margin: 5rem auto 0; /* centreret i spalten på større skærme */
-    padding: 3.2rem 2.5rem 3.6rem;
+    padding: 4rem 2.5rem 5rem;
+    margin-top: 8rem; /* lidt mere luft op til trin-kortene */
+    margin-bottom: 5rem;
   }
   .forloebets-gang {
     padding: 0 0 7rem;
   }
-  .forloebets-gang > *:not(.forloebets-gang-top) {
-    padding-top: 5rem;
+  /* kun brødteksten (første element efter titel-bjælken) skal have
+     ekstra luft ned til titlen – ramte tidligere ALLE elementer i
+     sektionen (også trin-listen og CTA-kortet), så luften hobede sig
+     op nedover og gjorde hele sektionen rodet */
+  .forloebets-gang-brod {
+    padding-top: 2rem;
   }
   .forloebets-gang-top {
     padding: 3rem;

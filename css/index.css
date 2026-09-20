@@ -19,10 +19,9 @@
    ============================================================ */
 .om-mig-kort {
   background-color: var(--salvie-lys);
-  border-radius: 24px;
+  margin-top: 3rem;
   box-shadow: 0 16px 38px rgba(63, 95, 104, 0.16);
   padding: 1.4rem; /* luft mellem kortkanten og indholdet */
-  margin-inline: 1.6rem; /* kortet flyder frit inde fra kanten på mobil */
 }
 
 /* Nulstiller flex + de gamle forsøgsværdier (max-width/margin-left)
@@ -38,13 +37,13 @@
 }
 
 .om-mig-kort img {
-  width: 100%;
-  height: 300px;
+  width: 68%; /* mindre billede på mobil */
+  aspect-ratio: 1 / 1; /* kvadratisk */
+  height: auto;
   object-fit: cover;
   object-position: center 30%;
-  border-radius: 16px; /* runde kanter på selve fotoet */
-  margin: 0;
-  max-width: none;
+  margin: 4rem auto 0; /* centreret vandret i kortet */
+  border-radius: 3rem;
 }
 
 .om-mig-kort .kort-indhold > div {
@@ -78,16 +77,18 @@
   color: var(--petroleum-moerk);
 }
 
-.om-mig-kort .knap {
+.om-mig-kort .knap-lys {
   margin-inline: 0;
 }
 
 /* --- tablet: tekst til venstre, foto til højre --- */
 @media (min-width: 700px) {
   .om-mig-kort {
-    padding: 2rem;
+    padding: 6rem;
+    border-radius: 3rem;
     margin-inline: auto; /* centreret i spalten på større skærme */
   }
+
   .om-mig-kort .kort-indhold {
     flex-direction: row-reverse;
     gap: 2.5rem;
@@ -95,8 +96,10 @@
   .om-mig-kort img {
     flex: 0 0 42%;
     width: 42%;
-    height: 460px; /* fast højde, så billedet beskæres pænt i stedet for at gøre kortet kæmpe */
-    align-self: stretch;
+    height: 100%;
+    aspect-ratio: 1 / 1; /* kvadratisk */
+    height: auto;
+    align-self: center;
     object-fit: cover;
     border-radius: 18px;
   }
@@ -106,80 +109,143 @@
     padding: 1rem 1.4rem;
   }
 }
+/* ============================================================
+   HVORFOR MANUVISION KROPSTERAPI?
+   ============================================================ */
+.hvorfor-manuvision {
+  max-width: 52rem;
+  margin-block: 0;
+  background-color: var(--lyscreme);
+}
 
 /* ============================================================
-   1. MINE YDELSER
-   .ydelse             = fælles boks-styling
-   .ydelse-1 … .ydelse-4 = kun baggrundsfarven
+   DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
    ============================================================ */
-
-/* Den sandfarvede baggrund går HELT ud til kanten (som bjælken),
-   mens selve indholdet holdes i samme spalte som resten. */
-.ydelser {
-  background-color: var(--sand);
-  max-width: none;
-  margin-inline: 0;
-  padding: 7rem 0;
-}
-.ydelser > * {
-  max-width: 78rem;
-  margin-inline: auto;
-  padding-inline: 1.8rem;
+.hjaelper-dig {
+  max-width: 52rem;
+  margin-bottom: 1rem;
 }
 
-.ydelse-liste {
-  display: grid;
-  grid-template-columns: 1fr; /* på mobil: én kolonne */
-  gap: 0.8rem;
-  margin-top: 1.2rem;
-}
-.ydelse {
-  border-radius: 14px;
-  padding: 1.8rem 1.4rem;
-  color: var(--hvid);
-  min-height: 210px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* overskrift i top, tekst i bund */
+.hjaelper-dig-tekst p:last-child {
+  margin-bottom: 0;
 }
 
-.ydelse-1 {
-  background-color: var(--salvie-lys);
-  color: var(--tekst);
-}
-.ydelse-2 {
-  background-color: var(--salvie);
-}
-.ydelse-3 {
-  background-color: var(--petroleum);
-}
-.ydelse-4 {
-  background-color: var(--petroleum-moerk);
-}
-
-.ydelse h3 {
-  font-size: 1rem;
-}
-.ydelse p {
-  font-size: 0.85rem;
-  margin: 0;
-}
-
-/* --- tablet: fire aflange bokse i én række --- */
+/* --- desktop: tekst og tjekliste side om side --- */
 @media (min-width: 700px) {
-  .ydelser {
-    padding: 10rem 0;
+  .hjaelper-dig-indhold {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
   }
-  .ydelser > * {
-    padding-inline: 2.5rem;
+  .hjaelper-dig-tekst {
+    flex: 1.2;
   }
-  .ydelse-liste {
-    grid-template-columns: repeat(4, 1fr);
+  .tjekliste {
+    flex: 1;
+    margin-top: 0;
+    align-self: stretch;
+  }
+}
+
+/* Tekst-link med understregning i stedet for knap-look */
+.tekst-link {
+  color: var(--bordeaux);
+  font-weight: 600;
+  border-bottom: 1.5px solid var(--bordeaux);
+  text-decoration: none;
+}
+.tekst-link:hover {
+  color: var(--bordeaux-moerk);
+  border-bottom-color: var(--bordeaux-moerk);
+}
+
+/* "Kan du genkende dig selv i noget af det her?" – sandfarvet
+   kort med en simpel prik-liste, inde i "Det kan jeg hjælpe med". */
+.tjekliste {
+  background-color: var(--sand);
+  border-radius: 16px;
+  padding: 3rem 1.9rem;
+  margin-top: 2rem;
+}
+
+.tjekliste h3 {
+  text-align: center;
+  white-space: nowrap; /* skal blive på én linje */
+  font-size: clamp(0.7rem, 4.1vw, 1.3rem); /* skrumper på smalle skærme, så den ikke går i to linjer eller ud af kanten */
+}
+
+.tjekliste ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.tjekliste li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tjekliste li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--bordeaux);
+}
+
+@media (min-width: 700px) {
+  .hjaelper-dig {
+    max-width: 68rem;
+  }
+  .tjekliste {
+    padding: 2.4rem 3rem;
+  }
+  .tjekliste li {
+    font-size: 1rem;
   }
 
-  .ydelse {
-    min-height: 300px;
-    padding: 2rem 1.5rem;
+  /* Fuld bredde med baggrundsfarven helt ud til kanten, indholdet
+     holdes i samme spalte via ">*". */
+  .hvorfor-manuvision {
+    max-width: none;
+    margin-inline: 0;
+  }
+  .hvorfor-manuvision > * {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+}
+
+/* ============================================================
+   BOOK EN TID (tekst – selve knappen/linket er bjælken herunder)
+   ============================================================ */
+.book-tid {
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: start;
+  background-color: var(--sand);
+}
+.book-tid-signatur {
+  margin-top: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  text-align: center;
+}
+
+/* --- desktop: rund, "svævende" kort-stil (ikke fuld bredde) --- */
+@media (min-width: 700px) {
+  .book-tid {
+    max-width: 64rem;
+    border-radius: 32px;
+    padding: 4rem 4.5rem;
   }
 }
 
@@ -197,8 +263,8 @@
   text-decoration: none;
   text-align: center;
   padding: 3.5rem 1.5rem;
-  margin: 6rem 0; /* går ud til kanten – samme rytme som alle andre sektioner */
   transition: filter 0.2s ease;
+  margin: 0;
 }
 
 .bjaelke:hover {
@@ -207,6 +273,10 @@
 
 .bjaelke h2 {
   margin-bottom: 0.3rem;
+  white-space: nowrap; /* skal blive på én linje, som en rigtig underskrift */
+  font-family: "Alex Brush", "Playfair Display", cursive; /* underskrift-agtig font, giver personlighed */
+  font-weight: 400;
+  font-size: clamp(1.8rem, 9vw, 3.4rem); /* script-fonte skal være større end almindelig tekst for at læses godt */
 }
 
 .bjaelke p {
@@ -218,6 +288,10 @@
     padding: 4.5rem 2rem;
     margin: 8rem 0;
   }
+}
+
+.billede-kort .forloeb-kort {
+  margin-top: 0;
 }
 
 /* ============================================================
@@ -237,6 +311,9 @@
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 
+.galleri {
+  margin-bottom: 0;
+}
 .galleri-billeder .karrusel-spor {
   display: flex;
   width: max-content;
@@ -291,23 +368,6 @@
   .galleri-billeder .karrusel-spor img[aria-hidden="true"] {
     display: none;
   }
-}
-
-.galleri blockquote {
-  background-color: var(--sand);
-  border-radius: 14px;
-  padding: 1.2rem;
-  font-style: italic;
-  margin: 1.2rem 0 0 0;
-  margin-bottom: 3rem;
-}
-
-.galleri blockquote cite {
-  display: block;
-  margin-top: 0.8rem;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 0.85rem;
 }
 
 /* --- tablet --- */

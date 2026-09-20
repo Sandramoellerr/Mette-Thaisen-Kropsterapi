@@ -45,6 +45,32 @@
   margin-top: 3rem;
 }
 
+/* --- tablet --- */
+@media (min-width: 700px) {
+  .kontakt-boks {
+    max-width: none;
+    margin-inline: auto;
+    gap: 2rem;
+    width: 80%;
+    height: 80%;
+  }
+  .kontakt-foto {
+    margin-top: 3rem;
+    width: 80%;
+    height: 80%;
+  }
+  .kontaktinfo {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: none;
+    margin-inline: 0;
+  }
+  .kontaktinfo > * {
+    max-width: 78rem;
+    margin-inline: auto;
+    justify-content: center;
+  }
+}
 .kontakt-boks dl {
   margin: 0;
 }
@@ -71,6 +97,16 @@
   font-size: 0.95rem;
 }
 
+.kontakt-boks dd a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.kontakt-boks dd a:hover {
+  color: var(--sand);
+}
+
 /* ============================================================
    2. TRYGT RUM
    ============================================================ */
@@ -82,12 +118,4 @@
 .tryg-rum img {
   border-radius: 16px;
   margin: 1.2rem auto;
-}
-
-/* --- tablet --- */
-@media (min-width: 700px) {
-  .kontaktinfo {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
 }

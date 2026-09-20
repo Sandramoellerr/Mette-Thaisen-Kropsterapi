@@ -82,11 +82,20 @@
    Badges (to certificerings-mærker, det ene lidt mindre og
    forskudt) ved siden af teksten.
    ============================================================ */
+/* Grøn baggrund helt ud til kanten, ligesom på mobil (hvor det sker
+   af sig selv, fordi skærmen er smallere end main sections
+   max-width). Selve indholdet holdes i den normale midterspalte. */
+.chok-traume {
+  max-width: none;
+  margin-inline: 0;
+}
 .chok-traume-indhold {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   padding-block: 4rem;
+  max-width: 78rem;
+  margin-inline: auto;
 }
 main section {
   background-color: var(--salvie);
@@ -124,6 +133,12 @@ main section {
   overflow: hidden;
   background-color: var(--sand);
   padding-block: 4rem;
+  max-width: none;
+  margin-inline: 0;
+}
+.forskning > * {
+  max-width: 78rem;
+  margin-inline: auto;
 }
 
 /* ============================================================
@@ -171,6 +186,10 @@ main section {
     flex-direction: row;
     align-items: flex-start;
     gap: 3.5rem;
+    /* sektionen har allerede sin egen top/bund-luft (main section);
+       den ekstra padding herfra var kun tiltænkt mobil-visningen og
+       gjorde det grønne felt unødigt højt/tomt på desktop */
+    padding-block: 0;
   }
   .chok-badges {
     align-self: flex-start;

@@ -283,6 +283,10 @@
    3a. HVEM JEG HJÆLPER
    Enkel tekst-sektion – ingen billeder, bare god læsbarhed.
    ============================================================ */
+.hvem-hjaelper {
+  background-color: var(--salvie-lys);
+  margin-bottom: 0;
+}
 .hvem-hjaelper p {
   max-width: 46rem;
 }
@@ -294,98 +298,154 @@
   color: var(--petroleum-moerk);
 }
 
+@media (min-width: 700px) {
+  .hvem-hjaelper {
+    max-width: none;
+  }
+}
 /* ============================================================
    4. CERTIFIKAT-BÅND
-   En stribe med certifikat-logoerne der kører i uendelig løkke
-   fra VENSTRE mod HØJRE. Ingen baggrundsfarve – kun billederne.
-   Logoerne ligger to gange i HTML, så løkken bliver sømløs.
+   Fladt, minimalt "trusted by"-bånd – logoerne flyder frit på
+   baggrunden uden kort/skygge, og forstørres let ved hover.
    ============================================================ */
 .udmaerkelser {
-  background: none;
-  max-width: none;
-  margin: 6rem 0;
-  padding: 0;
-  overflow: hidden;
+  background-color: var(--sand);
+  margin-top: 0;
+  padding: 3.5rem 1.8rem;
+  text-align: center;
+}
+
+.udmaerkelser .deko-blad {
+  display: block;
+  margin: 0 auto 0.8rem;
+  color: var(--petroleum-moerk);
+  opacity: 0.6;
+}
+
+.udmaerkelser-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin: 0 0 2rem;
 }
 
 .logo-baand {
-  overflow: hidden;
-}
-
-.logo-spor {
   display: flex;
-  width: max-content;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0; /* ingen mellemrum – én lang stribe */
-  animation: logo-baand-scroll 32s linear infinite;
+  justify-content: center;
+  gap: 2.2rem;
 }
 
-.logo-spor img {
-  height: 90px;
+.logo-kort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-baand img {
+  height: 60px;
   width: auto;
-  flex: 0 0 auto;
+  transition: transform 0.25s ease;
 }
 
-/* -50% -> 0 : indholdet bevæger sig fra venstre mod højre.
-   Lavere tal end 32s = hurtigere. */
-@keyframes logo-baand-scroll {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-/* pause når musen holdes over */
-.logo-baand:hover .logo-spor {
-  animation-play-state: paused;
-}
-
-/* respektér brugere der har slået animationer fra */
-@media (prefers-reduced-motion: reduce) {
-  .logo-spor {
-    animation: none;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
+.logo-kort:hover img {
+  transform: scale(1.12);
 }
 
 @media (min-width: 700px) {
   .udmaerkelser {
     margin-block: 8rem; /* samme rytme som resten af siderne */
+    padding: 5rem 2.5rem;
+    max-width: none;
   }
-  .logo-spor img {
-    height: 130px;
+  .udmaerkelser .deko-blad {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1.2rem;
+  }
+  .udmaerkelser-kicker {
+    margin-bottom: 2.5rem;
+  }
+  .logo-baand {
+    gap: 4rem;
+  }
+  .logo-baand img {
+    height: 90px;
   }
 }
 
 /* ============================================================
    5. UDTALELSER
-   Første citat på lys sand, andet i et grønt kort – for variation.
+   Swipebar vandret række af citat-kort i skiftende nuancer fra
+   sidens eget farveskema (sand → salvie → petroleum), lysest
+   til mørkest, i stedet for en fast grid-opstilling.
    ============================================================ */
 .udtalelser h2 {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.udtalelser-intro {
+  text-align: center;
+  max-width: 32rem;
+  margin: 0 auto 2rem;
+  font-style: italic;
+  color: var(--petroleum-moerk);
 }
 
 .udtalelse-liste {
-  display: grid;
-  gap: 1.4rem;
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem; /* luft til evt. scrollbar */
 }
 
 .udtalelser blockquote {
+  position: relative;
+  flex: 0 0 82%;
+  scroll-snap-align: start;
   margin: 0;
   border-radius: 20px;
-  padding: 2rem 1.8rem;
+  padding: 2.6rem 1.8rem 2rem;
   font-style: italic;
   font-size: 1.02rem;
   line-height: 1.7;
-  background-color: var(--sand);
+  background-color: var(--sand); /* lyseste nuance */
+  color: var(--tekst);
 }
 
-.udtalelser blockquote:nth-child(2) {
+.deko-citat {
+  display: block;
+  margin-bottom: 0.6rem;
+  opacity: 0.3;
+}
+
+.deko-citat path {
+  fill: currentColor;
+}
+
+/* Fem skiftende nuancer fra sidens eget farveskema, lysest til
+   mørkest, gentaget hver 5. kort. */
+.udtalelser blockquote:nth-child(5n + 2) {
   background-color: var(--salvie-lys);
+  color: var(--tekst);
+}
+.udtalelser blockquote:nth-child(5n + 3) {
+  background-color: var(--salvie);
+  color: var(--tekst);
+}
+.udtalelser blockquote:nth-child(5n + 4) {
+  background-color: var(--petroleum);
+  color: var(--hvid);
+}
+.udtalelser blockquote:nth-child(5n + 5) {
+  background-color: var(--petroleum-moerk);
+  color: var(--hvid);
 }
 
 .udtalelser cite {
@@ -394,15 +454,24 @@
   font-style: normal;
   font-weight: 600;
   font-size: 0.85rem;
-  color: var(--petroleum-moerk);
+  color: inherit;
+  opacity: 0.75;
 }
 
 @media (min-width: 700px) {
+  .udtalelser-intro {
+    margin-bottom: 3rem;
+  }
   .udtalelse-liste {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.8rem;
   }
   .udtalelser blockquote {
-    padding: 2.6rem 2.4rem;
+    flex: 0 0 31%;
+    padding: 3rem 2.4rem 2.6rem;
+  }
+  .deko-citat {
+    width: 42px;
+    height: 32px;
+    margin-bottom: 0.8rem;
   }
 }

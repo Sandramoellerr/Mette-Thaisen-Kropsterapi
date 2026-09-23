@@ -316,5 +316,6 @@
     max-width: 64rem;
     border-radius: 32px;
     padding: 4rem 4.5rem;
+    margin-bottom: 3rem; /* mindre luft ned til galleriet */
   }
 }

@@ -46,25 +46,47 @@
 }
 
 .forloeb-intro-tekst h1 {
+  margin-top: 0;
   margin-bottom: 0.8rem;
 }
 
 @media (min-width: 700px) {
   .forloeb-intro {
     flex-direction: row;
-    align-items: center;
     gap: 3.5rem;
-    margin-top: 5.5rem;
+    margin-top: 4rem;
     padding-inline: 2.5rem;
+  }
+  /* rolige størrelser: h1 og brødtekst er mindre end på de andre sider */
+  .forloeb-intro-tekst h1 {
+    font-size: 2.2rem;
+  }
+  .forloeb-intro-tekst p {
+    font-size: 1.05rem;
+  }
+  /* Billedet er lige så højt som teksten, så top og bund flugter.
+     align-items: stretch = figuren bliver lige så høj som tekstblokken.
+     Billedet ligger absolut inde i figuren (position: absolute + inset: 0),
+     så dets egen højde ikke styrer rækken – det er teksten, der gør. */
+  .forloeb-intro {
+    align-items: stretch;
   }
   .forloeb-intro figure {
     flex: 0 0 34%;
+    position: relative;
   }
   .forloeb-intro figure img {
-    height: 340px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
   .forloeb-intro-tekst {
     flex: 1;
+  }
+  /* sidste afsnit uden luft under, så bunden flugter med billedet */
+  .forloeb-intro-tekst p:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -101,7 +123,7 @@
 @media (min-width: 700px) {
   .faner {
     gap: 1.5rem;
-    margin-top: 7rem;
+    margin-top: 4rem;
     padding: 2rem 2.5rem;
   }
   .faner a {
@@ -128,58 +150,12 @@
   overflow: hidden;
 }
 
-/* Hver spørgsmålsgruppe holdes i en smal spalte og ligger OVEN PÅ
-   vandmærkerne. position: relative + z-index: 1 løfter teksten op
-   over grenene (som ligger bagved med z-index: 0). */
+/* Hver spørgsmålsgruppe holdes i samme spalte som resten af siden */
 .qa-gruppe {
-  position: relative;
-  z-index: 1;
-  max-width: 52rem;
+  max-width: 78rem; /* samme bredde som resten af siden, så alt flugter i venstre side */
   margin-inline: auto;
   padding-inline: 1.8rem;
   scroll-margin-top: 6rem; /* så anker-spring ikke gemmer sig under header */
-}
-
-/* Gren-vandmærker ude i den tomme luft i hver side. Kun på
-   tablet/desktop – på mobil er der ikke plads nok til dem uden at
-   de klipper ind i teksten, så der er de usynlige (content: none). */
-.sporgsmaal-svar::before,
-.sporgsmaal-svar::after {
-  content: none;
-  position: absolute;
-  width: 22rem;
-  height: 22rem;
-  background-color: var(--hvid);
-  -webkit-mask: url(../images/ikon-gren-hvid.png) no-repeat center / contain;
-  mask: url(../images/ikon-gren-hvid.png) no-repeat center / contain;
-  opacity: 0.75;
-  pointer-events: none;
-  z-index: 0;
-}
-.sporgsmaal-svar::before {
-  top: 2rem;
-  left: -5rem;
-  transform: rotate(-25deg);
-}
-.sporgsmaal-svar::after {
-  bottom: 2rem;
-  right: -5rem;
-  transform: rotate(155deg);
-}
-
-@media (min-width: 900px) {
-  .sporgsmaal-svar::before,
-  .sporgsmaal-svar::after {
-    content: ""; /* grenene vises fra her og op */
-    width: 32rem;
-    height: 32rem;
-  }
-  .sporgsmaal-svar::before {
-    left: -2rem;
-  }
-  .sporgsmaal-svar::after {
-    right: -2rem;
-  }
 }
 
 /* "+" = en gruppe der står lige efter en anden gruppe.
@@ -193,19 +169,13 @@
 .sporgsmaal-svar h3 {
   margin-bottom: 0.4rem;
   color: var(--petroleum-moerk);
-  font-weight: bold;
+  font-family: "Playfair Display", Georgia, serif; /* varmere skrift end resten */
+  font-weight: 600;
+  font-size: 1.3rem;
 }
-/* Det andet spørgsmål i en gruppe får ekstra luft over sig */
-.sporgsmaal-svar .qa-spoergsmaal-nr2 {
+/* Luft mellem to spørgsmål under hinanden (mobil/tablet) */
+.qa-spoergsmaal + .qa-spoergsmaal {
   margin-top: 2.4rem;
-}
-
-.qa-foto {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 20px;
-  margin-top: 1.5rem;
 }
 
 /* "Læs mere" er et fladt link, der folder svaret ud (ingen boks) */
@@ -224,14 +194,17 @@
 
 @media (min-width: 700px) {
   .sporgsmaal-svar {
-    padding: 6rem 0;
+    padding: 4rem 0;
     margin-block: 0;
+  }
+  .sporgsmaal-svar h3 {
+    font-size: 1.6rem;
+  }
+  .qa-gruppe p {
+    font-size: 1.05rem;
   }
   .qa-gruppe {
     padding-inline: 2.5rem;
-  }
-  .qa-foto {
-    height: 320px;
   }
 }
 
@@ -286,8 +259,8 @@
   position: relative;
   overflow: hidden;
   background-color: var(--creme);
-  padding-block: 2.4rem;
-  margin-bottom: 3rem;
+  padding-block: 3rem 0.5rem;
+  margin-bottom: 1.5rem;
 }
 .forloebets-gang-top h2 {
   max-width: 78rem;
@@ -296,6 +269,8 @@
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--bordeaux);
+  font-weight: 700;
+  font-size: 1.4rem;
 }
 
 .forloebets-gang-brod {
@@ -306,7 +281,7 @@
   counter-reset: trin;
   list-style: none;
   padding: 0;
-  margin: 2.5rem 0;
+  margin: 3rem 0;
   display: grid;
   gap: 1rem;
 }
@@ -319,7 +294,8 @@
 
 .trin h3 {
   margin: 0 0 0.8rem;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 .trin h3::before {
   content: counter(trin);
@@ -378,20 +354,11 @@
   text-align: center;
 }
 
-.forloeb-cta-gren {
-  display: block;
-  width: 3.4rem;
-  height: 3.4rem;
-  margin: 0 auto 1rem;
-  background-color: var(--salvie);
-  -webkit-mask: url(../images/ikon-gren-blaa.png) no-repeat center / contain;
-  mask: url(../images/ikon-gren-blaa.png) no-repeat center / contain;
-  opacity: 0.8;
-}
-
 .forloeb-cta h3 {
-  margin: 0 0 0.4rem;
+  margin: 0 auto 0.8rem;
   color: var(--bordeaux);
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .forloeb-cta p {
@@ -410,40 +377,99 @@
 
 @media (min-width: 700px) {
   .forloeb-cta {
-    padding: 4rem 2.5rem 5rem;
-    margin-top: 8rem; /* lidt mere luft op til trin-kortene */
-    margin-bottom: 5rem;
+    padding: 5rem 2.5rem 6rem;
+    margin-top: 7rem;
+    margin-bottom: 0;
   }
   .forloebets-gang {
     padding: 0 0 7rem;
+  }
+  /* brødtekst og trin-liste får samme sideluft som overskriften (2.5rem),
+     så alt står på præcis samme lodrette linje */
+  .forloebets-gang .forloebets-gang-brod,
+  .forloebets-gang .trin-liste {
+    padding-inline: 2.5rem;
   }
   /* kun brødteksten (første element efter titel-bjælken) skal have
      ekstra luft ned til titlen – ramte tidligere ALLE elementer i
      sektionen (også trin-listen og CTA-kortet), så luften hobede sig
      op nedover og gjorde hele sektionen rodet */
-  .forloebets-gang-brod {
-    padding-top: 2rem;
-  }
   .forloebets-gang-top {
-    padding: 3rem;
+    padding-block: 5rem 1rem;
+    padding-inline: 0;
+    margin-bottom: 2.5rem;
   }
   .forloebets-gang-top h2 {
     padding-inline: 2.5rem;
+    font-size: 1.7rem;
   }
-  /* intro-teksten i to spalter som på skitsen */
-  .forloebets-gang-brod {
-    columns: 2;
-    column-gap: 3rem;
-    max-width: none;
+  .forloebets-gang .forloebets-gang-brod {
+    font-size: 1.05rem;
   }
 }
 
 @media (min-width: 1000px) {
-  .trin-liste {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2rem;
-    /* "start" gør, at kun det kort man åbner vokser –
-       de øvrige beholder deres højde. */
+  /* SPØRGSMÅL OG SVAR: to spørgsmål ved siden af hinanden (grid 1 : 1).
+     1fr 1fr = to lige brede spalter. Hver gruppe (Balance / Ro / Nærvær)
+     får sit eget grid, så anker-linkene i fanerne stadig virker. */
+  .qa-gruppe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
     align-items: start;
+  }
+  .qa-spoergsmaal + .qa-spoergsmaal {
+    margin-top: 0;
+  }
+
+  /* FORLØBETS GANG: tekst til venstre, trin-kort til højre.
+     Sektionen bliver et grid med 4 spalter: en tom kant, to indholdsspalter
+     (39rem hver) og en tom kant. Titel-bjælken og "Book"-kortet spænder
+     over alle 4 spalter (grid-column: 1 / -1), så deres baggrund stadig
+     går helt ud til skærmens kanter. */
+  .forloebets-gang {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 39rem) minmax(0, 39rem) 1fr;
+    align-items: start;
+  }
+  /* Overskrift + tekst i venstre spalte (række 1 og 2). Trin-kortene i
+     højre spalte spænder over begge rækker, så kortene starter i samme
+     højde som overskriften. */
+  .forloebets-gang .forloebets-gang-top {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .forloebets-gang .forloeb-cta {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
+  .forloebets-gang .forloebets-gang-brod {
+    grid-column: 2;
+    grid-row: 2;
+    margin: 0;
+    padding: 0 3rem 0 2.5rem;
+    max-width: none;
+  }
+
+  /* Trin-kortene ligger som 2 x 2 mindre bokse i højre spalte.
+     Øverste række starter i samme højde som teksten til venstre. */
+  .forloebets-gang .trin-liste {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 5rem 2.5rem 0 0; /* 5rem = samme luft over som overskriften har */
+    padding: 0;
+    max-width: none;
+  }
+  .forloebets-gang .trin {
+    padding: 1.1rem 1.2rem;
+  }
+  .forloebets-gang .trin h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+  .forloebets-gang .trin h3::before {
+    font-size: 1.3rem;
   }
 }

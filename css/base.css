@@ -734,6 +734,8 @@ footer {
 
 .footer-cvr {
   width: 100%;
+  max-width: none; /* p har ellers max-width: 60ch, som gjorde linjen for smal til at centrere */
+  text-align: center;
   margin: 0;
   padding-top: 1.8rem;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -832,7 +834,9 @@ footer a {
    sæt 2 er en kopi af sæt 1, ser det ud som en uendelig løkke.
    ============================================================ */
 .galleri {
+  margin-top: 2rem;   /* luft op til sektionen ovenfor */
   margin-bottom: 0;
+  padding-top: 1.5rem;
   padding-bottom: 0;
   text-align: center;
 }
@@ -842,10 +846,6 @@ footer a {
   margin: 0 auto 0.8rem;
   color: var(--salvie);
   opacity: 0.8;
-}
-
-.galleri h2 {
-  margin-bottom: 2rem;
 }
 
 /* Rammen om billederne går helt ud til skærmens kanter (samme
@@ -865,7 +865,7 @@ footer a {
 .galleri-billeder .karrusel-spor {
   display: flex;
   width: max-content;
-  animation: karrusel-scroll 40s linear infinite; /* lavere tal = hurtigere */
+  animation: karrusel-scroll 50s linear infinite; /* lavere tal = hurtigere */
   will-change: transform;
 }
 
@@ -886,11 +886,6 @@ footer a {
   to {
     transform: translateX(-50%); /* -50% fordi billederne ligger to gange */
   }
-}
-
-/* Pause når musen er over galleriet */
-.galleri-billeder:hover .karrusel-spor {
-  animation-play-state: paused;
 }
 
 /* Hvis brugeren har slået animationer fra i sit system (mange gør
@@ -923,5 +918,10 @@ footer a {
 
   .galleri-billeder img {
     height: 320px;
+  }
+
+  .galleri {
+    margin-top: 3rem;
+    padding-top: 2rem;
   }
 }

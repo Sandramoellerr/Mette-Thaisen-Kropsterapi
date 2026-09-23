@@ -1,31 +1,33 @@
 /* ============================================================
    FORSIDEN – index.html
-   Sektioner der kun findes på forsiden:
-     1. Om mig – teaser
-     2. Mine ydelser – fire farvede bokse
-     3. Bånd / bjælke
-     4. Galleri-karrusel
 
-   (Hero, header og footer ligger i css/base.css. "Kort med
-   billede"-grundlaget ligger også i base.css – herunder giver vi
-   forsidens "Om mig"-udgave sit eget, mere personlige udseende.)
+   Sektioner der kun findes på forsiden:
+     1. Om mig – teaser (grønt kort med foto)
+     2. Det kan jeg hjælpe dig med (+ tjekliste)
+     3. Hvorfor Manuvision kropsterapi?
+     4. Bånd med signatur ("Mette Thaisen Kropsterapi")
+     5. Et forløb hos mig
+     6. Book en tid
+
+   Hero, header, footer og galleri ligger i base.css.
+   Skrevet mobil-først: reglerne uden media query gælder mobil,
+   og @media (min-width: 700px) bygger ovenpå til tablet/computer.
    ============================================================ */
 
+
 /* ============================================================
-   1. OM MIG – teaser
-   Grønt "kort" med foto, en lille label over overskriften og en
-   håndskrift-agtig signatur under teksten. Samme salvie-grønne
-   tone som bl.a. certificering-boksen.
+   1. OM MIG – TEASER
+   Grønt kort med foto, en lille label over overskriften og en
+   signatur under teksten.
    ============================================================ */
 .om-mig-kort {
   background-color: var(--salvie-lys);
   margin-top: 3rem;
   box-shadow: 0 16px 38px rgba(63, 95, 104, 0.16);
-  padding: 1.4rem; /* luft mellem kortkanten og indholdet */
+  padding: 1.4rem;
 }
 
-/* Nulstiller flex + de gamle forsøgsværdier (max-width/margin-left)
-   fra base.css, så kortet står rent. */
+/* Mobil: billede og tekst under hinanden (flex-direction: column) */
 .om-mig-kort .kort-indhold {
   display: flex;
   flex-direction: column;
@@ -36,24 +38,30 @@
   text-align: left;
 }
 
+/* Billedet er kvadratisk (aspect-ratio: 1 / 1) og beskæres pænt
+   med object-fit: cover. object-position flytter udsnittet, så
+   ansigtet bliver i billedet. */
 .om-mig-kort img {
-  width: 68%; /* mindre billede på mobil */
-  aspect-ratio: 1 / 1; /* kvadratisk */
+  border-radius: 16px;
+  width: 100%;
   height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center 30%;
-  margin: 4rem auto 0; /* centreret vandret i kortet */
-  border-radius: 3rem;
+  margin: 4rem auto 0;
 }
 
-.om-mig-kort .kort-indhold > div {
-  padding: 1.6rem 0.6rem 0.8rem;
+.om-mig-kort .kort-tekst {
+  padding: 0 0.6rem 0.8rem;
 }
 
-/* Lille label OVER overskriften */
+/* Lille label OVER overskriften. Teksten kommer fra CSS'en
+   (content) og ikke fra HTML'en. */
 .om-mig-kort h2 {
+  margin-top: 2rem;
   margin-bottom: 0.6rem;
 }
+
 .om-mig-kort h2::before {
   content: "Mød mig bag behandlingen";
   display: block;
@@ -63,10 +71,10 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--petroleum-moerk);
-  margin-bottom: 0.5rem;
+  margin-bottom: 2rem;
 }
 
-/* Signatur EFTER teksten */
+/* Signaturen "— Mette" sættes ind EFTER afsnittet med ::after */
 .om-mig-kort p::after {
   content: "— Mette";
   display: block;
@@ -79,47 +87,49 @@
 
 .om-mig-kort .knap-lys {
   margin-inline: 0;
+  margin-bottom: 3rem;
 }
 
-/* --- tablet: tekst til venstre, foto til højre --- */
+/* --- Tablet/computer: tekst til venstre, foto til højre --- */
 @media (min-width: 700px) {
   .om-mig-kort {
     padding: 6rem;
     border-radius: 3rem;
-    margin-inline: auto; /* centreret i spalten på større skærme */
+    margin-inline: auto;
   }
 
+  /* row-reverse = billedet (som står først i HTML) havner til højre */
   .om-mig-kort .kort-indhold {
     flex-direction: row-reverse;
     gap: 2.5rem;
   }
+
+  /* Billedet fylder 42% af bredden og er lige så højt som teksten
+     (align-self: stretch), så de flugter i top og bund.
+     contain: size gør, at billedets egen størrelse ikke påvirker
+     rækkens højde – det er teksten, der bestemmer den.
+     Marginerne (3rem/4rem) svarer til luften over og under teksten. */
   .om-mig-kort img {
     flex: 0 0 42%;
     width: 42%;
-    height: 100%;
-    aspect-ratio: 1 / 1; /* kvadratisk */
+    aspect-ratio: auto;
     height: auto;
-    align-self: center;
-    object-fit: cover;
+    contain: size;
+    align-self: stretch;
+    margin: 3rem 0 4rem;
     border-radius: 18px;
   }
-  .om-mig-kort .kort-indhold > div {
+
+  .om-mig-kort .kort-tekst {
     flex: 1;
     align-self: center;
     padding: 1rem 1.4rem;
   }
 }
-/* ============================================================
-   HVORFOR MANUVISION KROPSTERAPI?
-   ============================================================ */
-.hvorfor-manuvision {
-  max-width: 52rem;
-  margin-block: 0;
-  background-color: var(--lyscreme);
-}
+
 
 /* ============================================================
-   DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
+   2. DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
    ============================================================ */
 .hjaelper-dig {
   max-width: 52rem;
@@ -130,65 +140,37 @@
   margin-bottom: 0;
 }
 
-/* --- desktop: tekst og tjekliste side om side --- */
-@media (min-width: 700px) {
-  .hjaelper-dig-indhold {
-    display: flex;
-    align-items: flex-start;
-    gap: 3rem;
-  }
-  .hjaelper-dig-tekst {
-    flex: 1.2;
-  }
-  .tjekliste {
-    flex: 1;
-    margin-top: 0;
-    align-self: stretch;
-  }
-}
-
-/* Tekst-link med understregning i stedet for knap-look */
-.tekst-link {
-  color: var(--bordeaux);
-  font-weight: 600;
-  border-bottom: 1.5px solid var(--bordeaux);
-  text-decoration: none;
-}
-.tekst-link:hover {
-  color: var(--bordeaux-moerk);
-  border-bottom-color: var(--bordeaux-moerk);
-}
-
-/* "Kan du genkende dig selv i noget af det her?" – sandfarvet
-   kort med en simpel prik-liste, inde i "Det kan jeg hjælpe med". */
+/* Tjeklisten: sandfarvet kort med prikker foran hvert punkt */
 .tjekliste {
   background-color: var(--sand);
   border-radius: 16px;
-  padding: 3rem 1.9rem;
+  padding: 3rem 2rem;
   margin-top: 2rem;
 }
 
 .tjekliste h3 {
   text-align: center;
-  white-space: nowrap; /* skal blive på én linje */
-  font-size: clamp(0.7rem, 4.1vw, 1.3rem); /* skrumper på smalle skærme, så den ikke går i to linjer eller ud af kanten */
+  white-space: nowrap; /* overskriften må ikke skifte linje */
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .tjekliste ul {
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
-  display: grid;
+  display: grid; /* grid = punkterne ligger under hinanden med gap imellem */
   gap: 0.9rem;
 }
 
 .tjekliste li {
-  position: relative;
+  position: relative; /* prikken placeres ud fra punktet */
   padding-left: 1.5rem;
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
+/* Den røde prik laves med ::before (en tom, rund boks) */
 .tjekliste li::before {
   content: "";
   position: absolute;
@@ -196,65 +178,74 @@
   top: 0.5em;
   width: 8px;
   height: 8px;
-  border-radius: 50%;
+  border-radius: 50%; /* 50% = cirkel */
   background-color: var(--bordeaux);
 }
 
+/* --- Tablet/computer: tekst og tjekliste ved siden af hinanden --- */
 @media (min-width: 700px) {
   .hjaelper-dig {
     max-width: 68rem;
   }
+
+  .hjaelper-dig-indhold {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+
+  /* flex: 1.2 og flex: 1 = teksten får lidt mere plads end kassen */
+  .hjaelper-dig-tekst {
+    flex: 1.2;
+  }
+
+  /* align-self: stretch = kassen bliver lige så høj som teksten.
+     margin-top: 0 = kassen starter i samme højde som teksten. */
   .tjekliste {
+    flex: 1;
+    align-self: stretch;
+    margin-top: 0;
     padding: 2.4rem 3rem;
   }
+
   .tjekliste li {
     font-size: 1rem;
   }
+}
 
-  /* Fuld bredde med baggrundsfarven helt ud til kanten, indholdet
-     holdes i samme spalte via ">*". */
+
+/* ============================================================
+   3. HVORFOR MANUVISION KROPSTERAPI?
+   Bånd med lys baggrund.
+   ============================================================ */
+.hvorfor-manuvision {
+  max-width: 52rem;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  padding-top: 3rem;
+  background-color: var(--lyscreme);
+}
+
+/* Computer: baggrunden går ud til skærmens kanter (max-width: none),
+   mens teksten holdes i en smallere, centreret spalte. */
+@media (min-width: 700px) {
   .hvorfor-manuvision {
     max-width: none;
     margin-inline: 0;
   }
-  .hvorfor-manuvision > * {
+
+  .hvorfor-manuvision h2,
+  .hvorfor-manuvision p {
     max-width: 56rem;
     margin-inline: auto;
   }
 }
 
-/* ============================================================
-   BOOK EN TID (tekst – selve knappen/linket er bjælken herunder)
-   ============================================================ */
-.book-tid {
-  max-width: 40rem;
-  margin-inline: auto;
-  text-align: start;
-  background-color: var(--sand);
-}
-.book-tid-signatur {
-  margin-top: 1rem;
-  font-style: italic;
-  font-weight: 600;
-  color: var(--petroleum-moerk);
-  text-align: center;
-}
 
-/* --- desktop: rund, "svævende" kort-stil (ikke fuld bredde) --- */
-@media (min-width: 700px) {
-  .book-tid {
-    max-width: 64rem;
-    border-radius: 32px;
-    padding: 4rem 4.5rem;
-  }
-}
-
-.forloeb-kort img {
-  margin-top: 5rem;
-}
 /* ============================================================
-   2. BÅND / BJÆLKE
-   Hele båndet er ét stort <a>-link til bookingsystemet.
+   4. BÅND MED SIGNATUR
+   Hele båndet er ét stort link til bookingsystemet.
+   Teksten står i skriveskrift, så den ligner en underskrift.
    ============================================================ */
 .bjaelke {
   display: block;
@@ -268,15 +259,17 @@
 }
 
 .bjaelke:hover {
-  filter: brightness(1.15); /* lysner en anelse ved hover */
+  filter: brightness(1.15);
 }
 
+/* clamp(mindst, ønsket, størst) = skriftstørrelsen vokser med
+   skærmbredden (9vw), men aldrig under 1.8rem eller over 3.4rem. */
 .bjaelke h2 {
   margin-bottom: 0.3rem;
-  white-space: nowrap; /* skal blive på én linje, som en rigtig underskrift */
-  font-family: "Alex Brush", "Playfair Display", cursive; /* underskrift-agtig font, giver personlighed */
+  white-space: nowrap;
+  font-family: "Alex Brush", "Playfair Display", cursive;
   font-weight: 400;
-  font-size: clamp(1.8rem, 9vw, 3.4rem); /* script-fonte skal være større end almindelig tekst for at læses godt */
+  font-size: clamp(1.8rem, 9vw, 3.4rem);
 }
 
 .bjaelke p {
@@ -290,9 +283,38 @@
   }
 }
 
-.billede-kort .forloeb-kort {
-  margin-top: 0;
+
+/* ============================================================
+   5. ET FORLØB HOS MIG
+   ============================================================ */
+.forloeb-kort img {
+  margin-top: 2rem;
 }
 
-/* Galleri-karrusellen (.galleri) er fælles for alle sider og
-   ligger derfor i css/base.css. */
+
+/* ============================================================
+   6. BOOK EN TID
+   ============================================================ */
+.book-tid {
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: start;
+  background-color: var(--sand);
+}
+
+.book-tid-signatur {
+  margin-top: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  text-align: center;
+}
+
+/* Computer: bredere, med runde hjørner, så det ligner et kort */
+@media (min-width: 700px) {
+  .book-tid {
+    max-width: 64rem;
+    border-radius: 32px;
+    padding: 4rem 4.5rem;
+  }
+}

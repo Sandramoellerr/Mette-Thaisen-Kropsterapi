@@ -1,17 +1,23 @@
 /* ============================================================
    KONTAKT – kontakt.html
    Sektioner der kun findes på kontakt-siden:
+     0. Sidebanner (lidt ekstra luft)
      1. Kontaktinfo (foto + kontaktboks)
      2. Trygt rum (farvet sektion nederst)
 
-   (Sidebanner, header og footer ligger i css/base.css.
-   Den indre luft på .tryg-rum sættes fælles i base.css.
+   (Header, footer og selve sidebanneret ligger i css/base.css.
    #kontaktinfo beholder sit id, fordi "Book"-knappen i banneret
    linker til #kontaktinfo.)
+   ============================================================ */
+
+
+/* ============================================================
+   0. SIDEBANNER – lidt ekstra luft på denne side
    ============================================================ */
 .sidebanner {
   margin-block-start: 3rem;
 }
+
 .sidebanner p {
   margin-bottom: 4rem;
 }
@@ -19,15 +25,19 @@
 .hero-knapper {
   margin-inline: 4rem;
 }
+
+
 /* ============================================================
    1. KONTAKTINFO
    ============================================================ */
+
+/* display: grid = børnene (foto og boks) lægges under hinanden med
+   1.2rem imellem. På computer deles rækken i to spalter (se nedenfor). */
 .kontaktinfo {
   display: grid;
   gap: 1.2rem;
   color: var(--creme);
   background-color: var(--petroleum);
-
   padding-block: 6rem;
 }
 
@@ -45,7 +55,7 @@
   margin-top: 3rem;
 }
 
-/* --- tablet --- */
+/* --- Tablet/computer: foto og boks ved siden af hinanden --- */
 @media (min-width: 700px) {
   .kontakt-boks {
     max-width: none;
@@ -54,27 +64,36 @@
     width: 80%;
     height: 80%;
   }
+
   .kontakt-foto {
     margin-top: 3rem;
     width: 80%;
     height: 80%;
   }
+
+  /* 1fr 1fr = to lige brede spalter */
   .kontaktinfo {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     max-width: none;
     margin-inline: 0;
   }
-  .kontaktinfo > * {
+
+  /* Både foto og boks: centreres i deres spalte (margin-inline: auto) */
+  .kontakt-foto,
+  .kontakt-boks {
     max-width: 78rem;
     margin-inline: auto;
     justify-content: center;
   }
 }
+
+/* Kontaktlisten: dl = liste med "begreb" (dt) og "beskrivelse" (dd) */
 .kontakt-boks dl {
   margin: 0;
 }
 
+/* Ikon og tekst ved siden af hinanden (display: flex) */
 .kontakt-boks dt {
   display: flex;
   align-items: center;
@@ -88,15 +107,18 @@
   height: 18px;
 }
 
+/* Første begreb behøver ikke luft over sig */
 .kontakt-boks dt:first-of-type {
   margin-top: 0;
 }
 
+/* margin-left: 1.6rem = teksten rykkes ind under ikonet */
 .kontakt-boks dd {
   margin: 0.2rem 0 0 1.6rem;
   font-size: 0.95rem;
 }
 
+/* Links i boksen: samme farve som teksten, men understreget */
 .kontakt-boks dd a {
   color: inherit;
   text-decoration: underline;
@@ -106,6 +128,7 @@
 .kontakt-boks dd a:hover {
   color: var(--sand);
 }
+
 
 /* ============================================================
    2. TRYGT RUM

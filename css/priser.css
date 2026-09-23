@@ -49,14 +49,6 @@ main .sidebanner {
   position: relative;
 }
 
-.nyhed > img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: center 25%;
-  border-radius: 16px;
-}
-
 .nyhed .kicker {
   display: inline-block;
   align-self: flex-start;
@@ -127,10 +119,6 @@ main .sidebanner {
     margin: -5rem auto 0;
     max-width: 74rem;
   }
-  .nyhed > img {
-    flex: 0 0 34%;
-    height: 320px;
-  }
   .nyhed-tekst {
     flex: 1;
   }
@@ -148,7 +136,7 @@ main .sidebanner {
    3. INDIVIDUEL BEHANDLING
    ============================================================ */
 .individuel {
-  margin-top: 4rem; /* lidt mere luft ned til nyhedskortet på mobil */
+  margin-top: 4rem; /* lidt mere luft ned til topbilledet på mobil */
 }
 
 .pris-liste {
@@ -209,7 +197,6 @@ main .sidebanner {
   }
   .individuel {
     background-color: var(--petroleum); /* byttet med kortenes tidligere kant-farve */
-    margin-top: 15rem;
     max-width: none;
     color: var(--creme);
   }

@@ -128,13 +128,16 @@
   overflow: hidden;
 }
 
-/* Teksten holdes i en smal spalte og ligger OVEN PÅ vandmærkerne */
-.sporgsmaal-svar > * {
+/* Hver spørgsmålsgruppe holdes i en smal spalte og ligger OVEN PÅ
+   vandmærkerne. position: relative + z-index: 1 løfter teksten op
+   over grenene (som ligger bagved med z-index: 0). */
+.qa-gruppe {
   position: relative;
   z-index: 1;
   max-width: 52rem;
   margin-inline: auto;
   padding-inline: 1.8rem;
+  scroll-margin-top: 6rem; /* så anker-spring ikke gemmer sig under header */
 }
 
 /* Gren-vandmærker ude i den tomme luft i hver side. Kun på
@@ -179,10 +182,8 @@
   }
 }
 
-.qa-gruppe {
-  scroll-margin-top: 6rem; /* så anker-spring ikke gemmer sig under header */
-}
-
+/* "+" = en gruppe der står lige efter en anden gruppe.
+   Så får gruppe 2 og 3 en tynd streg og luft over sig. */
 .qa-gruppe + .qa-gruppe {
   margin-top: 3rem;
   padding-top: 3rem;
@@ -194,7 +195,8 @@
   color: var(--petroleum-moerk);
   font-weight: bold;
 }
-.sporgsmaal-svar h3:not(:first-child) {
+/* Det andet spørgsmål i en gruppe får ekstra luft over sig */
+.sporgsmaal-svar .qa-spoergsmaal-nr2 {
   margin-top: 2.4rem;
 }
 
@@ -225,7 +227,7 @@
     padding: 6rem 0;
     margin-block: 0;
   }
-  .sporgsmaal-svar > * {
+  .qa-gruppe {
     padding-inline: 2.5rem;
   }
   .qa-foto {
@@ -254,7 +256,7 @@
 /* ============================================================
    4. FORLØBETS GANG
    Sandfarvet sektion i FULD bredde (kant til kant). Indholdet
-   holdes i samme spalte som resten via ".forloebets-gang > *".
+   holdes i samme spalte som resten (se reglen med brødtekst + trin-liste).
    Fire farvede trin-kort – samme grøn/blå-skala som "Mine ydelser".
    ============================================================ */
 .forloebets-gang {
@@ -268,9 +270,12 @@
   padding: 0rem; /* ingen top-padding – den hvide bjælke er flush med toppen */
 }
 
-/* alt indhold (undtagen den hvide titel-bjælke og det afsluttende
-   CTA-kort, der har sin egen smallere bredde) tilbage i midterspalten */
-.forloebets-gang > *:not(.forloebets-gang-top):not(.forloeb-cta) {
+/* Brødtekst og trin-liste holdes i midterspalten. Titel-bjælken og
+   CTA-kortet er med vilje IKKE med, for de har deres egen bredde.
+   ".forloebets-gang .xxx" (to klasser) er "stærkere" end de enkelte
+   klasse-regler længere nede, så max-width her vinder. */
+.forloebets-gang .forloebets-gang-brod,
+.forloebets-gang .trin-liste {
   max-width: 78rem;
   margin-inline: auto;
   padding-inline: 1.8rem;

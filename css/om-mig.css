@@ -30,7 +30,7 @@
 
 .om-intro figure img {
   width: 100%;
-  height: 500px;
+  height: 400px;
   object-fit: cover;
   object-position: center 30%;
   border-radius: 20px;
@@ -60,10 +60,10 @@
     padding-inline: 2.5rem;
   }
   .om-intro figure {
-    flex: 0 0 34%;
+    flex: 0 0 28%;
   }
   .om-intro figure img {
-    height: 340px;
+    height: 280px;
   }
   .om-intro-tekst {
     flex: 1;
@@ -138,19 +138,6 @@
   line-height: 1.5;
 }
 
-/* Tekst-link med understregning i stedet for knap-look (bruges i
-   "Min historie" til linket til kropsterapiuddannelsen) */
-.tekst-link {
-  color: var(--bordeaux);
-  font-weight: 600;
-  border-bottom: 1.5px solid var(--bordeaux);
-  text-decoration: none;
-}
-.tekst-link:hover {
-  color: var(--bordeaux-moerk);
-  border-bottom-color: var(--bordeaux-moerk);
-}
-
 @media (min-width: 700px) {
   .certificering {
     margin-top: 8rem;
@@ -208,6 +195,10 @@
   margin: 0;
   box-shadow: 0 16px 36px rgba(63, 95, 104, 0.18);
 }
+.billede-kort {
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
 
 .historie-billeder .historie-foto-2 {
   width: 50%;
@@ -229,12 +220,13 @@
 
 .historie-tekst h2 {
   margin-bottom: 1rem;
-  margin-top: 2rem;
 }
 
 @media (min-width: 700px) {
   .historie {
     margin-top: 8rem;
+    background-color: var(--sand);
+    max-width: none;
   }
 
   /* to spalter: fotos til venstre, tekst til højre */
@@ -277,18 +269,26 @@
     z-index: 1;
     border: 8px solid var(--creme);
   }
+  .billede-kort {
+    margin: 0;
+    margin-block: 10rem;
+    padding-inline: 10rem;
+  }
 }
 
 /* ============================================================
-   3a. HVEM JEG HJÆLPER
+   3a. HVEM KAN JEG HJÆLPER
    Enkel tekst-sektion – ingen billeder, bare god læsbarhed.
    ============================================================ */
 .hvem-hjaelper {
   background-color: var(--salvie-lys);
   margin-bottom: 0;
+  margin-top: 0;
 }
-.hvem-hjaelper p {
+.hvem-hjaelper p,
+.hvem-hjaelper h2 {
   max-width: 46rem;
+  margin-left: 3rem;
 }
 
 .hvem-hjaelper-signatur {
@@ -298,9 +298,15 @@
   color: var(--petroleum-moerk);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 800px) {
   .hvem-hjaelper {
     max-width: none;
+    padding: auto;
+    margin-top: 0;
+  }
+  .hvem-hjaelper p,
+  .hvem-hjaelper h2 {
+    margin-inline: 28rem;
   }
 }
 /* ============================================================
@@ -310,8 +316,9 @@
    ============================================================ */
 .udmaerkelser {
   background-color: var(--sand);
-  margin-top: 0;
-  padding: 3.5rem 1.8rem;
+  margin-block: 0;
+  padding: 6rem 4rem;
+
   text-align: center;
 }
 
@@ -333,8 +340,6 @@
 
 .logo-baand {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   gap: 2.2rem;
 }
@@ -346,7 +351,7 @@
 }
 
 .logo-baand img {
-  height: 60px;
+  height: 80px;
   width: auto;
   transition: transform 0.25s ease;
 }
@@ -357,23 +362,34 @@
 
 @media (min-width: 700px) {
   .udmaerkelser {
-    margin-block: 8rem; /* samme rytme som resten af siderne */
-    padding: 5rem 2.5rem;
+    padding: 3rem 2.5rem 11rem;
+    background-color: var(--creme);
     max-width: none;
+  }
+  .udmaerkelser-kicker {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    max-width: none; /* ophæver p { max-width: 60ch } fra base.css, så teksten kan centreres */
+    text-align: center;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.16em;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--petroleum-moerk);
   }
   .udmaerkelser .deko-blad {
     width: 40px;
     height: 40px;
     margin-bottom: 1.2rem;
   }
-  .udmaerkelser-kicker {
-    margin-bottom: 2.5rem;
-  }
+
   .logo-baand {
     gap: 4rem;
+    margin: 0;
   }
   .logo-baand img {
-    height: 90px;
+    height: 150px;
   }
 }
 
@@ -430,7 +446,10 @@
 }
 
 /* Fem skiftende nuancer fra sidens eget farveskema, lysest til
-   mørkest, gentaget hver 5. kort. */
+   mørkest, gentaget hver 5. kort.
+   :nth-child(5n + 2) = "kort nr. 2, 7, 12 ..." (n tæller 0, 1, 2 ...
+   og 5n + 2 giver så 2, 7, 12). Det er en genvej, så vi ikke skal
+   give hvert kort sin egen klasse. */
 .udtalelser blockquote:nth-child(5n + 2) {
   background-color: var(--salvie-lys);
   color: var(--tekst);

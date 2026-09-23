@@ -25,18 +25,18 @@
 
       <!-- Vises kun på computer, se css/base.css -->
       <div class="skrivebord-links">
-        <a class="aktiv" href="om-mig.html">Om mig</a>
+        <a href="om-mig.html">Om mig</a>
         <a href="forloeb.html">Forløb</a>
         <a href="priser.html">Priser</a>
         <a href="manuvision.html">Manuvisions Sundhedsforsikring</a>
         <a href="kontakt.html">Kontakt</a>
-        <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
-          rel="noopener" class="book-knap-desktop">Book</a>
       </div>
+      <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
+        rel="noopener" class="book-knap-desktop">Book</a>
 
       <!-- Vises kun på mobil/tablet: burgermenu, se css/base.css -->
       <details class="mobilmenu">
-        <summary>Menu</summary>
+        <summary class="mobilmenu-knap">Menu</summary>
         <div class="menu-links">
           <a href="om-mig.html">Om mig</a>
           <a href="forloeb.html">Forløb</a>
@@ -60,7 +60,7 @@
     <!-- ====== INTRO ("Om mig") ====== -->
     <div class="om-intro">
       <figure>
-        <img src="images/foto-portraet.jpg" alt="Portræt af Mette Thaisen">
+        <img src="images/image00007.webp" alt="Portræt af Mette Thaisen">
       </figure>
       <div class="om-intro-tekst">
         <p class="kicker">Kropsterapeut & Manuvision-behandler</p>
@@ -103,26 +103,6 @@
         </div>
       </div>
     </section>
-    <!-- ====== CERTIFIKAT-BÅND – statisk banner, ingen scroll ====== -->
-    <section class="udmaerkelser">
-      <svg class="deko-blad" viewBox="0 0 60 60" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true">
-        <path d="M10 50C10 30 20 10 45 8C48 8 50 10 50 13C48 38 28 50 10 50Z" stroke="currentColor" stroke-width="2" />
-        <path d="M14 46C22 34 30 24 44 12" stroke="currentColor" stroke-width="1.5" />
-      </svg>
-      <p class="udmaerkelser-kicker">Certificeret og registreret hos</p>
-      <div class="logo-baand">
-        <div class="logo-kort">
-          <img src="images/certifikat-manuvision-lys.png" alt="Certificeret Manuvision kropsterapeut">
-        </div>
-        <div class="logo-kort">
-          <img src="images/certifikat-chok-traume.png" alt="Certificeret Manuvision chok- og traumeterapeut">
-        </div>
-        <div class="logo-kort">
-          <img src="images/certifikat-dakobe.webp" alt="DAKOBE registreret">
-        </div>
-      </div>
-    </section>
 
     <!-- ====== MIN HISTORIE ====== -->
     <!-- Desktop: to forskudte fotos + knap til venstre, tekst til højre.
@@ -157,8 +137,9 @@
         <div class="historie-venstre">
           <div class="historie-billeder">
             <!-- byt gerne billederne ud – layoutet beskærer dem selv -->
-            <img class="historie-foto historie-foto-1" src="images/image00018.jpeg" alt="Mette Thaisen ved stranden">
-            <img class="historie-foto historie-foto-2" src="images/image00029.jpeg" alt="Mette Thaisen i arbejde">
+            <img class="historie-foto historie-foto-1" src="images/image00018.webp" alt="Mette Thaisen ved stranden">
+            <img class="historie-foto historie-foto-2" src="images/image00026.webp"
+              alt="Fødder i vandkanten på stranden">
           </div>
           <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
             rel="noopener" class="knap">Book din tid her</a>
@@ -168,10 +149,27 @@
 
       </div>
     </section>
+    <!-- ====== CERTIFIKAT-BÅND – statisk banner, ingen scroll ====== -->
+    <section class="udmaerkelser">
+
+      <p class="udmaerkelser-kicker">Jeg er certificeret og registreret hos:</p>
+      <div class="logo-baand">
+        <div class="logo-kort">
+          <img src="images/certifikat-manuvision-lys.png" alt="Certificeret Manuvision kropsterapeut">
+        </div>
+        <div class="logo-kort">
+          <img src="images/certifikat-dakobe.webp" alt="DAKOBE registreret">
+        </div>
+        <div class="logo-kort">
+          <img src="images/certifikat-chok-traume.png" alt="Certificeret Manuvision chok- og traumeterapeut">
+        </div>
+
+      </div>
+    </section>
 
     <!-- ====== HVEM JEG HJÆLPER ====== -->
     <section class="hvem-hjaelper">
-      <h2>Hvem jeg hjælper</h2>
+      <h2>Hvem kan jeg hjælpe?</h2>
       <p>Jeg hjælper mennesker med alt fra smerter i fx nakke, skuldre, ryg og lænd til mere dybdegående problematikker
         som stress, angst, depression og PTSD. Mange af mine klienter har også et ønske om øget selvindsigt, bedre
         kontakt til krop og åndedræt – eller bare lyst til at forstå deres krop og nervesystem bedre og opnå større
@@ -267,31 +265,27 @@
 
     <!-- ====== GALLERI ====== -->
     <section class="galleri">
-      <svg class="deko-blad" viewBox="0 0 60 60" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true">
-        <path d="M10 50C10 30 20 10 45 8C48 8 50 10 50 13C48 38 28 50 10 50Z" stroke="currentColor" stroke-width="2" />
-        <path d="M14 46C22 34 30 24 44 12" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+
       <h2>Velkommen til mit univers </h2>
 
       <div class="galleri-billeder">
         <div class="karrusel-spor">
           <!-- SÆT 1: dine rigtige billeder – flere tilføjes løbende -->
-          <img src="images/foto-strand-banner.webp" alt="Mette Thaisen på stranden">
-          <img src="images/image00026.jpeg" alt="Fødder i vandkanten på stranden">
-          <img src="images/image00030.jpeg" alt="Behandling hos Mette Thaisen">
+          <img src="images/web/image00030.jpg" alt="Behandling hos Mette Thaisen">
+          <img src="images/web/image00040.jpg" alt="Behandling af knæ og ben">
+          <img src="images/web/image00016.jpg" alt="Mette Thaisen på stranden">
 
           <!-- SÆT 2: NØJAGTIG samme billeder gentaget (skjult for skærmlæsere).
                Skal altid være en kopi af sæt 1, ellers hopper løkken. -->
-          <img src="images/foto-strand-banner.webp" alt="" aria-hidden="true">
-          <img src="images/image00026.jpeg" alt="" aria-hidden="true">
-          <img src="images/image00030.jpeg" alt="" aria-hidden="true">
+          <img src="images/web/image00030.jpg" alt="" aria-hidden="true">
+          <img src="images/web/image00040.jpg" alt="" aria-hidden="true">
+          <img src="images/web/image00016.jpg" alt="" aria-hidden="true">
         </div>
       </div>
 
     </section>
-
   </main>
+
   <footer>
 
     <div class="footer-top">
@@ -303,7 +297,7 @@
         <h2>Mette Thaisen</h2>
         <p>Manuvision kropsterapeut</p>
         <p><a href="tel:+4551498012"><img src="images/ikon-telefon-hvid.png" alt="">+45 51 49 80 12</a></p>
-        <p><a href="mailto:mettethaisen@gmail.com"><img src="images/ikon-mail-hvid.png"
+        <p class="footer-mail"><a href="mailto:mettethaisen@gmail.com"><img src="images/ikon-mail-hvid.png"
               alt="">mettethaisen@gmail.com</a></p>
       </div>
 
@@ -315,7 +309,6 @@
         <p><a href="https://www.instagram.com/mettethaisenkropsterapi/">Følg med på Instagram <img
               src="images/ikon-instagram-hvid.png" alt="mette insta"></a>
         </p>
-        <p><a href="privatlivspolitik.html">Privatlivspolitik</a></p>
       </div>
     </div>
 

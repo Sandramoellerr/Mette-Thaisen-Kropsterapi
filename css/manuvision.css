@@ -30,18 +30,11 @@
   opacity: 0.3;
 }
 
-/* Tekst-link med understregning i stedet for knap-look */
+/* Tekst-link (grundlooket ligger i base.css). Her på manuvision-siden
+   skal linket stå som sin egen boks med luft over sig. */
 .tekst-link {
   display: inline-block;
-  text-decoration: none;
-  color: var(--bordeaux);
-  font-weight: 600;
-  border-bottom: 1.5px solid var(--bordeaux);
   margin-top: 1rem;
-}
-.tekst-link:hover {
-  color: var(--bordeaux-moerk);
-  border-bottom-color: var(--bordeaux-moerk);
 }
 
 /* Tekstspalten holdes smal, så linjerne er behagelige at læse.
@@ -72,7 +65,9 @@
   padding: 3.5rem 1.8rem;
   padding-block: 4rem;
 }
-.hvad-er-manuvision > * {
+/* Indholdet holdes i den normale midterspalte (både her og i
+   "forskning" nedenfor – de bruger samme klasse) */
+.manu-indhold {
   max-width: 78rem;
   margin-inline: auto;
 }
@@ -135,10 +130,6 @@ main section {
   padding-block: 4rem;
   max-width: none;
   margin-inline: 0;
-}
-.forskning > * {
-  max-width: 78rem;
-  margin-inline: auto;
 }
 
 /* ============================================================

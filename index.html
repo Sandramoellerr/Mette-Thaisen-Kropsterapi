@@ -7,11 +7,17 @@
   <title>Mette Thaisen – Kropsterapeut</title>
   <meta name="description"
     content="Mette Thaisen tilbyder Manuvision-behandling og kropsterapi med fokus på krop og sind.">
+
+
   <link rel="icon" href="images/ikon-dekoration.png">
+
+  <!-- Google Fonts: preconnect gør indlæsningen af skrifttyperne hurtigere -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&family=Alex+Brush&display=swap"
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Almarai:wght@300;400;700;800&family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&family=Alex+Brush&display=swap"
     rel="stylesheet">
+
+  <!-- base.css = fælles for alle sider. index.css = kun forsiden. -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/index.css">
 </head>
@@ -31,13 +37,13 @@
         <a href="priser.html">Priser</a>
         <a href="manuvision.html">Manuvisions Sundhedsforsikring</a>
         <a href="kontakt.html">Kontakt</a>
-        <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
-          rel="noopener" class="book-knap-desktop">Book</a>
       </div>
+      <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
+        rel="noopener" class="book-knap-desktop">Book</a>
 
       <!-- Vises kun på mobil/tablet: burgermenu, se css/base.css -->
       <details class="mobilmenu">
-        <summary>Menu</summary>
+        <summary class="mobilmenu-knap">Menu</summary>
         <div class="menu-links">
           <a href="om-mig.html">Om mig</a>
           <a href="forloeb.html">Forløb</a>
@@ -82,8 +88,8 @@
 
     <!-- ====== OM MIG – kort teaser ====== -->
     <section class="billede-kort om-mig-kort">
-      <div class="kort-indhold"><img src="images/foto-portraet.jpg" alt="Mette Thaisen sidder afslappet ved vandet">
-        <div>
+      <div class="kort-indhold"><img class="kort-billede" src="images/web/image00010.jpg" alt="Mette Thaisen sidder afslappet ved vandet">
+        <div class="kort-tekst">
           <h2>Om mig</h2>
           <p>Jeg hedder Mette Thaisen. Jeg er RAB-registreret og certificeret Manuvision krops- og
             traumeterapeut, og jeg har klinik på Frederiksberg og i Snekkersten ved Helsingør.
@@ -160,8 +166,8 @@
     <!-- ====== ET FORLØB HOS MIG – teaser ====== -->
     <section class="billede-kort forloeb-kort">
       <div class="kort-indhold">
-        <img src="images/foto-behandling-1.jpg" alt="Behandling på briksen hos Mette Thaisen">
-        <div>
+        <img class="kort-billede" src="images/image00040.webp" alt="Behandling af knæ og ben hos Mette Thaisen">
+        <div class="kort-tekst">
           <h2>Et forløb hos mig</h2>
           <p>Et forløb hos mig starter altid med en kort samtale. Hvad bringer dig hertil, hvad kan du mærke i kroppen,
             og hvad håber du at opnå? Jeg tilpasser altid behandlingen efter dine behov, og guider dig trygt gennem hele
@@ -183,25 +189,21 @@
 
     <!-- ====== GALLERI ====== -->
     <section class="galleri">
-      <svg class="deko-blad" viewBox="0 0 60 60" width="30" height="30" fill="none" xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true">
-        <path d="M10 50C10 30 20 10 45 8C48 8 50 10 50 13C48 38 28 50 10 50Z" stroke="currentColor" stroke-width="2" />
-        <path d="M14 46C22 34 30 24 44 12" stroke="currentColor" stroke-width="1.5" />
-      </svg>
+
       <h2>Velkommen til mit univers </h2>
 
       <div class="galleri-billeder">
         <div class="karrusel-spor">
           <!-- SÆT 1: dine rigtige billeder – flere tilføjes løbende -->
-          <img src="images/foto-behandling-lille.webp" alt="Behandling hos Mette Thaisen">
-          <img src="images/foto-foedder.jpg" alt="Fødder i vandkanten på stranden">
-          <img src="images/image00016.jpeg" alt="Mette Thaisen på stranden">
+          <img src="images/web/image00016.jpg" alt="Mette Thaisen på stranden">
+          <img src="images/web/image00026.jpg" alt="Fødder i vandkanten på stranden">
+          <img src="images/web/image00041.jpg" alt="Behandling hos Mette Thaisen">
 
           <!-- SÆT 2: NØJAGTIG samme billeder gentaget (skjult for skærmlæsere).
                Skal altid være en kopi af sæt 1, ellers hopper løkken. -->
-          <img src="images/foto-behandling-lille.webp" alt="" aria-hidden="true">
-          <img src="images/foto-foedder.jpg" alt="" aria-hidden="true">
-          <img src="images/image00016.jpeg" alt="" aria-hidden="true">
+          <img src="images/web/image00016.jpg" alt="" aria-hidden="true">
+          <img src="images/web/image00026.jpg" alt="" aria-hidden="true">
+          <img src="images/web/image00041.jpg" alt="" aria-hidden="true">
         </div>
       </div>
 

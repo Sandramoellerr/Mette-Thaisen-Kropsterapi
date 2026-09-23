@@ -217,8 +217,16 @@
   max-width: 52rem;
   margin-top: 3rem;
   margin-bottom: 0;
-  padding-top: 3rem;
+  padding-block: 5rem; /* mere luft i top og bund */
   background-color: var(--lyscreme);
+}
+
+.hvorfor-manuvision h2 {
+  margin-bottom: 1.6rem;
+}
+
+.hvorfor-manuvision p {
+  margin-bottom: 1.4rem; /* luft mellem afsnittene */
 }
 
 /* Computer: baggrunden går ud til skærmens kanter (max-width: none),
@@ -227,6 +235,7 @@
   .hvorfor-manuvision {
     max-width: none;
     margin-inline: 0;
+    padding-block: 8rem;
   }
 
   .hvorfor-manuvision h2,
@@ -308,26 +317,13 @@
   margin-bottom: 0;
 }
 
-/* Det hvide kort med knap og kontaktoplysninger */
+/* Det hvide kort med kontaktoplysninger */
 .book-tid-valg {
   background-color: var(--hvid);
   border-radius: 20px;
   padding: 2rem 1.6rem;
   text-align: center;
   box-shadow: 0 10px 28px rgba(63, 95, 104, 0.1);
-}
-
-.book-tid-valg .knap {
-  margin: 0;
-}
-
-.book-tid-eller {
-  margin: 1.4rem auto 0.8rem;
-  font-size: var(--fs-label);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-  color: var(--petroleum-moerk);
 }
 
 .book-tid-valg ul {

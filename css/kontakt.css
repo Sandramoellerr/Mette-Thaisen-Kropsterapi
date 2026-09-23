@@ -1,105 +1,118 @@
 /* ============================================================
    KONTAKT – kontakt.html
-   Sektioner der kun findes på kontakt-siden:
-     0. Sidebanner (lidt ekstra luft)
-     1. Kontaktinfo (foto + kontaktboks)
-     2. Trygt rum (farvet sektion nederst)
+   Skrevet mobil-først: alt ligger under hinanden på mobil og lægger
+   sig side om side fra 1000px – ligesom de andre sider.
+   Header, footer, book-bånd og galleri er fælles (base.css).
 
-   (Header, footer og selve sidebanneret ligger i css/base.css.
-   #kontaktinfo beholder sit id, fordi "Book"-knappen i banneret
-   linker til #kontaktinfo.)
+   Afsnit:
+     1. Intro (centreret velkomst med knapper)
+     2. Kontaktinfo (blåt bånd: foto + kontaktboks)
+     3. Trygt rum (foto + tekst)
+
+   #kontaktinfo beholder sit id, så andre sider kan linke direkte til
+   kontaktoplysningerne.
    ============================================================ */
 
 
 /* ============================================================
-   0. SIDEBANNER – lidt ekstra luft på denne side
+   1. INTRO
    ============================================================ */
-.sidebanner {
-  margin-block-start: 3rem;
+.kontakt-intro {
+  text-align: center;
+  margin-top: 3rem;
 }
 
-.sidebanner p {
-  margin-bottom: 4rem;
+.kontakt-intro .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin-bottom: 0.4rem;
 }
 
-.hero-knapper {
-  margin-inline: 4rem;
+/* h1 og p har max-width (60ch), så vi centrerer dem med margin: auto */
+.kontakt-intro h1 {
+  margin: 0 auto 1rem;
+}
+
+.kontakt-intro p {
+  margin-inline: auto;
+  font-size: 1rem;
+}
+
+.kontakt-intro .hero-knapper {
+  justify-content: center;
+  margin-top: 1.6rem;
+}
+
+@media (min-width: 700px) {
+  .kontakt-intro {
+    margin-top: 5rem;
+  }
+
+  .kontakt-intro h1 {
+    font-size: 2.4rem;
+  }
+
+  .kontakt-intro p {
+    font-size: 1.05rem;
+  }
 }
 
 
 /* ============================================================
-   1. KONTAKTINFO
+   2. KONTAKTINFO
+   Blåt bånd, der går kant til kant. padding-inline med max(...) holder
+   indholdet i midterspalten (mindst 1.8rem sideluft, aldrig bredere
+   end 73rem).
    ============================================================ */
-
-/* display: grid = børnene (foto og boks) lægges under hinanden med
-   1.2rem imellem. På computer deles rækken i to spalter (se nedenfor). */
 .kontaktinfo {
   display: grid;
-  gap: 1.2rem;
+  gap: 2rem;
   color: var(--creme);
   background-color: var(--petroleum);
-  padding-block: 6rem;
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
 }
 
 .kontakt-foto {
-  border-radius: 16px;
-  width: 80%;
-  height: 500px;
-  margin-inline: auto;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 20px;
 }
 
 .kontakt-boks {
   background-color: var(--petroleum-moerk);
-  border-radius: 16px;
-  padding: 1.5rem;
-  margin-top: 3rem;
+  border-radius: 20px;
+  padding: 2rem 1.6rem;
 }
 
-/* --- Tablet/computer: foto og boks ved siden af hinanden --- */
-@media (min-width: 700px) {
-  .kontakt-boks {
-    max-width: none;
-    margin-inline: auto;
-    gap: 2rem;
-    width: 80%;
-    height: 80%;
-  }
-
-  .kontakt-foto {
-    margin-top: 3rem;
-    width: 80%;
-    height: 80%;
-  }
-
-  /* 1fr 1fr = to lige brede spalter */
-  .kontaktinfo {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    max-width: none;
-    margin-inline: 0;
-  }
-
-  /* Både foto og boks: centreres i deres spalte (margin-inline: auto) */
-  .kontakt-foto,
-  .kontakt-boks {
-    max-width: 78rem;
-    margin-inline: auto;
-    justify-content: center;
-  }
+.kontakt-boks h2 {
+  color: var(--hvid);
+  font-size: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 
-/* Kontaktlisten: dl = liste med "begreb" (dt) og "beskrivelse" (dd) */
+/* dl = liste med "begreb" (dt) og "beskrivelse" (dd) */
 .kontakt-boks dl {
   margin: 0;
 }
 
-/* Ikon og tekst ved siden af hinanden (display: flex) */
+/* Ikon og label ved siden af hinanden (display: flex) */
 .kontakt-boks dt {
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
 }
 
 .kontakt-boks dt img {
@@ -107,45 +120,143 @@
   height: 18px;
 }
 
-/* Første begreb behøver ikke luft over sig */
-.kontakt-boks dt:first-of-type {
-  margin-top: 0;
+/* Værdien under labelen, med en tynd streg under hvert punkt */
+.kontakt-boks dd {
+  margin: 0.4rem 0 0;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(253, 251, 246, 0.2);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* margin-left: 1.6rem = teksten rykkes ind under ikonet */
-.kontakt-boks dd {
-  margin: 0.2rem 0 0 1.6rem;
-  font-size: 0.95rem;
+/* Sidste punkt behøver ingen streg */
+.kontakt-boks dd:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
 }
 
 /* Links i boksen: samme farve som teksten, men understreget */
 .kontakt-boks dd a {
   color: inherit;
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 
 .kontakt-boks dd a:hover {
   color: var(--sand);
 }
 
+@media (min-width: 700px) {
+  .kontaktinfo {
+    padding-block: 6rem;
+    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
+  }
+
+  .kontakt-boks {
+    padding: 3rem 3rem;
+  }
+
+  .kontakt-boks h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* Computer: foto til venstre, boks til højre (grid 1 : 1).
+   Fotoet er lige så højt som boksen (align-self: stretch). contain: size
+   gør, at fotoets egen højde ikke styrer rækken – det er boksen, der gør. */
+@media (min-width: 1000px) {
+  .kontaktinfo {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: stretch;
+  }
+
+  .kontakt-foto {
+    height: auto;
+    min-height: 26rem;
+    contain: size;
+  }
+}
+
 
 /* ============================================================
-   2. TRYGT RUM
+   3. TRYGT RUM
    ============================================================ */
 .tryg-rum {
-  background-color: var(--creme);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tryg-rum h2 {
+  margin-bottom: 0;
+}
+
+.tryg-rum p {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
 }
 
 .tryg-rum img {
-  border-radius: 16px;
-  margin: 1.2rem auto;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-block: 0.6rem;
 }
 
-/* Computer: mindre luft ned til galleriet */
 @media (min-width: 700px) {
+  .tryg-rum img {
+    height: 340px;
+  }
+
+  .tryg-rum h2 {
+    font-size: 1.9rem;
+  }
+
+  .tryg-rum p {
+    font-size: 1.05rem;
+  }
+}
+
+/* Computer: tekst til venstre, foto til højre.
+   Gridet har 5 rækker: en fleksibel række øverst og nederst (1fr) og tre
+   rækker til overskrift, tekst og knap i midten. Fotoet spænder over alle
+   5 rækker (grid-row: 1 / -1), og teksten står midt for fotoet.
+   Fotoet står i spalte 2 (højre) og teksten i spalte 1 (venstre). */
+@media (min-width: 1000px) {
   .tryg-rum {
-    margin-bottom: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    column-gap: 4rem;
+    row-gap: 1rem;
+    justify-items: start;
+    min-height: 24rem;
+  }
+
+  .tryg-rum img {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    height: 100%;
+    margin: 0;
+  }
+
+  .tryg-rum h2 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .tryg-rum p {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .tryg-rum .knap-lys {
+    grid-column: 1;
+    grid-row: 4;
   }
 }

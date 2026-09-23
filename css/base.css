@@ -538,22 +538,16 @@ main .hero {
   position: relative;
 }
 
-/* Selve billedfilen er trukket ud i bredden (2:1), så Mette ser bred
-   ud. Vi viser den derfor klemt til 1.6:1 (object-fit: fill = fyld
-   boksen uden at bevare proportionerne) og beskærer kun i top/bund,
-   så proportionerne ser naturlige ud igen.
-   position: absolute + top: 50% + translateY(-50%) centrerer
-   billedet lodret i boksen. */
+/* Billedet er lavet i de rigtige proportioner (1.6:1), så Mette ser
+   naturlig ud. object-fit: cover fylder boksen og beskærer kun i top
+   og bund. Ingen strækning eller forskydning, så billedet bliver skarpt. */
 .hero figure img {
   position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  inset: 0; /* inset: 0 = top, højre, bund og venstre er alle 0 */
   width: 100%;
-  height: auto;
-  aspect-ratio: 1.6 / 1;
-  min-height: 100%;
-  object-fit: fill;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .hero-tekst {

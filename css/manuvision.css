@@ -1,211 +1,226 @@
 /* ============================================================
    MANUVISION – manuvision.html
-   Skrevet mobile-first: alt ligger i ÉN kolonne på mobil, som
-   på de øvrige sider. Fra 700px lægger teksten sig i en smal
-   spalte til venstre, med plads til badges / gren-pynt ved siden.
-   Header og footer er fælles (base.css).
+   Skrevet mobil-først: alt ligger i ÉN kolonne på mobil og lægger
+   sig side om side fra 700px / 1000px – ligesom de andre sider.
+   Header, footer, book-bånd og galleri er fælles (base.css).
 
-   Afsnit:
-     1. Hvad er manuvision            (grøn sektion i fuld bredde)
-     2. Hvad er chok & traume terapi  (badges + tekst)
-     3. Manuvision og forskning i PTSD
-     Fælles: overskrift med streg, gren-vandmærke, tekst-link
+   Afsnit (baggrundsfarver: sand, lysegrøn, creme):
+     1. Intro: hvad er manuvision   (sandfarvet bånd, foto + tekst)
+     2. Chok & traume terapi        (lysegrønt bånd, certifikater + tekst)
+     3. Manuvision og forskning     (creme = sidens baggrund)
    ============================================================ */
+
 
 /* ============================================================
-   FÆLLES
+   1. INTRO – foto og tekst
    ============================================================ */
-
-/* Overskrift med en tynd streg, der løber ud til højre */
-.linje-hoejre {
+/* Sandfarvet bånd, der går kant til kant og støder op til headeren.
+   padding-inline med max(...) holder indholdet i midterspalten
+   (mindst 1.8rem sideluft, aldrig bredere end 73rem). */
+.manu-intro {
   display: flex;
-  align-items: center;
-  gap: 1.4rem;
-}
-.linje-hoejre::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background-color: currentColor;
-  opacity: 0.3;
+  flex-direction: column;
+  gap: 1.6rem;
+  background-color: var(--sand);
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4rem;
+  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
 }
 
-/* Tekst-link (grundlooket ligger i base.css). Her på manuvision-siden
-   skal linket stå som sin egen boks med luft over sig. */
+.manu-intro figure {
+  margin: 0;
+}
+
+.manu-intro figure img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 20px;
+}
+
+.manu-intro-tekst .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin-bottom: 0.4rem;
+}
+
+.manu-intro-tekst h1 {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.manu-intro-tekst p {
+  font-size: 1rem;
+}
+
+/* Tekst-link (grundlooket ligger i base.css) står som sin egen boks
+   med lidt luft over sig */
 .tekst-link {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
 }
 
-/* Tekstspalten holdes smal, så linjerne er behagelige at læse.
-   .manu-indhold er "position: relative", så gren-vandmærket kan
-   ligge absolut i højre side. */
-.manu-indhold {
-  position: relative;
-}
-.manu-tekst {
-  max-width: 40rem;
+@media (min-width: 700px) {
+  .manu-intro {
+    padding-block: 6rem;
+    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
+  }
+
+  .manu-intro h1 {
+    font-size: 2.2rem;
+  }
 }
 
-/* Gren-vandmærke ude i højre side – ren pynt, skjult på mobil */
-.manu-gren {
-  display: none;
+/* Computer: foto til venstre, tekst til højre.
+   align-items: stretch = billedet er lige så højt som teksten.
+   Billedet ligger absolut inde i figuren (position: absolute + inset: 0),
+   så dets egen højde ikke styrer rækken – det er teksten, der gør. */
+@media (min-width: 1000px) {
+  .manu-intro {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 3.5rem;
+  }
+
+  .manu-intro figure {
+    flex: 0 0 40%;
+    position: relative;
+    min-height: 22rem;
+  }
+
+  .manu-intro figure img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  .manu-intro-tekst {
+    flex: 1;
+    align-self: center;
+  }
+
+  .manu-intro-tekst p {
+    font-size: 1.05rem;
+  }
 }
+
 
 /* ============================================================
-   1. HVAD ER MANUVISION
-   Grøn sektion, der går HELT ud til skærmkanten (som bjælken på
-   forsiden). Indholdet holdes i midterspalten.
+   2. CHOK & TRAUME TERAPI
+   Lysegrønt bånd, der går kant til kant. Indholdet holdes i
+   midterspalten med max(...): sideluften er mindst 1.8rem
+   (2.5rem på computer), men vokser på store skærme, så indholdet
+   aldrig er bredere end 73rem.
    ============================================================ */
-.hvad-er-manuvision {
-  background-color: var(--creme);
-  max-width: none;
-  margin-inline: 0;
-  margin-top: 0; /* flush op til headeren */
-  padding: 3.5rem 1.8rem;
-  padding-block: 4rem;
-}
-/* Indholdet holdes i den normale midterspalte (både her og i
-   "forskning" nedenfor – de bruger samme klasse) */
-.manu-indhold {
-  max-width: 78rem;
-  margin-inline: auto;
-}
-
-/* ============================================================
-   2. HVAD ER CHOK & TRAUME TERAPI
-   Badges (to certificerings-mærker, det ene lidt mindre og
-   forskudt) ved siden af teksten.
-   ============================================================ */
-/* Grøn baggrund helt ud til kanten, ligesom på mobil (hvor det sker
-   af sig selv, fordi skærmen er smallere end main sections
-   max-width). Selve indholdet holdes i den normale midterspalte. */
 .chok-traume {
+  background-color: var(--salvie-lys);
   max-width: none;
-  margin-inline: 0;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
 }
+
 .chok-traume-indhold {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding-block: 4rem;
-  max-width: 78rem;
-  margin-inline: auto;
+  gap: 2.4rem;
 }
-main section {
-  background-color: var(--salvie);
-}
+
+/* De to certifikater ved siden af hinanden, centreret */
 .chok-badges {
-  position: relative;
-  align-self: center; /* centreret over teksten på mobil */
-  width: 190px;
-  height: 175px;
-  flex-shrink: 0;
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
 }
+
 .chok-badges .badge {
-  position: absolute;
+  width: 120px;
   border-radius: 50%;
 }
-.chok-badges .badge-stor {
-  width: 140px;
-  top: 0;
-  left: 0;
-}
-.chok-badges .badge-lille {
-  width: 88px;
-  right: 0;
-  bottom: 0;
+
+.chok-tekst h2 {
+  margin-bottom: 1rem;
 }
 
-/* ============================================================
-   3. FORSKNING
-   Samme opbygning som afsnit 1: overskrift med streg, smal
-   tekstspalte og et gren-vandmærke til højre.
-   ============================================================ */
-.forskning {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--sand);
-  padding-block: 4rem;
-  max-width: none;
-  margin-inline: 0;
+.chok-tekst p {
+  font-size: 1rem;
 }
 
-/* ============================================================
-   TABLET / DESKTOP
-   ============================================================ */
 @media (min-width: 700px) {
-  .hvad-er-manuvision {
-    padding: 6rem 2.5rem;
-    overflow: hidden; /* holder gren-vandmærket inde i sektionen */
+  .chok-traume {
+    padding-block: 6rem;
+    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
   }
 
-  /* smallere tekstspalte, så der bliver luft til grenen til højre */
-  .manu-tekst {
-    max-width: 34rem;
+  .chok-badges .badge {
+    width: 150px;
   }
+}
 
-  /* gren-vandmærket frem – footerens gren brugt som maske */
-  .manu-gren {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%) rotate(8deg);
-    width: 20rem;
-    height: 20rem;
-    background-color: var(--hvid);
-    -webkit-mask: url(../images/ikon-gren-hvid.png) no-repeat center / contain;
-    mask: url(../images/ikon-gren-hvid.png) no-repeat center / contain;
-    opacity: 0.35;
-    pointer-events: none;
-  }
-  /* grenen i forsknings-afsnittet er lidt mørkere og større */
-  .manu-gren-blaa {
-    width: 23rem;
-    height: 23rem;
-    background-color: var(--salvie);
-    -webkit-mask-image: url(../images/ikon-gren-blaa.png);
-    mask-image: url(../images/ikon-gren-blaa.png);
-    opacity: 0.5;
-    transform: translateY(-50%) rotate(-6deg);
-  }
-
-  /* chok & traume: badges til venstre, tekst til højre */
+/* Computer: tekst i venstre spalte, certifikater til højre.
+   row-reverse vender rækkefølgen om (certifikaterne står først i HTML,
+   så de ender til højre). Mobil er uændret. */
+@media (min-width: 1000px) {
   .chok-traume-indhold {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 3.5rem;
-    /* sektionen har allerede sin egen top/bund-luft (main section);
-       den ekstra padding herfra var kun tiltænkt mobil-visningen og
-       gjorde det grønne felt unødigt højt/tomt på desktop */
-    padding-block: 0;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 5rem;
   }
+
   .chok-badges {
-    align-self: flex-start;
-    width: 240px;
-    height: 220px;
-    margin-top: 0.4rem;
+    flex: 0 0 22rem;
+    flex-direction: column;
+    gap: 2rem;
   }
-  .chok-badges .badge-stor {
-    width: 180px;
+
+  .chok-badges .badge {
+    width: 190px;
   }
-  .chok-badges .badge-lille {
-    width: 110px;
-  }
+
   .chok-tekst {
     flex: 1;
   }
+
+  .chok-tekst p {
+    font-size: 1.05rem;
+  }
 }
 
+
+/* ============================================================
+   3. MANUVISION OG FORSKNING I PTSD
+   ============================================================ */
+.forskning {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.forskning h2 {
+  margin-bottom: 0;
+}
+
+.forskning-tekst p {
+  font-size: 1rem;
+}
+
+/* Computer: overskrift til venstre, tekst til højre (grid 1 : 1).
+   1fr 1fr = to lige brede spalter. */
 @media (min-width: 1000px) {
-  .manu-gren {
-    width: 24rem;
-    height: 24rem;
+  .forskning {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5rem;
+    align-items: start;
   }
-  .manu-gren-blaa {
-    width: 28rem;
-    height: 28rem;
+
+  .forskning-tekst p {
+    font-size: 1.05rem;
   }
 }

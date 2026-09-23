@@ -100,7 +100,7 @@
   justify-content: center;
   gap: 0.8rem;
   background-color: var(--salvie);
-  margin: 3rem 0 0;
+  margin: 5rem 0 0;
   padding: 2rem 2rem;
 }
 
@@ -123,7 +123,7 @@
 @media (min-width: 700px) {
   .faner {
     gap: 1.5rem;
-    margin-top: 4rem;
+    margin-top: 8rem;
     padding: 2rem 2.5rem;
   }
   .faner a {
@@ -145,7 +145,7 @@
   /* ingen margin – sektionen skal støde direkte op til "Forløbets
      gang", så der ikke er en lys creme-stribe imellem */
   margin-block: 0;
-  padding: 4rem 0;
+  padding: 5.5rem 0 4rem; /* luft mellem fanerne og første række */
   position: relative;
   overflow: hidden;
 }
@@ -194,7 +194,7 @@
 
 @media (min-width: 700px) {
   .sporgsmaal-svar {
-    padding: 4rem 0;
+    padding: 8rem 0 4rem; /* luft mellem fanerne og første række */
     margin-block: 0;
   }
   .sporgsmaal-svar h3 {

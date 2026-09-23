@@ -150,7 +150,6 @@
 
 .tjekliste h3 {
   text-align: center;
-  white-space: nowrap; /* overskriften må ikke skifte linje */
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
@@ -210,6 +209,12 @@
 
   .tjekliste li {
     font-size: 1rem;
+  }
+
+  /* Overskriften må ikke skifte linje på computer. (På mobil skal den
+     kunne det, ellers bliver siden bredere end skærmen.) */
+  .tjekliste h3 {
+    white-space: nowrap;
   }
 }
 

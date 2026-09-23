@@ -67,7 +67,11 @@
     <!-- ====== HERO: stort strandbillede ====== -->
     <div class="hero">
       <figure>
-        <img src="images/foto-strand-banner.webp" alt="Mette Thaisen på stranden, i ro med havet i baggrunden">
+        <!-- srcset = browseren vælger selv den mindste fil, der er skarp nok til skærmen -->
+        <img src="images/web/hero-strand-2400.webp"
+          srcset="images/web/hero-strand-1200.webp 1200w, images/web/hero-strand-2400.webp 2400w"
+          sizes="100vw" width="2400" height="1500"
+          alt="Mette Thaisen på stranden, i ro med havet i baggrunden">
       </figure>
       <div class="hero-tekst">
         <p class="kicker">Manuvision-behandling & kropsterapi</p>

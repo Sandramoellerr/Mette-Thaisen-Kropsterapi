@@ -43,7 +43,7 @@
 .manu-intro-tekst .kicker {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   color: var(--petroleum-moerk);
   margin-bottom: 0.4rem;
@@ -54,9 +54,6 @@
   margin-bottom: 0.8rem;
 }
 
-.manu-intro-tekst p {
-  font-size: 1rem;
-}
 
 /* Tekst-link (grundlooket ligger i base.css) står som sin egen boks
    med lidt luft over sig */
@@ -71,9 +68,6 @@
     padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
   }
 
-  .manu-intro h1 {
-    font-size: 2.2rem;
-  }
 }
 
 /* Computer: foto til venstre, tekst til højre.
@@ -104,9 +98,6 @@
     align-self: center;
   }
 
-  .manu-intro-tekst p {
-    font-size: 1.05rem;
-  }
 }
 
 
@@ -148,9 +139,6 @@
   margin-bottom: 1rem;
 }
 
-.chok-tekst p {
-  font-size: 1rem;
-}
 
 @media (min-width: 700px) {
   .chok-traume {
@@ -187,9 +175,6 @@
     flex: 1;
   }
 
-  .chok-tekst p {
-    font-size: 1.05rem;
-  }
 }
 
 
@@ -206,9 +191,6 @@
   margin-bottom: 0;
 }
 
-.forskning-tekst p {
-  font-size: 1rem;
-}
 
 /* Computer: overskrift til venstre, tekst til højre (grid 1 : 1).
    1fr 1fr = to lige brede spalter. */
@@ -220,7 +202,4 @@
     align-items: start;
   }
 
-  .forskning-tekst p {
-    font-size: 1.05rem;
-  }
 }

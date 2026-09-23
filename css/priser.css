@@ -67,7 +67,7 @@ main .sidebanner {
   display: inline-block;
   background-color: var(--petroleum);
   color: var(--hvid);
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 600;
@@ -77,15 +77,11 @@ main .sidebanner {
 }
 
 .nyhed h2 {
-  font-size: 1.5rem;
   margin-bottom: 1rem;
   margin-inline: auto; /* h2 har max-width, så auto-margin centrerer den */
   text-align: center;
 }
 
-.nyhed p {
-  font-size: 0.95rem;
-}
 
 /* De tre punkter: én under hinanden på mobil, prik foran hvert punkt */
 .nyhed-punkter {
@@ -100,7 +96,7 @@ main .sidebanner {
 .nyhed-punkter li {
   position: relative;
   padding-left: 1.5rem;
-  font-size: 0.95rem;
+  font-size: var(--fs-small);
   line-height: 1.5;
 }
 
@@ -123,12 +119,8 @@ main .sidebanner {
     padding: 3.5rem 4rem;
   }
 
-  .nyhed h2 {
-    font-size: 2rem;
-  }
 
   .nyhed p {
-    font-size: 1.05rem;
     max-width: 52rem;
     margin-inline: auto;
   }
@@ -171,13 +163,13 @@ main .sidebanner {
 .pris-kort h3 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 1rem;
+  font-size: var(--fs-card);
   margin: 0.3rem 0 0.8rem;
 }
 
 .pris-kort p {
   margin: 0.2rem 0;
-  font-size: 0.95rem;
+  font-size: var(--fs-small);
 }
 
 .pris-kort .spar {
@@ -187,7 +179,7 @@ main .sidebanner {
 
 .pris-kort .pris-tal {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.8rem;
+  font-size: var(--fs-pris);
   font-weight: 600;
   margin: 0.8rem 0 1.4rem;
 }
@@ -196,14 +188,14 @@ main .sidebanner {
   margin: 0 auto;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 0.8rem;
+  font-size: var(--fs-note);
 }
 
 .pris-note {
   margin: 1.6rem auto 0;
   max-width: 40rem;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: var(--fs-note);
   color: var(--petroleum-moerk);
 }
 
@@ -283,18 +275,18 @@ main .sidebanner {
 .gruppe h3 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 1rem;
+  font-size: var(--fs-card);
   margin: 0.3rem 0 0.8rem;
 }
 
 .gruppe p {
   margin: 0.3rem 0;
-  font-size: 0.95rem;
+  font-size: var(--fs-small);
 }
 
 .gruppe .pris-tal {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 1.8rem;
+  font-size: var(--fs-pris);
   font-weight: 600;
   margin: 0.5rem 0 1rem;
 }
@@ -304,7 +296,7 @@ main .sidebanner {
   margin-top: 1rem;
   padding-top: 0.9rem;
   border-top: 1px solid rgba(90, 68, 50, 0.2);
-  font-size: 0.85rem;
+  font-size: var(--fs-note);
 }
 
 @media (min-width: 700px) {
@@ -317,23 +309,30 @@ main .sidebanner {
   }
 }
 
-/* Tre kort ved siden af hinanden fra 1000px */
+/* Tre kort ved siden af hinanden fra 1000px – med SUBGRID.
+   Kortene har forskelligt indhold (nogle har to priser, andre kun én),
+   men de skal stå ens. Derfor har gridet 7 rækker: ikon, overskrift,
+   tekst, pris, tekst, pris og note. Hvert kort spænder over alle 7
+   rækker (grid-row: span 7) og låner dem med "grid-template-rows:
+   subgrid". Så står ikon, overskrift og priser på samme højde i alle
+   kort. Noten lægges i række 7 (nederst), så den altid står i bunden.
+   row-gap er 0, for luften styres af de enkelte elementers margin. */
 @media (min-width: 1000px) {
   .pris-gruppe {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.4rem;
-    align-items: stretch; /* alle tre kort lige høje */
+    gap: 0 1.4rem;
   }
 
-  /* flex + margin-top: auto = noten skubbes ned i bunden af kortet,
-     så alle noter står på samme linje */
   .gruppe {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-row: span 7;
+    grid-template-rows: subgrid;
+    align-items: start;
   }
 
   .gruppe .gruppe-note {
-    margin-top: auto;
+    grid-row: 7;
+    align-self: end;
   }
 }
 
@@ -352,17 +351,14 @@ main .sidebanner {
   width: 100%;
   height: 240px;
   object-fit: cover;
+  object-position: center 40%; /* viser Mette og klienten i samtalen */
   border-radius: 18px;
 }
 
 .book-cta h2 {
-  font-size: 1.5rem;
   margin-bottom: 0.8rem;
 }
 
-.book-cta p {
-  font-size: 0.95rem;
-}
 
 .book-knapper {
   display: flex;
@@ -375,13 +371,13 @@ main .sidebanner {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 0.8rem;
+  font-size: var(--fs-note);
 }
 
 /* Ugedagene står på en linje under knappens tekst */
 .book-knapper .knap span {
   display: block;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   opacity: 0.85;
   text-transform: none;
   letter-spacing: normal;
@@ -389,7 +385,7 @@ main .sidebanner {
 
 .book-kontakt {
   margin-top: 1.6rem;
-  font-size: 0.9rem;
+  font-size: var(--fs-small);
   color: var(--petroleum-moerk);
 }
 
@@ -425,13 +421,6 @@ main .sidebanner {
     height: 320px;
   }
 
-  .book-cta h2 {
-    font-size: 1.9rem;
-  }
-
-  .book-cta p {
-    font-size: 1.05rem;
-  }
 
   .book-knapper {
     flex-direction: row;
@@ -479,12 +468,10 @@ main .sidebanner {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  font-size: 1rem;
   margin-bottom: 1.2rem;
 }
 
 .betingelser p {
-  font-size: 0.95rem;
   max-width: 44rem;
   margin-inline: auto;
   text-align: center;
@@ -499,13 +486,7 @@ main .sidebanner {
     padding: 3.5rem 4rem 4rem;
   }
 
-  .betingelser h2 {
-    font-size: 1.15rem;
-  }
 
-  .betingelser p {
-    font-size: 1.05rem;
-  }
 }
 
 
@@ -525,7 +506,6 @@ main .sidebanner {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-size: 1rem;
 }
 
 .linje-titel::before,
@@ -557,7 +537,6 @@ main .sidebanner {
 
 @media (min-width: 700px) {
   .linje-titel {
-    font-size: 1.15rem;
     gap: 2rem;
     margin-bottom: 2.5rem;
   }

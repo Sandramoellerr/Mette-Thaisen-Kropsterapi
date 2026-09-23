@@ -44,6 +44,29 @@
   --bordeaux-moerk: #5c1f36; /* hover på bordeaux */
   --tekst: #5a4432; /* varm brun tekst (blødere end sort, men stadig tydelig) */
   --hvid: #fdfbf6; /* en blød, varm "hvid" – ikke skarp hvid */
+
+  /* SKRIFTSTØRRELSER – ét sted for hele sitet, ud fra hierarki.
+     Alle overskrifter og tekster bruger disse, så de har samme
+     størrelse på alle sider. Tallene bliver større fra 700px (se nedenfor). */
+  --fs-h1: 1.9rem;
+  --fs-h2: 1.5rem;
+  --fs-h3: 1.2rem;
+  --fs-card: 1.1rem;   /* overskrifter inde i kort */
+  --fs-p: 1rem;        /* almindelig brødtekst */
+  --fs-small: 0.95rem; /* tekst i kort, lister, links */
+  --fs-note: 0.85rem;  /* noter og små knapper */
+  --fs-label: 0.75rem; /* små labels med store bogstaver */
+  --fs-pris: 1.8rem;   /* priser */
+}
+
+/* Fra 700px (tablet og computer) er teksten lidt større */
+@media (min-width: 700px) {
+  :root {
+    --fs-h1: 2.6rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.5rem;
+    --fs-p: 1.05rem;
+  }
 }
 
 /* box-sizing: border-box betyder, at padding og kant regnes MED i
@@ -106,17 +129,17 @@ h3 {
 }
 
 h1 {
-  font-size: 1.6rem;
+  font-size: var(--fs-h1);
   margin-top: 2rem;
 }
 
 h2 {
-  font-size: 1.3rem;
+  font-size: var(--fs-h2);
   font-weight: 900;
 }
 
 h3 {
-  font-size: 1.3rem;
+  font-size: var(--fs-h3);
 }
 
 /* Ét fremhævet ord i en overskrift: kursiv + accentfarve */
@@ -132,7 +155,7 @@ p {
   font-family: "Almarai", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 1rem;
+  font-size: var(--fs-p);
 }
 
 /* Billeder må aldrig blive bredere end deres boks.
@@ -178,13 +201,7 @@ main .sidebanner {
 
 /* --- Tablet: fra 700px og op --- */
 @media (min-width: 700px) {
-  h1 {
-    font-size: 2.4rem;
-  }
 
-  h2 {
-    font-size: 1.9rem;
-  }
 
   main section,
   main .sidebanner {
@@ -201,23 +218,6 @@ main .sidebanner {
 }
 
 /* --- Computer: fra 1000px og op --- */
-@media (min-width: 1000px) {
-  h1 {
-    font-size: 2.9rem;
-  }
-
-  h2 {
-    font-size: 2.4rem;
-  }
-
-  h3 {
-    font-size: 2.2rem;
-  }
-
-  p {
-    font-size: 1.2rem;
-  }
-}
 
 /* ============================================================
    2. HEADER OG NAVIGATION
@@ -557,7 +557,7 @@ main .hero {
 .hero-tekst .kicker {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   color: var(--petroleum-moerk);
   font-weight: 600;
   margin-bottom: 0.4rem;
@@ -715,7 +715,6 @@ details p:last-child {
 
 .book-band h2 {
   color: var(--hvid);
-  font-size: 1.5rem;
   margin: 0 auto 0.6rem;
 }
 
@@ -743,9 +742,6 @@ details p:last-child {
     padding: 5rem 2.5rem 5.5rem;
   }
 
-  .book-band h2 {
-    font-size: 2rem;
-  }
 }
 
 footer {
@@ -778,13 +774,13 @@ footer {
   margin: 0;
   padding-top: 1.8rem;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 0.8rem;
+  font-size: var(--fs-note);
   opacity: 0.7;
 }
 
 footer h2 {
   color: var(--hvid);
-  font-size: 2rem;
+  font-size: var(--fs-h2);
   margin: 0 0 0.3rem 0;
 }
 
@@ -796,7 +792,7 @@ footer h2 {
 
 footer p {
   margin: 0.3rem 0;
-  font-size: 0.9rem;
+  font-size: var(--fs-small);
 }
 
 .footer-kontakt p,

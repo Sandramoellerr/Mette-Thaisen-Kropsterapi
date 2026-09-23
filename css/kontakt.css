@@ -25,7 +25,7 @@
 .kontakt-intro .kicker {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   color: var(--petroleum-moerk);
   margin-bottom: 0.4rem;
@@ -38,7 +38,6 @@
 
 .kontakt-intro p {
   margin-inline: auto;
-  font-size: 1rem;
 }
 
 .kontakt-intro .hero-knapper {
@@ -46,18 +45,20 @@
   margin-top: 1.6rem;
 }
 
+/* .knap og .knap-lys har margin-inline: auto i base.css. I en flex-række
+   fordeler auto-marginerne al ledig plads og skubber knapperne langt fra
+   hinanden – derfor nulstiller vi dem her, så gap: 0.8rem styrer afstanden. */
+.kontakt-intro .knap,
+.kontakt-intro .knap-lys {
+  margin-inline: 0;
+}
+
 @media (min-width: 700px) {
   .kontakt-intro {
     margin-top: 5rem;
   }
 
-  .kontakt-intro h1 {
-    font-size: 2.4rem;
-  }
 
-  .kontakt-intro p {
-    font-size: 1.05rem;
-  }
 }
 
 
@@ -94,7 +95,6 @@
 
 .kontakt-boks h2 {
   color: var(--hvid);
-  font-size: 1.5rem;
   margin-bottom: 1.4rem;
 }
 
@@ -108,7 +108,7 @@
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.75rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -126,7 +126,7 @@
   padding-bottom: 1.2rem;
   margin-bottom: 1.2rem;
   border-bottom: 1px solid rgba(253, 251, 246, 0.2);
-  font-size: 1rem;
+  font-size: var(--fs-p);
   line-height: 1.6;
 }
 
@@ -158,9 +158,6 @@
     padding: 3rem 3rem;
   }
 
-  .kontakt-boks h2 {
-    font-size: 1.8rem;
-  }
 }
 
 /* Computer: foto til venstre, boks til højre (grid 1 : 1).
@@ -196,7 +193,6 @@
 }
 
 .tryg-rum p {
-  font-size: 1rem;
   margin-bottom: 0.4rem;
 }
 
@@ -213,13 +209,7 @@
     height: 340px;
   }
 
-  .tryg-rum h2 {
-    font-size: 1.9rem;
-  }
 
-  .tryg-rum p {
-    font-size: 1.05rem;
-  }
 }
 
 /* Computer: tekst til venstre, foto til højre.

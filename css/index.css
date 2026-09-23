@@ -66,7 +66,7 @@
   content: "Mød mig bag behandlingen";
   display: block;
   font-family: "Poppins", Arial, sans-serif;
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -150,7 +150,6 @@
 
 .tjekliste h3 {
   text-align: center;
-  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
@@ -165,7 +164,7 @@
 .tjekliste li {
   position: relative; /* prikken placeres ud fra punktet */
   padding-left: 1.5rem;
-  font-size: 0.95rem;
+  font-size: var(--fs-small);
   line-height: 1.5;
 }
 
@@ -207,15 +206,6 @@
     padding: 2.4rem 3rem;
   }
 
-  .tjekliste li {
-    font-size: 1rem;
-  }
-
-  /* Overskriften må ikke skifte linje på computer. (På mobil skal den
-     kunne det, ellers bliver siden bredere end skærmen.) */
-  .tjekliste h3 {
-    white-space: nowrap;
-  }
 }
 
 

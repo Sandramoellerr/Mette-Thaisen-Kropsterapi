@@ -42,7 +42,7 @@
   --petroleum-moerk: #3f5f68; /* footer og mørke bånd */
   --bordeaux: #7c2c48; /* knapper og accent */
   --bordeaux-moerk: #5c1f36; /* hover på bordeaux */
-  --tekst: #2c2620; /* næsten sort tekst */
+  --tekst: #5a4432; /* varm brun tekst (blødere end sort, men stadig tydelig) */
   --hvid: #fdfbf6; /* en blød, varm "hvid" – ikke skarp hvid */
 }
 
@@ -709,6 +709,51 @@ details p:last-child {
 /* ============================================================
    7. FOOTER (ens på alle sider)
    ============================================================ */
+/* Book-bånd lige over galleriet: en lidt lysere blå end footeren, uden
+   mellemrum, så bånd, galleri og footer hænger sammen. */
+.book-band {
+  background-color: var(--petroleum);
+  color: var(--hvid);
+  text-align: center;
+  padding: 3.5rem 1.8rem 4rem;
+  margin: 0;
+}
+
+.book-band h2 {
+  color: var(--hvid);
+  font-size: 1.5rem;
+  margin: 0 auto 0.6rem;
+}
+
+.book-band p {
+  color: var(--hvid);
+  margin: 0 auto 1.6rem;
+  max-width: 26rem;
+}
+
+/* Hvid knap, så den står tydeligt mod den blå baggrund */
+.book-band .knap {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  background-color: var(--hvid);
+  color: var(--bordeaux);
+}
+
+.book-band .knap:hover {
+  background-color: var(--sand);
+}
+
+@media (min-width: 700px) {
+  .book-band {
+    padding: 5rem 2.5rem 5.5rem;
+  }
+
+  .book-band h2 {
+    font-size: 2rem;
+  }
+}
+
 footer {
   background-color: var(--petroleum-moerk);
   color: var(--hvid);
@@ -834,9 +879,9 @@ footer a {
    sæt 2 er en kopi af sæt 1, ser det ud som en uendelig løkke.
    ============================================================ */
 .galleri {
-  margin-top: 2rem;   /* luft op til sektionen ovenfor */
+  margin-top: 0;      /* galleriet sidder lige under book-båndet */
   margin-bottom: 0;
-  padding-top: 1.5rem;
+  padding-top: 0;
   padding-bottom: 0;
   text-align: center;
 }
@@ -918,10 +963,5 @@ footer a {
 
   .galleri-billeder img {
     height: 320px;
-  }
-
-  .galleri {
-    margin-top: 3rem;
-    padding-top: 2rem;
   }
 }

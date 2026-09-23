@@ -339,50 +339,9 @@
   color: var(--hvid);
 }
 
-/* ------------------------------------------------------------
-   Afsluttende opfordring ("Book din tid her")
-   Et lille hvidt kort, der løfter knappen op fra den sandfarvede
-   baggrund, så den ikke bare svæver alene. Centreret.
-   ------------------------------------------------------------ */
-.forloeb-cta {
-  max-width: none; /* helt ud til kanten, også på mobil */
-  margin-inline: 0;
-  margin-block: 0; /* flush på mobil – margin tilføjes kun fra 700px, se nedenfor */
-  padding: 3.5rem 1.8rem 4rem; /* lidt mere luft i top/bund, nu hvor den går ud til kanten */
-  background-color: var(--hvid);
-  box-shadow: 0 16px 38px rgba(63, 95, 104, 0.14);
-  text-align: center;
-}
-
-.forloeb-cta h3 {
-  margin: 0 auto 0.8rem;
-  color: var(--bordeaux);
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-
-.forloeb-cta p {
-  margin: 0 auto 1.6rem;
-  max-width: 24rem;
-  font-size: 0.95rem;
-  color: var(--petroleum-moerk);
-}
-
-.forloeb-cta .knap {
-  display: inline-block;
-  width: auto;
-  margin: 0;
-  padding: 0.9rem 2rem;
-}
-
 @media (min-width: 700px) {
-  .forloeb-cta {
-    padding: 5rem 2.5rem 6rem;
-    margin-top: 7rem;
-    margin-bottom: 0;
-  }
   .forloebets-gang {
-    padding: 0 0 7rem;
+    padding: 0 0 10rem;
   }
   /* brødtekst og trin-liste får samme sideluft som overskriften (2.5rem),
      så alt står på præcis samme lodrette linje */
@@ -395,7 +354,7 @@
      sektionen (også trin-listen og CTA-kortet), så luften hobede sig
      op nedover og gjorde hele sektionen rodet */
   .forloebets-gang-top {
-    padding-block: 5rem 1rem;
+    padding-block: 8rem 1rem;
     padding-inline: 0;
     margin-bottom: 2.5rem;
   }
@@ -439,10 +398,6 @@
     grid-column: 2;
     grid-row: 1;
   }
-  .forloebets-gang .forloeb-cta {
-    grid-column: 1 / -1;
-    grid-row: 3;
-  }
   .forloebets-gang .forloebets-gang-brod {
     grid-column: 2;
     grid-row: 2;
@@ -458,12 +413,12 @@
     grid-row: 1 / span 2;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: 5rem 2.5rem 0 0; /* 5rem = samme luft over som overskriften har */
+    margin: 8rem 2.5rem 0 0; /* 8rem = samme luft over som overskriften har */
     padding: 0;
     max-width: none;
   }
   .forloebets-gang .trin {
-    padding: 1.1rem 1.2rem;
+    padding: 2rem;
   }
   .forloebets-gang .trin h3 {
     font-size: 1rem;

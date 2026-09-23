@@ -289,28 +289,102 @@
 
 /* ============================================================
    6. BOOK EN TID
+   Sandfarvet kort. Tekst øverst og et hvidt kort med kontaktmuligheder
+   under (mobil). På computer ligger de ved siden af hinanden.
    ============================================================ */
 .book-tid {
   max-width: 40rem;
   margin-inline: auto;
-  text-align: start;
   background-color: var(--sand);
+  display: grid;
+  gap: 2rem;
 }
 
-.book-tid-signatur {
-  margin-top: 1rem;
-  font-style: italic;
+.book-tid h2 {
+  margin-bottom: 0.8rem;
+}
+
+.book-tid-tekst p {
+  margin-bottom: 0;
+}
+
+/* Det hvide kort med knap og kontaktoplysninger */
+.book-tid-valg {
+  background-color: var(--hvid);
+  border-radius: 20px;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  box-shadow: 0 10px 28px rgba(63, 95, 104, 0.1);
+}
+
+.book-tid-valg .knap {
+  margin: 0;
+}
+
+.book-tid-eller {
+  margin: 1.4rem auto 0.8rem;
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   font-weight: 600;
   color: var(--petroleum-moerk);
-  text-align: center;
 }
 
-/* Computer: bredere, med runde hjørner, så det ligner et kort */
+.book-tid-valg ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+
+/* Ikon og tekst ved siden af hinanden, centreret */
+.book-tid-valg li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-size: var(--fs-small);
+}
+
+.book-tid-valg li img {
+  width: 18px;
+  height: 18px;
+}
+
+.book-tid-valg li a {
+  color: var(--bordeaux);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;      /* telefonnummeret må ikke brydes over to linjer */
+  overflow-wrap: anywhere;  /* men en lang mailadresse må gerne brydes på små skærme */
+}
+
+.book-tid-valg li a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Computer: bredere, med runde hjørner. Tekst til venstre, kort til højre
+   (1fr 1fr = to lige brede spalter). */
 @media (min-width: 700px) {
   .book-tid {
+    width: calc(100% - 5rem); /* 2.5rem luft i hver side på tablet */
     max-width: 64rem;
     border-radius: 32px;
-    padding: 4rem 4.5rem;
+    padding: 4.5rem 4.5rem;
     margin-bottom: 3rem; /* mindre luft ned til galleriet */
+  }
+}
+
+@media (min-width: 1000px) {
+  .book-tid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .book-tid-valg {
+    padding: 2.6rem 2.2rem;
   }
 }

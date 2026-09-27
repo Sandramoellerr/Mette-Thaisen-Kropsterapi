@@ -14,7 +14,6 @@
    og @media (min-width: 700px) bygger ovenpå til tablet/computer.
    ============================================================ */
 
-
 /* ============================================================
    1. OM MIG – TEASER
    Grønt kort med foto, en lille label over overskriften og en
@@ -127,7 +126,6 @@
   }
 }
 
-
 /* ============================================================
    2. DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
    ============================================================ */
@@ -205,9 +203,7 @@
     margin-top: 0;
     padding: 2.4rem 3rem;
   }
-
 }
-
 
 /* ============================================================
    3. HVORFOR MANUVISION KROPSTERAPI?
@@ -244,7 +240,6 @@
     margin-inline: auto;
   }
 }
-
 
 /* ============================================================
    4. BÅND MED SIGNATUR
@@ -283,10 +278,8 @@
 @media (min-width: 700px) {
   .bjaelke {
     padding: 4.5rem 2rem;
-    margin: 8rem 0;
   }
 }
-
 
 /* ============================================================
    5. ET FORLØB HOS MIG
@@ -294,7 +287,6 @@
 .forloeb-kort img {
   margin-top: 2rem;
 }
-
 
 /* ============================================================
    6. BOOK EN TID
@@ -352,8 +344,8 @@
   color: var(--bordeaux);
   font-weight: 600;
   text-decoration: none;
-  white-space: nowrap;      /* telefonnummeret må ikke brydes over to linjer */
-  overflow-wrap: anywhere;  /* men en lang mailadresse må gerne brydes på små skærme */
+  white-space: nowrap; /* telefonnummeret må ikke brydes over to linjer */
+  overflow-wrap: anywhere; /* men en lang mailadresse må gerne brydes på små skærme */
 }
 
 .book-tid-valg li a:hover {
@@ -369,7 +361,7 @@
     max-width: 64rem;
     border-radius: 32px;
     padding: 4.5rem 4.5rem;
-    margin-bottom: 3rem; /* mindre luft ned til galleriet */
+    margin-bottom: 1rem;
   }
 }
 
@@ -378,6 +370,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
+    margin-bottom: 6rem;
   }
 
   .book-tid-valg {

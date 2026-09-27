@@ -436,4 +436,8 @@
   .book-tid-valg {
     padding: 2.6rem 2.2rem;
   }
+
+  .box8 {
+    background-color: var(--salvie-lys);
+  }
 }

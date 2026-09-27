@@ -2,6 +2,7 @@
    FORSIDEN – index.html
 
    Sektioner der kun findes på forsiden:
+     0. Balance – lille "hint"-sektion lige under hero
      1. Om mig – teaser (grønt kort med foto)
      2. Det kan jeg hjælpe dig med (+ tjekliste)
      3. Hvorfor Manuvision kropsterapi?
@@ -13,6 +14,57 @@
    Skrevet mobil-først: reglerne uden media query gælder mobil,
    og @media (min-width: 700px) bygger ovenpå til tablet/computer.
    ============================================================ */
+
+/* ============================================================
+   0. BALANCE – lille "hint"-sektion
+   Foto og en kort tekst, der peger videre ned til "Det kan jeg
+   hjælpe dig med" (linket herunder springer til det afsnit).
+   ============================================================ */
+.balance-teaser {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  margin-top: 3rem;
+}
+
+.balance-teaser img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 20px;
+}
+
+.balance-teaser-tekst .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin-bottom: 0.4rem;
+}
+
+.balance-teaser-tekst h2 {
+  margin-bottom: 0.6rem;
+}
+
+/* Computer: foto til venstre, tekst til højre, lige så høj som fotoet */
+@media (min-width: 700px) {
+  .balance-teaser {
+    flex-direction: row;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .balance-teaser img {
+    flex: 0 0 42%;
+    height: 320px;
+  }
+
+  .balance-teaser-tekst {
+    flex: 1;
+  }
+}
 
 /* ============================================================
    1. OM MIG – TEASER

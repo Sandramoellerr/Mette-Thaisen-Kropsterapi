@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  margin-top: 3rem;
 }
 
 .balance-teaser img {
@@ -46,6 +45,15 @@
 
 .balance-teaser-tekst h2 {
   margin-bottom: 0.6rem;
+}
+
+/* Linket peger op på siden (til "Et forløb hos mig" ovenfor), så det får
+   en lille pil op foran teksten i stedet for ned-pilen, de andre "læs
+   mere"-links bruger. */
+.balance-teaser-tekst .tekst-link-op::before {
+  content: "↑";
+  display: inline-block;
+  margin-right: 0.4rem;
 }
 
 /* Computer: foto til venstre, tekst til højre, lige så høj som fotoet */

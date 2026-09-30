@@ -426,7 +426,6 @@
   border-radius: 20px;
   padding: 2.6rem 1.8rem 2rem;
   font-style: italic;
-  font-size: var(--fs-p);
   line-height: 1.7;
   background-color: var(--sand); /* lyseste nuance */
   color: var(--tekst);

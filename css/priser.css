@@ -19,7 +19,6 @@
      pris            1.8rem  (Playfair Display)
    ============================================================ */
 
-
 /* ============================================================
    1. TOPBILLEDE – går kant til kant
    ============================================================ */
@@ -42,7 +41,6 @@ main .sidebanner {
   object-fit: cover;
   object-position: center 60%;
 }
-
 
 /* ============================================================
    2. NYHED-KORT
@@ -82,7 +80,6 @@ main .sidebanner {
   text-align: center;
 }
 
-
 /* De tre punkter: én under hinanden på mobil, prik foran hvert punkt */
 .nyhed-punkter {
   list-style: none;
@@ -113,12 +110,11 @@ main .sidebanner {
 
 @media (min-width: 700px) {
   .nyhed {
-    width: calc(100% - 5rem); /* 2.5rem luft i hver side på tablet */
+    width: calc(100% - 5rem); /* 2.5rem er luft i hver side på tablet */
     max-width: 74rem;
-    margin: -5rem auto 6rem; /* 6rem luft ned til det blå bånd */
+    margin: -5rem auto 9rem; /* 9rem er luft ned til det blå bånd */
     padding: 3.5rem 4rem;
   }
-
 
   .nyhed p {
     max-width: 52rem;
@@ -134,7 +130,6 @@ main .sidebanner {
     border-top: 1px solid rgba(90, 68, 50, 0.2);
   }
 }
-
 
 /* ============================================================
    3. INDIVIDUEL BEHANDLING
@@ -250,7 +245,6 @@ main .sidebanner {
   }
 }
 
-
 /* ============================================================
    4. VÆLG DEN PRIS DER PASSER TIL DIG
    Tre grønne kort. På computer ligger de i et sandfarvet bånd.
@@ -336,7 +330,6 @@ main .sidebanner {
   }
 }
 
-
 /* ============================================================
    5. BOOK DIN TID
    ============================================================ */
@@ -358,7 +351,6 @@ main .sidebanner {
 .book-cta h2 {
   margin-bottom: 0.8rem;
 }
-
 
 .book-knapper {
   display: flex;
@@ -414,13 +406,12 @@ main .sidebanner {
 /* Tablet: fotoet står stadig over teksten, men teksten er lidt større */
 @media (min-width: 700px) {
   .book-cta {
-    margin-top: 0;
+    margin-top: 9rem;
   }
 
   .book-foto {
     height: 320px;
   }
-
 
   .book-knapper {
     flex-direction: row;
@@ -449,7 +440,6 @@ main .sidebanner {
     min-width: 0;
   }
 }
-
 
 /* ============================================================
    6. BETINGELSER FOR AFBESTILLING
@@ -482,13 +472,10 @@ main .sidebanner {
 @media (min-width: 700px) {
   .betingelser {
     width: calc(100% - 5rem);
-    margin: 6rem auto;
+    margin: 9.6rem auto;
     padding: 3.5rem 4rem 4rem;
   }
-
-
 }
-
 
 /* ============================================================
    7. FÆLLES

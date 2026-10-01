@@ -66,11 +66,13 @@
 
   .balance-teaser img {
     flex: 0 0 42%;
+    min-width: 0; /* uden denne kan billedet ikke krympe under sin egen naturlige bredde */
     height: 320px;
   }
 
   .balance-teaser-tekst {
     flex: 1;
+    min-width: 0; /* samme for teksten, så lange ord ikke skubber layoutet bredere */
   }
 }
 
@@ -95,6 +97,18 @@
   max-width: none;
   align-items: stretch;
   text-align: left;
+}
+
+/* Mobil: teksten skal vises FØR billedet, selvom billedet står
+   først i HTML'en. "order" flytter den visuelt uden at ændre
+   rækkefølgen i koden (vigtigt for skærmlæsere). Billedet får en
+   tilsvarende order, så det altid kommer efter teksten. */
+.om-mig-kort .kort-tekst {
+  order: -1;
+}
+
+.om-mig-kort img {
+  order: 1;
 }
 
 /* Billedet er kvadratisk (aspect-ratio: 1 / 1) og beskæres pænt
@@ -157,10 +171,17 @@
     margin-inline: auto;
   }
 
-  /* row-reverse = billedet (som står først i HTML) havner til højre */
+  /* row-reverse = billedet (som står først i HTML) havner til højre.
+     order nulstilles her, så mobilens "tekst først"-rækkefølge ikke
+     blander sig i row-reverse. */
   .om-mig-kort .kort-indhold {
     flex-direction: row-reverse;
     gap: 2.5rem;
+  }
+
+  .om-mig-kort .kort-tekst,
+  .om-mig-kort img {
+    order: 0;
   }
 
   /* Billedet fylder 42% af bredden og er lige så højt som teksten
@@ -346,7 +367,22 @@
 .balance-teaser {
   background-color: var(--sand);
   border-radius: 16px;
-  padding: 8rem;
+  padding: 2rem;
+}
+
+/* padding: 8rem på alle sider var for meget på tablet (700-999px) –
+   billede + tekst + den brede luft kunne ikke være der i bredden, så
+   siden fik vandret scroll. Luften trappes op i to trin i stedet. */
+@media (min-width: 700px) {
+  .balance-teaser {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .balance-teaser {
+    padding: 8rem;
+  }
 }
 /* ============================================================
    5. ET FORLØB HOS MIG

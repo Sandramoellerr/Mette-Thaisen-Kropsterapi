@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "mette-thaisen-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "11477", "--directory", "/Users/sandramollergregersen/Desktop/mette-thaisen-websitee"],
+      "port": 11477
+    }
+  ]
+}

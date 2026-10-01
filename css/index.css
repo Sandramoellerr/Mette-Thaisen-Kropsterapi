@@ -275,6 +275,7 @@
   margin-bottom: 0;
   padding-block: 5rem; /* mere luft i top og bund */
   background-color: var(--lyscreme);
+  border-bottom: 3px solid var(--salvie-lys);
 }
 
 .hvorfor-manuvision h2 {
@@ -292,6 +293,7 @@
     max-width: none;
     margin-inline: 0;
     padding-block: 8rem;
+    margin-top: 0;
   }
 
   .hvorfor-manuvision h2,
@@ -341,6 +343,11 @@
   }
 }
 
+.balance-teaser {
+  background-color: var(--sand);
+  border-radius: 16px;
+  padding: 8rem;
+}
 /* ============================================================
    5. ET FORLØB HOS MIG
    ============================================================ */

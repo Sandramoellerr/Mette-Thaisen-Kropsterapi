@@ -39,7 +39,7 @@ main .sidebanner {
   height: 42vw;
   max-height: 300px;
   object-fit: cover;
-  object-position: center 60%;
+  object-position: center 55%; /* holder svanen og vandpladsket i billedet */
 }
 
 /* ============================================================

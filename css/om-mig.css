@@ -24,8 +24,16 @@
   padding: 0 1.8rem;
 }
 
+/* Mobil: teksten skal vises FØR billedet, selvom billedet står
+   først i HTML'en. "order" flytter den visuelt uden at ændre
+   rækkefølgen i koden (vigtigt for skærmlæsere). */
 .om-intro figure {
   margin: 0;
+  order: 1;
+}
+
+.om-intro-tekst {
+  order: -1;
 }
 
 .om-intro figure img {
@@ -59,6 +67,13 @@
     gap: 3.5rem;
     margin-top: 5.5rem;
     padding-inline: 2.5rem;
+  }
+  /* order nulstilles her, så mobilens "tekst først"-rækkefølge ikke
+     blander sig i row-reverse (billedet skal stå til højre, som det
+     gjorde før). */
+  .om-intro figure,
+  .om-intro-tekst {
+    order: 0;
   }
   .om-intro figure {
     flex: 0 0 36%;

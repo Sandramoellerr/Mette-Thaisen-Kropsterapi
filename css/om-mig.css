@@ -478,6 +478,38 @@
   color: var(--hvid);
 }
 
+/* "Læs mere" i citaterne: fladt link i stedet for base.css' sandfarvede
+   boks, så det passer til kortets egen baggrundsfarve. Teksten i HTML'en
+   skjules (font-size: 0), og ::after viser "Læs mere"/"Luk" i stedet. */
+.udtalelser details {
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0.8rem 0 0;
+}
+
+.udtalelser summary {
+  font-size: 0;
+  font-style: normal;
+  color: inherit;
+}
+
+.udtalelser summary::after {
+  content: "Læs mere";
+  font-size: var(--fs-note);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.udtalelser details[open] summary::after {
+  content: "Luk";
+}
+
+.udtalelser details p {
+  margin: 0.8rem 0 0;
+}
+
 .udtalelser cite {
   display: block;
   margin-top: 1.1rem;

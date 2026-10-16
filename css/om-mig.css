@@ -293,14 +293,15 @@
    ============================================================ */
 .hvem-hjaelper {
   background-color: var(--salvie-lys);
-  margin-bottom: 0;
-  margin-top: 0;
+  margin-block: 0;
   padding-block: 5rem; /* luft i top og bund */
+  padding-inline: 1.5rem; /* lige meget luft i begge sider */
 }
+
 .hvem-hjaelper p,
 .hvem-hjaelper h2 {
   max-width: 46rem;
-  margin-left: 3rem;
+  margin-inline: auto; /* centrerer teksten */
 }
 
 .hvem-hjaelper-signatur {
@@ -313,24 +314,15 @@
 @media (min-width: 800px) {
   .hvem-hjaelper {
     max-width: none;
-    padding-block: 9rem; /* luft i top og bund */
-    margin-top: 0;
-  }
-  .hvem-hjaelper p,
-  .hvem-hjaelper h2 {
-    margin-inline: 28rem;
+    padding-block: 9rem;
   }
 }
 /* ============================================================
    4. CERTIFIKAT-BÅND
-   Fladt, minimalt "trusted by"-bånd – logoerne flyder frit på
-   baggrunden uden kort/skygge, og forstørres let ved hover.
    ============================================================ */
 .udmaerkelser {
   background-color: var(--sand);
-  margin-block: 0;
-  padding: 6rem 4rem;
-
+  padding: 6rem 1.5rem;
   text-align: center;
 }
 
@@ -350,56 +342,47 @@
   margin: 0 0 2rem;
 }
 
+/* logoerne ved siden af hinanden */
 .logo-baand {
   display: flex;
   justify-content: center;
-  gap: 2.2rem;
-}
-
-.logo-kort {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1.2rem;
 }
 
+/* logoerne */
 .logo-baand img {
-  height: 80px;
+  height: 70px;
   width: auto;
+  object-fit: contain;
   transition: transform 0.25s ease;
 }
 
-.logo-kort:hover img {
+.logo-baand img:hover {
   transform: scale(1.12);
 }
 
+/* desktop */
 @media (min-width: 700px) {
   .udmaerkelser {
     padding: 3rem 2.5rem 11rem;
     background-color: var(--creme);
-    max-width: none;
   }
+
   .udmaerkelser-kicker {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    max-width: none; /* ophæver p { max-width: 60ch } fra base.css, så teksten kan centreres */
-    text-align: center;
-    /* text-transform: uppercase; */
-    letter-spacing: 0.16em;
+    max-width: none;
     font-size: var(--fs-card);
-    font-weight: 600;
-    color: var(--petroleum-moerk);
   }
+
   .udmaerkelser .deko-blad {
     width: 40px;
     height: 40px;
-    margin-bottom: 1.2rem;
   }
 
   .logo-baand {
     gap: 4rem;
-    margin: 0;
   }
+
   .logo-baand img {
     height: 150px;
   }
@@ -412,16 +395,17 @@
    til mørkest, i stedet for en fast grid-opstilling.
    ============================================================ */
 .udtalelser h2 {
-  text-align: center;
   margin-bottom: 0.6rem;
+  margin-left: 3rem;
 }
 
 .udtalelser-intro {
-  text-align: center;
   max-width: 32rem;
-  margin: 0 auto 2rem;
   font-style: italic;
   color: var(--petroleum-moerk);
+  margin-left: 3rem;
+  white-space: nowrap;
+  margin-bottom: 2rem;
 }
 
 .udtalelse-liste {

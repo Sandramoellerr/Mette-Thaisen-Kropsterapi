@@ -507,19 +507,13 @@ main .sidebanner {
 /* Rundt logo-ikon øverst på priskortene */
 .kort-ikon {
   display: block;
-  width: 3.4rem;
+  width: 7rem;
   height: 3.4rem;
-  border-radius: 50%;
-  background-color: var(--salvie);
   background-image: url(../images/logoer/logo-ikon-blaa.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 56%;
-  margin-bottom: 1rem;
-}
-
-.gruppe .kort-ikon {
-  background-color: var(--creme);
+  margin-block: 1rem;
 }
 
 @media (min-width: 700px) {
@@ -536,6 +530,7 @@ main .sidebanner {
 
   .kort-ikon {
     margin-bottom: 1.6rem;
-    background-color: var(--creme);
+    background-image: url(../images/logoer/logo-ikon-hvid.png);
+    width: 30%;
   }
 }

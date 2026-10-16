@@ -51,12 +51,12 @@
   --fs-h1: 1.9rem;
   --fs-h2: 1.5rem;
   --fs-h3: 1.2rem;
-  --fs-card: 1.1rem;   /* overskrifter inde i kort */
-  --fs-p: 1rem;        /* almindelig brødtekst */
+  --fs-card: 1.1rem; /* overskrifter inde i kort */
+  --fs-p: 1rem; /* almindelig brødtekst */
   --fs-small: 0.95rem; /* tekst i kort, lister, links */
-  --fs-note: 0.85rem;  /* noter og små knapper */
+  --fs-note: 0.85rem; /* noter og små knapper */
   --fs-label: 0.75rem; /* små labels med store bogstaver */
-  --fs-pris: 1.8rem;   /* priser */
+  --fs-pris: 1.8rem; /* priser */
 }
 
 /* Fra 700px (tablet og computer) er teksten lidt større */
@@ -201,8 +201,6 @@ main .sidebanner {
 
 /* --- Tablet: fra 700px og op --- */
 @media (min-width: 700px) {
-
-
   main section,
   main .sidebanner {
     margin-block: 8rem;
@@ -426,7 +424,6 @@ header nav details {
   }
 }
 
-/* --- Computer: links på én linje og lidt større tekst --- */
 @media (min-width: 1000px) {
   header nav {
     margin: 0;
@@ -531,6 +528,23 @@ main .hero {
   padding: 0 3rem;
 }
 
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: 0;
+  margin-top: 4rem;
+}
+.hero h2 {
+  font-size: 1rem;
+}
+
+.speciel-hero {
+  color: var(--petroleum);
+  color: var(--petroleum-moerk);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
 .hero figure {
   margin: 0 -3rem;
   height: 56vw; /* vw = procent af skærmbredden, så højden følger bredden */
@@ -561,19 +575,46 @@ main .hero {
     background: linear-gradient(to right, transparent 40%, rgba(245, 238, 226, 0.6) 100%);
     pointer-events: none;
   }
+  .speciel-hero {
+    color: var(--petroleum-moerk);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
-
-.hero-tekst {
-  padding: 1.8rem 0;
-}
-
 .hero-tekst .kicker {
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-size: var(--fs-label);
   color: var(--petroleum-moerk);
   font-weight: 600;
   margin-bottom: 0.4rem;
+  font-size: 0.7rem;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.overskrift_ul {
+  margin-bottom: 0;
+}
+
+.hero p {
+  font-size: var(--fs-h2);
+  margin-bottom: 2px;
+}
+.hero ul {
+  margin-top: 0;
+}
+.speciel-hero {
+  margin-bottom: 2rem;
+}
+
+.hero li p {
+  font-size: 1rem;
 }
 
 /* Række af knapper */
@@ -605,6 +646,11 @@ main .hero {
 
 /* --- Tablet: teksten lægges ovenpå billedet i højre side --- */
 @media (min-width: 700px) {
+  .hero-tekst .kicker {
+    margin-bottom: 3rem;
+    margin-top: 0;
+    padding-top: 0;
+  }
   main .hero {
     position: relative; /* gør at .hero-tekst kan placeres inde i den */
     padding: 0;
@@ -642,6 +688,17 @@ main .hero {
 
   .sidebanner-tekst {
     padding: 2.5rem 3rem;
+  }
+  .hero p {
+    margin-top: 4rem;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  .hero ul {
+    margin-top: 0;
+  }
+  .hero h1 {
+    margin-bottom: 0;
   }
 }
 
@@ -754,7 +811,6 @@ details p:last-child {
   .book-band {
     padding: 5rem 2.5rem 5.5rem;
   }
-
 }
 
 footer {
@@ -882,7 +938,7 @@ footer a {
    sæt 2 er en kopi af sæt 1, ser det ud som en uendelig løkke.
    ============================================================ */
 .galleri {
-  margin-top: 0;      /* galleriet sidder lige under book-båndet */
+  margin-top: 0; /* galleriet sidder lige under book-båndet */
   margin-bottom: 0;
   padding-top: 0;
   padding-bottom: 0;

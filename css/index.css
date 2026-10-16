@@ -149,7 +149,7 @@
 
 /* Signaturen "— Mette" sættes ind EFTER afsnittet med ::after */
 .om-mig-kort p::after {
-  content: "— Mette";
+  content: "— Kh Mette";
   display: block;
   margin-top: 1rem;
   font-family: "Playfair Display", Georgia, serif;
@@ -257,6 +257,15 @@
   height: 8px;
   border-radius: 50%; /* 50% = cirkel */
   background-color: var(--bordeaux);
+}
+
+.uforpligtende_samtale {
+  text-align: center;
+  background-color: var(--salvie-lys);
+  margin-bottom: 0;
+}
+.uforpligtende_samtale p {
+  font-size: 1.2rem;
 }
 
 /* --- Tablet/computer: tekst og tjekliste ved siden af hinanden --- */

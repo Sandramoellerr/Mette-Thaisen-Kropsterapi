@@ -17,12 +17,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Almarai:wght@300;400;700;800&family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500;600&family=Alex+Brush&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Nunito+Sans:ital,wght@0,300..800;1,300..800&family=Alex+Brush&display=swap"
         rel="stylesheet">
 
     <!-- base.css = fælles for alle sider. index.css = kun forsiden. -->
+    <!-- Fortæller CSS, at JavaScript virker (bruges til de rolige animationer) -->
+    <script>document.documentElement.classList.add("js");</script>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/layout.css">
 </head>
 
 <body>
@@ -38,30 +41,19 @@
                 <a href="manuvision.html">Manuvisions kropsterapi</a>
                 <a href="forloeb.html">Ydelser og forløb</a>
                 <a href="om-mig.html">Om mig</a>
-
-                <!-- <a href="priser.html">Priser</a> -->
-
                 <a href="kontakt.html">Kontakt</a>
             </div>
-            <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank"
-                rel="noopener" class="book-knap-desktop">Book</a>
+            <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank" rel="noopener" class="book-knap-desktop">Book</a>
 
-            <!-- Vises kun på mobil/tablet: burgermenu, se css/base.css -->
+            <!-- Vises kun på mobil/tablet: burgermenu, se css/base.css. Samme links som på computer. -->
             <details class="mobilmenu">
                 <summary class="mobilmenu-knap">Menu</summary>
                 <div class="menu-links">
+                    <a href="manuvision.html">Manuvisions kropsterapi</a>
+                    <a href="forloeb.html">Ydelser og forløb</a>
                     <a href="om-mig.html">Om mig</a>
-                    <a href="forloeb.html">Forløb</a>
-                    <details class="praktisk-detaljer">
-                        <summary>Praktisk information</summary>
-                        <div class="praktisk-links">
-                            <a href="priser.html">Priser</a>
-                            <a href="manuvision.html">Manuvisions Sundhedsforsikring</a>
-                            <a href="kontakt.html">Kontakt</a>
-                        </div>
-                    </details>
-                    <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where"
-                        target="_blank" rel="noopener" class="book-knap">Book</a>
+                    <a href="kontakt.html">Kontakt</a>
+                    <a href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where" target="_blank" rel="noopener" class="book-knap">Book</a>
                 </div>
             </details>
         </nav>
@@ -116,6 +108,41 @@
         </div>
 
 
+        <!-- ====== ORD-BÅND: små ord om det, siden handler om ====== -->
+        <ul class="ord-baand" aria-label="Det handler om">
+            <li>Ro</li>
+            <li>Nærvær</li>
+            <li>Tryghed</li>
+            <li>Balance</li>
+            <li>Kropsbevidsthed</li>
+            <li>Nervesystem</li>
+        </ul>
+
+        <!-- ====== TRE VEJE IND ====== -->
+        <section class="tre-veje">
+            <h2>Tre veje <span class="ord-fremhaevet">ind</span></h2>
+            <div class="veje-liste">
+                <article class="vej-kort">
+                    <p class="vej-nr">01</p>
+                    <h3>Manuvision kropsterapi</h3>
+                    <p class="vej-tekst">En blid, kropsrettet behandlingsform, der arbejder med sammenhængen mellem krop og sind.</p>
+                    <a href="manuvision.html" class="knap">Læs mere</a>
+                </article>
+                <article class="vej-kort">
+                    <p class="vej-nr">02</p>
+                    <h3>Ydelser og forløb</h3>
+                    <p class="vej-tekst">Fra en enkelt behandling til et helt forløb. Jeg tilpasser altid behandlingen efter dine behov.</p>
+                    <a href="forloeb.html" class="knap">Læs mere</a>
+                </article>
+                <article class="vej-kort">
+                    <p class="vej-nr">03</p>
+                    <h3>Om mig</h3>
+                    <p class="vej-tekst">Mød Mette, og læs om min uddannelse, min tilgang og hvad klienterne siger.</p>
+                    <a href="om-mig.html" class="knap">Læs mere</a>
+                </article>
+            </div>
+        </section>
+
         <!-- ====== OM MIG – kort teaser ====== -->
         <section class="billede-kort om-mig-kort">
             <div class="kort-indhold"><img class="kort-billede" src="images/billeder/mette-ved-vandet.jpg"
@@ -123,12 +150,11 @@
                 <div class="kort-tekst">
                     <h2>Om mig</h2>
                     <p>Jeg hedder Mette Thaisen, jeg er 53 år og har arbejdet med Manuvision-kropsterapi i 10 år.
-                        Jeg er optaget af at hjælpe dig til ro & balance i din krop og dit nervesystem.
+                        Jeg er optaget af at hjælpe dig til ro &amp; balance i din krop og dit nervesystem.
                         Jeg er RAB-registreret og har klinik i Snekkersten ved Helsingør og på Frederiksberg.
 
                         <br>
-                        Se adresser og book tid under &quot; <b>Booking Sneekersten</b>&quot; og &quot;<b>Booking i
-                            Frederiksberg</b>&quot;..
+                        Se adresser og book tid under &quot;<b>Booking Snekkersten</b>&quot; og &quot;<b>Booking Frederiksberg</b>&quot;.
 
 
                     </p>
@@ -140,7 +166,7 @@
 
         <!-- ====== DET KAN JEG HJÆLPE DIG MED ====== -->
         <section id="hjaelper-dig" class="hjaelper-dig">
-            <h2>Det kan jeg hjælpe dig med</h2>
+            <h2>Det jeg kan hjælpe dig med</h2>
             <div class="hjaelper-dig-indhold">
                 <div class="hjaelper-dig-tekst">
                     <p>Måske kender du følelsen af at være på hele tiden. Af at sige ja, når du mener nej. Af en krop,
@@ -185,11 +211,17 @@
                 </div>
             </div>
         </section>
+        <!-- ====== UFORPLIGTENDE SAMTALE ====== -->
         <section class="uforpligtende_samtale">
-            <p>Hvis du ønsker en uforpligtende samtale pr. telefon om behanglingen, så send mig en mail:</p>
-
-            <a class="knap-lys" href="mailto:mettethaisen@gmail.com"> Skriv til mig her</a>
-
+            <div class="samtale-indhold">
+                <p class="kicker">Er du i tvivl?</p>
+                <h2>Lad os tage en snak først</h2>
+                <p>Det kan være svært at vide, om kropsterapi er det rigtige for dig. Derfor kan du altid få en
+                    kort, <span class="ord-fremhaevet">gratis</span> og uforpligtende samtale på 15 minutter, før du booker. Her kan du fortælle lidt om, hvad du
+                    går med, og spørge om alt det, du gerne vil vide om behandlingen.</p>
+                <p>Skriv til mig på mail, så finder vi ud af det sammen.</p>
+                <a class="knap-lys" href="mailto:mettethaisen@gmail.com">Skriv til mig her</a>
+            </div>
         </section> <!-- ====== ET FORLØB HOS MIG – teaser ====== -->
         <section id="et-forloeb-hos-mig" class="billede-kort forloeb-kort">
             <div class="kort-indhold">
@@ -210,6 +242,31 @@
         </section>
 
 
+
+        <!-- ====== ORD DER VARMER – korte udtalelser ====== -->
+        <section class="ord-varmer">
+            <p class="kicker">Det siger andre</p>
+            <h2>Ord der <span class="ord-fremhaevet">varmer</span></h2>
+            <div class="udsagn-liste">
+                <figure class="udsagn">
+                    <blockquote><p>Mette er en utrolig dygtig, empatisk og nærværende behandler.</p></blockquote>
+                    <figcaption>Tidligere klient, Marie-Louise</figcaption>
+                </figure>
+                <figure class="udsagn">
+                    <blockquote><p>Mette er lyttende og givende og er helt tilstede under hele den tid du er i hendes hænder.</p></blockquote>
+                    <figcaption>Gitte, optometrist</figcaption>
+                </figure>
+                <figure class="udsagn">
+                    <blockquote><p>Mettes rolige og nærværende facon gav mig mulighed for at åbne for de svære følelser, som havde sat sig i mig.</p></blockquote>
+                    <figcaption>Maja, 31 år</figcaption>
+                </figure>
+                <figure class="udsagn">
+                    <blockquote><p>Jeg har gået hos Mette i over et år, og hver gang går jeg derfra lettere og mere afklaret.</p></blockquote>
+                    <figcaption>Tidligere klient</figcaption>
+                </figure>
+            </div>
+            <a href="om-mig.html#udtalelser" class="knap-lys">Læs flere udtalelser</a>
+        </section>
 
         <!-- ====== BÅND MED OPFORDRING (hele båndet er et link) ====== -->
         <a class="bjaelke" href="https://system.easypractice.net/book/mette-thaisen-kropsterapi#choose-where"
@@ -306,13 +363,22 @@
                 <p>Manuvision huset, Bernhard Bangs Allé 25, 2. sal. 2000 Frederiksberg
                     <br>Strandvejen 226A, 3070 Snekkersten
                 </p>
-                <p><a href="https://www.instagram.com/mettethaisenkropsterapi/">Følg med på Instagram <img
+                <p><a href="https://www.instagram.com/mettethaisenkropsterapi/" target="_blank" rel="noopener">Følg med på Instagram <img
                             src="images/ikoner/instagram-hvid.png" alt="mette insta"></a>
                 </p>
             </div>
+
+            <div class="footer-sider">
+                <h2>Sider</h2>
+                <a href="manuvision.html">Manuvisions kropsterapi</a>
+                <a href="forloeb.html">Ydelser og forløb</a>
+                <a href="om-mig.html">Om mig</a>
+                <a href="kontakt.html">Kontakt</a>
+                <a href="privatlivspolitik.html">Privatlivspolitik</a>
+            </div>
         </div>
 
-        <p class="footer-cvr">CVR 39634821</p>
+        <p class="footer-cvr">© 2026 Mette Thaisen Kropsterapi | CVR 39634821</p>
     </footer>
 
     <script src="script.js"></script>

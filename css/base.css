@@ -57,6 +57,13 @@
   --fs-note: 0.85rem; /* noter og små knapper */
   --fs-label: 0.75rem; /* små labels med store bogstaver */
   --fs-pris: 1.8rem; /* priser */
+
+  /* SKRIFTTYPER – ét sted for hele sitet.
+     Fraunces er en blød, varm serif til overskrifter og tal;
+     Nunito Sans er en rolig, afrundet sans til al løbende tekst. */
+  --font-overskrift: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-tekst: "Nunito Sans", "Segoe UI", Arial, sans-serif;
+  --font-skrift: "Alex Brush", "Fraunces", cursive; /* kun signatur-båndet */
 }
 
 /* Fra 700px (tablet og computer) er teksten lidt større */
@@ -104,6 +111,7 @@ address {
 }
 
 html {
+  scroll-padding-top: 5rem; /* anker-spring gemmer sig ikke under headeren */
   scroll-behavior: smooth; /* bløde spring til #anker-links */
   overflow-x: hidden; /* værn mod vandret scrollbar fra billeder, der går ud til kanten */
 }
@@ -112,7 +120,7 @@ body {
   margin: 0;
   background-color: var(--creme);
   color: var(--tekst);
-  font-family: "Poppins", Arial, sans-serif;
+  font-family: var(--font-tekst);
   line-height: 1.6;
 }
 
@@ -120,8 +128,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Gothic A1", sans-serif;
-  font-weight: 400;
+  font-family: var(--font-overskrift);
+  font-weight: 500;
   font-style: normal;
   line-height: 1.25;
   margin: 0 0 0.6em 0;
@@ -135,25 +143,24 @@ h1 {
 
 h2 {
   font-size: var(--fs-h2);
-  font-weight: 900;
 }
 
 h3 {
   font-size: var(--fs-h3);
 }
 
-/* Ét fremhævet ord i en overskrift: kursiv + accentfarve */
+/* Ét fremhævet ord i en overskrift: fed, i samme brune farve som teksten */
 .ord-fremhaevet {
-  font-style: italic;
-  color: var(--bordeaux);
+  font-weight: 700;
+  color: var(--tekst);
 }
 
 /* Brødtekst */
 p {
   max-width: 60ch;
   margin: 0 0 1em 0;
-  font-family: "Almarai", sans-serif;
-  font-weight: 500;
+  font-family: var(--font-tekst);
+  font-weight: 400;
   font-style: normal;
   font-size: var(--fs-p);
 }
@@ -226,11 +233,12 @@ main .sidebanner {
    CSS'en viser den ene og skjuler den anden.
    ============================================================ */
 header {
-  position: relative; /* så mobilmenuen kan placeres ud fra HELE headeren */
-  background-color: var(--lyscreme);
-  padding: 1rem 1.2rem;
+  position: sticky; /* bliver stående øverst, når man scroller */
+  top: 0;
+  background-color: var(--hvid);
+  padding: 0.8rem 1.2rem;
   z-index: 10; /* ligger ovenpå indholdet under headeren */
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(63, 95, 104, 0.15); /* tynd streg i stedet for skygge */
 }
 
 /* flex = elementerne ligger på række. space-between skubber logoet
@@ -317,7 +325,8 @@ header nav details {
 .menu-links .book-knap {
   background-color: var(--bordeaux);
   color: var(--hvid);
-  padding: 0.6rem 1.2rem;
+  padding: 0.85rem 1.7rem; /* samme størrelse som .knap */
+  font-size: 0.95rem;
   border-radius: 30px;
   text-align: center;
 }
@@ -373,7 +382,7 @@ header nav details {
   display: none;
   text-decoration: none;
   font-size: 0.95rem;
-  padding: 0.55rem 1.4rem;
+  padding: 0.85rem 1.7rem; /* samme størrelse som .knap */
   border-radius: 30px;
   text-align: center;
   background-color: var(--bordeaux);
@@ -407,7 +416,9 @@ header nav details {
   .skrivebord-links a {
     text-decoration: none;
     color: var(--tekst);
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    text-transform: uppercase; /* små store bogstaver med luft imellem */
+    letter-spacing: 0.1em;
     white-space: nowrap;
   }
 
@@ -436,7 +447,7 @@ header nav details {
   }
 
   .skrivebord-links a {
-    font-size: 0.95rem;
+    font-size: 0.82rem;
   }
 }
 
@@ -453,8 +464,11 @@ header nav details {
 
 /* ============================================================
    3. KNAPPER
-   .knap      = fyldt bordeaux (bruges til "Book"-knapper)
-   .knap-lys  = hvid med blå kant (alle andre knapper)
+   .knap      = fyldt bordeaux (primær knap)
+   .knap-lys  = hvid med blå kant (sekundær knap)
+   De to har PRÆCIS samme størrelse, form og skrift – kun farven
+   er forskellig. Alle knapper på sitet bruger en af de to
+   (også knapperne i menuen og i headeren).
    ============================================================ */
 .knap {
   display: inline-block;
@@ -483,7 +497,9 @@ header nav details {
   font-size: 0.95rem;
   text-align: center;
   margin-top: 0.5rem;
-  border: 2px solid var(--petroleum-moerk);
+  /* Kanten laves med en indvendig skygge i stedet for border, så den
+     lyse knap bliver præcis lige så stor som den fyldte. */
+  box-shadow: inset 0 0 0 2px var(--petroleum-moerk);
 }
 
 .knap-lys:hover {
@@ -523,18 +539,20 @@ main .hero {
 }
 
 /* Mobil: teksten har luft i siderne, men billedet trækkes ud til
-   kanten med negativ margin (-3rem) */
+   kanten med negativ margin (-1.5rem) */
 .hero {
-  padding: 0 3rem;
+  padding: 0 1.5rem;
 }
 
 .hero h1 {
-  font-size: 2rem;
-  margin-bottom: 0;
-  margin-top: 4rem;
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin: 0 0 0.6rem; /* teksten under hører til overskriften, så den står tæt på */
 }
 .hero h2 {
   font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .speciel-hero {
@@ -546,7 +564,7 @@ main .hero {
   font-weight: bold;
 }
 .hero figure {
-  margin: 0 -3rem;
+  margin: 0 -1.5rem;
   height: 56vw; /* vw = procent af skærmbredden, så højden følger bredden */
   overflow: hidden; /* alt der stikker ud af boksen, skjules */
   position: relative;
@@ -564,10 +582,10 @@ main .hero {
   object-position: center;
 }
 
-/* På tablet/computer ligger teksten oven på billedet i højre side.
+/* På computer ligger teksten oven på billedet i højre side.
    Et blødt, lyst slør over højre side sørger for, at teksten altid
-   kan læses. */
-@media (min-width: 700px) {
+   kan læses. (På tablet er der ikke plads, så dér står teksten under.) */
+@media (min-width: 1000px) {
   .hero figure::after {
     content: "";
     position: absolute;
@@ -588,9 +606,8 @@ main .hero {
   letter-spacing: 0.16em;
   color: var(--petroleum-moerk);
   font-weight: 600;
-  margin-bottom: 0.4rem;
-  font-size: 0.7rem;
-  text-align: center;
+  margin: 2rem 0 1.4rem; /* luft til billedet over og til overskriften under */
+  font-size: 0.72rem;
 }
 
 .hero h2 {
@@ -598,8 +615,11 @@ main .hero {
   margin-bottom: 2rem;
 }
 
-.overskrift_ul {
-  margin-bottom: 0;
+/* .hero foran, så den vinder over .hero h2 ovenfor */
+.hero .overskrift_ul {
+  font-size: 1.2rem; /* en anelse større end punkterne i listen */
+  font-weight: 600;
+  margin-bottom: 0.6rem;
 }
 
 .hero p {
@@ -607,10 +627,12 @@ main .hero {
   margin-bottom: 2px;
 }
 .hero ul {
-  margin-top: 0;
+  margin: 0 0 1.8rem;
 }
-.speciel-hero {
-  margin-bottom: 2rem;
+
+.hero li {
+  line-height: 1.5;
+  margin-bottom: 0.4rem;
 }
 
 .hero li p {
@@ -622,6 +644,12 @@ main .hero {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Knappen flugter med teksten i stedet for at stå i midten */
+.hero .hero-knapper .knap {
+  margin: 0;
 }
 
 /* Sidebanner: kun et billede øverst, ingen tekst ovenpå */
@@ -644,37 +672,40 @@ main .hero {
   padding: 1.8rem 1.2rem;
 }
 
-/* --- Tablet: teksten lægges ovenpå billedet i højre side --- */
+/* --- Tablet: billedet øverst og teksten under, som på mobil,
+   men med mere luft og en centreret tekstspalte --- */
 @media (min-width: 700px) {
-  .hero-tekst .kicker {
-    margin-bottom: 3rem;
-    margin-top: 0;
-    padding-top: 0;
-  }
-  main .hero {
-    position: relative; /* gør at .hero-tekst kan placeres inde i den */
-    padding: 0;
+  .hero {
+    padding: 0 3rem;
     margin-bottom: 4.5rem;
   }
 
   .hero figure {
-    margin: 0;
+    margin: 0 -3rem;
     height: 55vw;
-    min-height: 480px;
     max-height: 900px;
   }
 
+  /* Spalten står i midten, men teksten i den er venstrestillet */
   .hero-tekst {
-    position: absolute;
-    top: 50%;
-    right: 7%;
-    transform: translateY(-50%); /* centrerer lodret */
-    width: 34%;
-    padding: 0;
+    max-width: 36rem;
+    margin-inline: auto;
   }
 
-  .hero .hero-knapper {
-    justify-content: flex-start;
+  .hero-tekst .kicker {
+    margin-top: 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero h2 {
+    font-size: 1.1rem;
+  }
+
+  .hero .overskrift_ul {
+    font-size: 1.25rem;
   }
 
   main .sidebanner {
@@ -689,16 +720,81 @@ main .hero {
   .sidebanner-tekst {
     padding: 2.5rem 3rem;
   }
-  .hero p {
-    margin-top: 4rem;
-    font-weight: bold;
-    margin-bottom: 2px;
+}
+
+/* --- Computer: hero-teksten får mere luft og en tydelig rækkefølge ---
+   Alt står venstrestillet i én spalte, og afstanden bliver mindre
+   jo tættere ting hører sammen (kicker → overskrift → tekst → liste → knap). */
+@media (min-width: 1000px) {
+  /* Lidt kraftigere slør i højre side, så teksten står tydeligt */
+  .hero figure::after {
+    background: linear-gradient(to right, transparent 35%, rgba(245, 238, 226, 0.75) 75%);
   }
-  .hero ul {
+
+  main .hero {
+    position: relative; /* gør at .hero-tekst kan placeres inde i den */
+    padding: 0;
+  }
+
+  /* Høj nok til, at teksten aldrig rammer billedets kant */
+  .hero figure {
+    margin: 0;
+    min-height: 780px;
+  }
+
+  /* Teksten lægges oven på billedet i højre side */
+  .hero-tekst {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* centrerer lodret */
+    margin: 0;
+    right: 12%; /* rykket lidt ind mod midten */
+    width: 38%;
+    max-width: 34rem;
+  }
+
+  .hero-tekst .kicker {
     margin-top: 0;
+    font-size: 0.85rem;
+    margin: 0 0 3.6rem; /* mere luft = kickeren står højere over overskriften */
   }
+
   .hero h1 {
-    margin-bottom: 0;
+    font-size: 3.4rem;
+    line-height: 1.1;
+    margin: 0 0 0.8rem; /* teksten under hører til overskriften, så den står tæt på */
+  }
+
+  .hero h2 {
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 4.2rem; /* tydelig pause før symptomlisten */
+  }
+
+  .speciel-hero {
+    font-size: 1.15rem;
+  }
+
+  .hero .overskrift_ul {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero ul {
+    margin: 0 0 2rem;
+  }
+
+  .hero li {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Knappen flugter med teksten i stedet for at stå i midten */
+  .hero .hero-knapper .knap {
+    margin: 0;
   }
 }
 
@@ -816,47 +912,33 @@ details p:last-child {
 footer {
   background-color: var(--petroleum-moerk);
   color: var(--hvid);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-  text-align: center;
   margin: 0;
-  padding: 4rem;
+  padding: 3.5rem 1.8rem 2rem;
 }
 
-/* .footer-top samler logo + kontakt + adresse. På computer ligger
-   de tre ved siden af hinanden, og CVR-linjen står for sig selv
-   nedenunder. */
+/* Fire spalter på computer (logo, kontakt, find mig, sider). På mobil
+   ligger de under hinanden. */
 .footer-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-  width: 100%;
-}
-
-.footer-cvr {
-  width: 100%;
-  max-width: none; /* p har ellers max-width: 60ch, som gjorde linjen for smal til at centrere */
-  text-align: center;
-  margin: 0;
-  padding-top: 1.8rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: var(--fs-note);
-  opacity: 0.7;
+  display: grid;
+  gap: 2.4rem;
+  max-width: 78rem;
+  margin-inline: auto;
 }
 
 footer h2 {
   color: var(--hvid);
-  font-size: var(--fs-h2);
-  margin: 0 0 0.3rem 0;
+  font-family: var(--font-tekst);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 0.9rem 0;
 }
 
 .footer-logo img {
-  width: 170px;
+  width: 150px;
   max-width: 100%;
-  margin: 2rem auto;
+  margin: 0;
 }
 
 footer p {
@@ -868,7 +950,6 @@ footer p {
 .footer-adresse p {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
 }
 
@@ -878,10 +959,6 @@ footer p {
   height: 16px;
 }
 
-.footer-mail {
-  margin-bottom: 3rem;
-}
-
 footer a {
   color: var(--hvid);
   display: inline-flex;
@@ -889,42 +966,45 @@ footer a {
   gap: 0.5rem;
 }
 
-/* --- Tablet: footeren bliver til én vandret linje --- */
+footer a:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.footer-sider {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.footer-sider a {
+  font-size: var(--fs-small);
+}
+
+/* Tynd streg og lille linje i bunden */
+.footer-cvr {
+  max-width: 78rem;
+  margin: 2.6rem auto 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  text-align: center;
+  font-size: var(--fs-note);
+  opacity: 0.75;
+}
+
 @media (min-width: 700px) {
   footer {
-    align-items: stretch; /* så .footer-top og .footer-cvr fylder hele bredden */
-    text-align: left;
-    padding-inline: 6rem;
-    padding-block: 8rem;
+    padding: 4.5rem 2.5rem 2rem;
   }
 
   .footer-top {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    grid-template-columns: 1fr 1fr;
   }
+}
 
-  .footer-cvr {
-    text-align: center;
-    margin-top: 1.5rem;
-  }
-
-  .footer-logo {
-    text-align: left;
-    flex-shrink: 0; /* logoet må ikke skrumpe */
-  }
-
-  .footer-logo img {
-    margin: 0;
-  }
-
-  .footer-mail {
-    margin: 0;
-  }
-
-  .footer-kontakt p,
-  .footer-adresse p {
-    justify-content: flex-start;
+@media (min-width: 1000px) {
+  .footer-top {
+    grid-template-columns: 1.1fr 1fr 1.2fr 0.8fr;
+    column-gap: 3rem;
   }
 }
 
@@ -945,6 +1025,18 @@ footer a {
   text-align: center;
 }
 
+/* Galleriet går kant til kant og har en baggrund, der glider fra
+   book-båndets blå til footerens mørkere blå, så bånd, galleri og
+   footer smelter blødt sammen. Selve billederne fader ikke. */
+main .galleri {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+  margin-top: -1px; /* dækker den tynde lyse streg mellem book-bånd og galleri */
+  padding-block: 1.2rem;
+  background: linear-gradient(to bottom, var(--petroleum), var(--petroleum-moerk));
+}
+
 .galleri .deko-blad {
   display: block;
   margin: 0 auto 0.8rem;
@@ -957,9 +1049,8 @@ footer a {
    ud af rammen. mask-image laver en blød udtoning i begge sider. */
 .galleri-billeder {
   overflow: hidden;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
+  /* Kun siderne toner ud – billederne må IKKE fade i top og bund. */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
@@ -1023,4 +1114,151 @@ footer a {
   .galleri-billeder img {
     height: 320px;
   }
+}
+
+
+/* ============================================================
+   9. BLØDE OVERGANGE
+   De farvede bånd har ikke længere en skarp kant. Med mask-image
+   bliver båndets egen farve gradvist gennemsigtig mod kanten, så
+   den smelter sammen med sidens baggrund over/under.
+   --fade = hvor langt overgangen er (kortere end båndets
+   padding, så teksten aldrig bliver gennemsigtig).
+   Kanter mod et andet farvet bånd (fx grøn → sand) får ikke
+   overgang, ellers ville der stå en lys stribe imellem.
+   De mørkeblå bånd (signatur-båndet, book-båndet, priskortenes og
+   kontaktens bånd) fader IKKE – de har skarpe, rene kanter.
+   ============================================================ */
+:root {
+  --fade: 3.5rem;
+}
+
+/* Tone ud både øverst og nederst */
+.manu-intro {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
+}
+
+/* Kun øverst (båndet ligger op mod næste bånd eller galleriet nedenunder) */
+.certificering {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
+}
+
+/* Kun nederst (båndet ligger op mod headeren eller et andet bånd ovenover) */
+.prisvalg,
+.historie,
+.sporgsmaal-svar,
+.chok-traume,
+.hvem-hjaelper {
+  -webkit-mask-image: linear-gradient(to top, transparent, #000 var(--fade));
+  mask-image: linear-gradient(to top, transparent, #000 var(--fade));
+}
+
+/* ============================================================
+   10. ROLIGE ANIMATIONER
+   Alt er langsomt og blødt – ingen hop eller blink. Det hele slås
+   fra, hvis brugeren har bedt sit system om mindre bevægelse
+   (se @media (prefers-reduced-motion) nederst).
+   ============================================================ */
+
+/* Sektionerne toner ind, når man scroller ned til dem.
+   Klassen .js sættes i <head>, og .reveal/.synlig sættes af script.js.
+   Uden JavaScript er alt bare synligt fra start. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.js .reveal.synlig {
+  opacity: 1;
+  transform: none;
+}
+
+/* Kort/bokse i en gruppe kommer lidt efter hinanden */
+.js .reveal-barn {
+  opacity: 0; /* kun toning, ingen bevægelse – så kortene altid står på linje */
+  transition: opacity 0.9s ease;
+  transition-delay: calc(var(--nr, 0) * 0.12s);
+}
+
+.js .reveal-barn.synlig {
+  opacity: 1;
+  transform: none;
+}
+
+/* Knapper og kort løfter sig en anelse, når man peger på dem */
+.knap,
+.knap-lys,
+.book-knap,
+.book-knap-desktop {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.knap:hover,
+.knap-lys:hover,
+.book-knap-desktop:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(63, 95, 104, 0.22);
+}
+
+.pris-kort,
+.gruppe,
+.trin,
+.udtalelser blockquote {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.pris-kort:hover,
+.gruppe:hover,
+.trin:hover,
+.udtalelser blockquote:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(63, 95, 104, 0.14);
+}
+
+/* Samme løft, også efter at kortet er toned ind (.synlig) */
+.js .reveal-barn.synlig:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 26px rgba(63, 95, 104, 0.14);
+}
+
+/* Fokus: tydelig, blød ring til dem, der bruger tastaturet */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--petroleum);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Mindre bevægelse = ingen animationer */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal-barn {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .knap:hover,
+  .knap-lys:hover,
+  .book-knap-desktop:hover,
+  .pris-kort:hover,
+  .gruppe:hover,
+  .trin:hover,
+  .udtalelser blockquote:hover {
+    transform: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hero-knappen skal være præcis som den var (ingen løft ved hover) */
+.hero .knap:hover {
+  transform: none;
+  box-shadow: none;
 }

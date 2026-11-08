@@ -161,9 +161,14 @@
 
 .sporgsmaal-svar h3 {
   margin-bottom: 0.4rem;
-  color: var(--petroleum-moerk);
-  font-family: "Playfair Display", Georgia, serif; /* varmere skrift end resten */
+  color: var(--tekst);
+  font-family: var(--font-overskrift); /* varmere skrift end resten */
   font-weight: 600;
+}
+
+/* Fremhævede ord i spørgsmålene: blå, mens resten af overskriften er brun */
+.sporgsmaal-svar h3 .ord-fremhaevet {
+  color: var(--petroleum-moerk);
 }
 /* Luft mellem to spørgsmål under hinanden (mobil/tablet) */
 .qa-spoergsmaal + .qa-spoergsmaal {
@@ -252,10 +257,8 @@
   max-width: 78rem;
   margin: 0 auto;
   padding-inline: 1.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  color: var(--bordeaux);
-  font-weight: 700;
+  color: var(--tekst); /* rolig, normal overskrift – ikke store bogstaver */
+  font-weight: 500;
 }
 
 .forloebets-gang-brod {
@@ -285,7 +288,7 @@
 .trin h3::before {
   content: counter(trin);
   display: block;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-overskrift);
   font-size: 1.7rem;
   line-height: 1;
   margin-bottom: 0.3rem;

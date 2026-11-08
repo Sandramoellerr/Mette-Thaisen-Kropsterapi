@@ -16,7 +16,7 @@
      sektionstitel   1rem   (1.15rem på computer)
      kort-overskrift 1rem
      brødtekst       0.95rem
-     pris            1.8rem  (Playfair Display)
+     pris            1.8rem  (Fraunces)
    ============================================================ */
 
 /* ============================================================
@@ -74,7 +74,10 @@ main .sidebanner {
   margin-bottom: 1rem;
 }
 
+.nyhed h1,
 .nyhed h2 {
+  margin-top: 0;
+  font-size: var(--fs-h2); /* h1 i størrelse som sidens øvrige sektionstitler */
   margin-bottom: 1rem;
   margin-inline: auto; /* h2 har max-width, så auto-margin centrerer den */
   text-align: center;
@@ -173,7 +176,7 @@ main .sidebanner {
 }
 
 .pris-kort .pris-tal {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-overskrift);
   font-size: var(--fs-pris);
   font-weight: 600;
   margin: 0.8rem 0 1.4rem;
@@ -181,9 +184,6 @@ main .sidebanner {
 
 .pris-kort .knap {
   margin: 0 auto;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: var(--fs-note);
 }
 
 .pris-note {
@@ -279,7 +279,7 @@ main .sidebanner {
 }
 
 .gruppe .pris-tal {
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: var(--font-overskrift);
   font-size: var(--fs-pris);
   font-weight: 600;
   margin: 0.5rem 0 1rem;
@@ -361,9 +361,6 @@ main .sidebanner {
 
 .book-knapper .knap {
   margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: var(--fs-note);
 }
 
 /* Ugedagene står på en linje under knappens tekst */
@@ -371,8 +368,6 @@ main .sidebanner {
   display: block;
   font-size: var(--fs-label);
   opacity: 0.85;
-  text-transform: none;
-  letter-spacing: normal;
 }
 
 .book-kontakt {

@@ -224,9 +224,6 @@
 .historie .knap {
   align-self: center;
   margin: 3rem 0 0;
-  padding: 1rem 2.3rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
 }
 
 .historie-tekst h2 {
@@ -295,7 +292,7 @@
   background-color: var(--salvie-lys);
   margin-block: 0;
   padding-block: 5rem; /* luft i top og bund */
-  padding-inline: 1.5rem; /* lige meget luft i begge sider */
+  padding-inline: 1.8rem; /* samme sideluft som resten af siden */
 }
 
 .hvem-hjaelper p,
@@ -322,7 +319,7 @@
    ============================================================ */
 .udmaerkelser {
   background-color: var(--sand);
-  padding: 6rem 1.5rem;
+  padding: 6rem 1.8rem;
   text-align: center;
 }
 

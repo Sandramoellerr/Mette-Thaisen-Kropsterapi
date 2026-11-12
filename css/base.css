@@ -13,6 +13,7 @@
   --salvie: #93b9a7;
   --petroleum: #5f8791;
   --petroleum-moerk: #3f5f68; /* footer og mørke bånd */
+  --petroleum-dyb: #2f4a52; /* endnu mørkere blå, til hover */
   --bordeaux: #7c2c48; /* knapper og accent */
   --bordeaux-moerk: #5c1f36; /* hover på bordeaux */
   --tekst: #54463a; /* varm brun tekst (blødere end sort, men stadig tydelig) */
@@ -400,7 +401,7 @@ header nav details {
 /* ============================================================
    3. KNAPPER
    .knap      = fyldt bordeaux (primær knap)
-   .knap-lys  = hvid med blå kant (sekundær knap)
+   .knap-lys  = fyldt blå (sekundær knap), endnu mørkere blå ved hover
    De to har PRÆCIS samme størrelse, form og skrift – kun farven
    er forskellig. Alle knapper på sitet bruger en af de to
    (også knapperne i menuen og i headeren).
@@ -425,8 +426,8 @@ header nav details {
 
 .knap-lys {
   display: inline-block;
-  background-color: transparent; /* ingen hvid fyld, så den ikke ligner et søgefelt */
-  color: var(--petroleum-moerk);
+  background-color: var(--petroleum-moerk);
+  color: var(--hvid);
   text-decoration: none;
   padding: 0.75rem 1.5rem;
   border-radius: 6px;
@@ -434,13 +435,10 @@ header nav details {
   font-weight: 600;
   text-align: center;
   margin-top: 0.5rem;
-  /* Kanten laves med en indvendig skygge i stedet for border, så den
-     lyse knap bliver præcis lige så stor som den fyldte. */
-  box-shadow: inset 0 0 0 1.5px var(--petroleum-moerk);
 }
 
 .knap-lys:hover {
-  background-color: var(--petroleum-moerk);
+  background-color: var(--petroleum-dyb);
   color: var(--hvid);
 }
 
@@ -796,7 +794,7 @@ details p:last-child {
 .book-band {
   background-color: var(--petroleum);
   color: var(--hvid);
-  padding: 3.5rem 1.8rem 4rem;
+  padding: 4.5rem 1.8rem 5rem;
 }
 
 .book-band h2 {
@@ -812,24 +810,19 @@ details p:last-child {
   margin: 0 auto 1.6rem;
 }
 
-/* Hvid knap, så den står tydeligt mod den blå baggrund */
+/* Samme røde knap som alle andre steder (farven kommer fra .knap) */
 .book-band .knap {
   margin: 0;
-  background-color: var(--hvid);
-  color: var(--bordeaux);
   display: block;
   width: fit-content;
   margin-left: max(0px, calc((100% - 34rem) / 2));
   margin-right: 0;
 }
 
-.book-band .knap:hover {
-  background-color: var(--sand);
-}
 
 @media (min-width: 700px) {
   .book-band {
-    padding: 5rem 2.5rem 5.5rem;
+    padding: 7rem 2.5rem 7.5rem;
   }
 }
 

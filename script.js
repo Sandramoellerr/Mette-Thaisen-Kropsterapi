@@ -49,7 +49,7 @@ const mindreBevaegelse = window.matchMedia("(prefers-reduced-motion: reduce)").m
 if ("IntersectionObserver" in window && !mindreBevaegelse) {
   // Hele sektioner (ikke hero og topbillede, som har egne animationer)
   const sektioner = document.querySelectorAll(
-    "main > section:not(.galleri), main > .nyhed, main > .book-band, .book-band, main > a.bjaelke"
+    "main > section:not(.galleri), main > .nyhed, main > .book-band, .book-band"
   );
   sektioner.forEach(function (el) {
     el.classList.add("reveal");
@@ -88,3 +88,44 @@ if ("IntersectionObserver" in window && !mindreBevaegelse) {
     iagttager.observe(el);
   });
 }
+
+
+/* --- 4. Udtalelser: pile til at bladre -------------------------------
+   Rækken med udtalelser kan scrolles sidelæns. Vi sætter to pile ind, så
+   det er tydeligt, at der er flere (kun på computer – på mobil swiper man).
+   Pilene scroller ét kort ad gangen og er slukket, når man er ved enden. */
+document.querySelectorAll(".udtalelser").forEach(function (sektion) {
+  const liste = sektion.querySelector(".udtalelse-liste");
+  if (!liste) return;
+
+  const pile = document.createElement("div");
+  pile.className = "udtalelse-pile";
+  pile.innerHTML =
+    '<button type="button" aria-label="Forrige udtalelse">&#8592;</button>' +
+    '<button type="button" aria-label="Næste udtalelse">&#8594;</button>';
+  sektion.appendChild(pile);
+
+  const [forrige, naeste] = pile.querySelectorAll("button");
+
+  function kortBredde() {
+    const kort = liste.querySelector("blockquote");
+    const mellemrum = parseFloat(getComputedStyle(liste).columnGap) || 0;
+    return kort.getBoundingClientRect().width + mellemrum;
+  }
+
+  function opdater() {
+    forrige.disabled = liste.scrollLeft < 4;
+    naeste.disabled = liste.scrollLeft + liste.clientWidth >= liste.scrollWidth - 4;
+  }
+
+  forrige.addEventListener("click", function () {
+    liste.scrollBy({ left: -kortBredde(), behavior: mindreBevaegelse ? "auto" : "smooth" });
+  });
+  naeste.addEventListener("click", function () {
+    liste.scrollBy({ left: kortBredde(), behavior: mindreBevaegelse ? "auto" : "smooth" });
+  });
+
+  liste.addEventListener("scroll", opdater, { passive: true });
+  window.addEventListener("resize", opdater);
+  opdater();
+});

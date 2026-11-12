@@ -8,8 +8,7 @@
    4. Lad os tage en snak
    5. Et forløb hos mig
    6. Hvad andre siger
-   7. Bånd med signatur
-   8. Balance – lille "hint"-sektion
+   7. Balance – lille "hint"-sektion (med signatur under fotoet)
 
    Hero, header, footer og galleri ligger i base.css.
    Skrevet mobil-først: reglerne uden media query gælder mobil,
@@ -387,49 +386,9 @@ main .uforpligtende_samtale .samtale-indhold > * {
 }
 
 /* ============================================================
-   7. BÅND MED SIGNATUR
-   Hele båndet er ét stort link til bookingsystemet.
-   Teksten står i skriveskrift, så den ligner en underskrift.
-   ============================================================ */
-
-.bjaelke {
-  display: block;
-  background-color: var(--petroleum-moerk);
-  color: var(--hvid);
-  text-decoration: none;
-  text-align: center;
-  margin-block: 3.5rem;
-  padding: 0.7rem 1.5rem;
-  transition: filter 0.2s ease;
-}
-
-.bjaelke:hover {
-  filter: brightness(1.15);
-}
-
-/* En lille detalje, ikke en stor sektion: lavt bånd og lille skrift.
-   clamp(mindst, ønsket, størst) = skriftstørrelsen vokser lidt med
-   skærmbredden, men aldrig under 1.4rem eller over 1.9rem. */
-.bjaelke h2 {
-  margin: 0;
-  max-width: none; /* så teksten står midt i båndet */
-  line-height: 1.3;
-  white-space: nowrap;
-  font-family: var(--font-skrift);
-  font-weight: 400;
-  font-size: clamp(1.4rem, 5vw, 1.9rem);
-}
-
-@media (min-width: 700px) {
-  .bjaelke {
-    margin-block: 6rem;
-    padding: 0.8rem 2rem;
-  }
-}
-
-/* ============================================================
-   8. BALANCE – lille "hint"-sektion
-   Foto og en kort tekst, der peger videre op til "Et forløb hos mig".
+   7. BALANCE – lille "hint"-sektion
+   Lyseblåt bånd med foto og en kort tekst, der peger videre op til "Et forløb hos mig".
+   Under fotoet står signaturen "Mette Thaisen Kropsterapi" i skriveskrift og bordeaux.
    ============================================================ */
 
 main .balance-teaser {
@@ -437,7 +396,7 @@ main .balance-teaser {
   margin-block: 0;
   padding-block: 4.5rem;
   padding-inline: var(--sidepadding);
-  background-color: var(--hvid);
+  background-color: var(--lyseblaa);
 }
 
 @media (min-width: 700px) {
@@ -453,6 +412,8 @@ main .balance-teaser {
 }
 
 .balance-teaser img {
+  display: block;
+  width: 100%;
   object-fit: cover;
   object-position: center 30%;
   border-radius: 9px;
@@ -461,6 +422,30 @@ main .balance-teaser {
 
 .balance-teaser-tekst h2 {
   margin-bottom: 0.6rem;
+}
+
+/* Signaturen under fotoet: skriveskrift i bordeaux (stadig et link til booking) */
+.bjaelke {
+  display: block;
+  margin-top: 1.2rem;
+  color: var(--bordeaux);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.bjaelke:hover {
+  opacity: 0.75;
+}
+
+/* clamp(mindst, ønsket, størst) = skriftstørrelsen vokser med
+   skærmbredden, men aldrig under 1.6rem eller over 2.2rem. */
+.bjaelke h2 {
+  margin: 0;
+  max-width: none;
+  line-height: 1.3;
+  font-family: var(--font-skrift);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
 }
 
 /* Linket peger op på siden (til "Et forløb hos mig" ovenfor), så det får
@@ -480,7 +465,7 @@ main .balance-teaser {
     gap: 3.5rem;
   }
 
-  .balance-teaser img {
+  .balance-teaser-foto {
     flex: 0 0 42%;
     min-width: 0; /* uden denne kan billedet ikke krympe under sin egen naturlige bredde */
   }

@@ -819,7 +819,6 @@ details p:last-child {
   margin-right: 0;
 }
 
-
 @media (min-width: 700px) {
   .book-band {
     padding: 7rem 2.5rem 7.5rem;
@@ -1153,6 +1152,7 @@ summary:focus-visible {
    ============================================================ */
 
 .udtalelser {
+  position: relative; /* så pilene kan placeres ud for overskriften */
   background-color: var(--creme);
   max-width: none;
   margin-block: 0;
@@ -1168,8 +1168,12 @@ summary:focus-visible {
   max-width: 32rem;
   font-style: italic;
   color: var(--petroleum-moerk);
-  white-space: nowrap;
   margin-bottom: 2rem;
+}
+
+/* pilene vises kun på computer (se media query nedenfor) */
+.udtalelse-pile {
+  display: none;
 }
 
 .udtalelse-liste {
@@ -1267,13 +1271,54 @@ summary:focus-visible {
     margin-bottom: 3rem;
   }
 
+  /* Rækken går helt ud til skærmens højre kant, og kortene er smallere
+     end en tredjedel, så det fjerde kort kigger frem – det viser, at man
+     kan scrolle videre. */
   .udtalelse-liste {
     gap: 1.8rem;
+    margin-right: calc(-1 * var(--sidepadding));
+    padding-right: var(--sidepadding);
+    scrollbar-width: none;
+  }
+
+  .udtalelse-liste::-webkit-scrollbar {
+    display: none;
   }
 
   .udtalelser blockquote {
-    flex: 0 0 31%;
+    flex: 0 0 clamp(16rem, 30%, 24rem);
     padding: 3rem 2.4rem 2.6rem;
+  }
+
+  /* Pile til at bladre i udtalelserne (laves af script.js) */
+  .udtalelse-pile {
+    position: absolute;
+    top: 6.5rem;
+    right: var(--sidepadding);
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .udtalelse-pile button {
+    width: 2.8rem;
+    height: 2.8rem;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--petroleum-moerk);
+    color: var(--hvid);
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .udtalelse-pile button:hover {
+    background-color: var(--petroleum-dyb);
+  }
+
+  .udtalelse-pile button:disabled {
+    opacity: 0.35;
+    cursor: default;
   }
 
   .deko-citat {
@@ -1341,22 +1386,6 @@ summary:focus-visible {
    - logo-ikonet (i logoets egne farver) som en stor detalje i højre side af de tekst-bånd,
      der ellers er tomme (kun på computer)
    ============================================================ */
-
-.samtale-indhold::before,
-.om-intro-tekst::before,
-.forloeb-intro-tekst::before,
-.manu-intro-tekst::before,
-.kontakt-intro::before,
-.privatliv-intro::before,
-.betingelser::before {
-  content: "";
-  display: block;
-  width: 3.5rem;
-  height: 3px;
-  margin-bottom: 1.4rem;
-  background-color: var(--bordeaux);
-  border-radius: 2px;
-}
 
 @media (min-width: 1000px) {
   main .uforpligtende_samtale,

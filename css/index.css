@@ -326,13 +326,13 @@ main .uforpligtende_samtale {
   max-width: none;
   margin-top: 0; /* båndet sidder helt op ad båndet ovenover */
   margin-bottom: 0;
-  padding: 2rem 1.5rem 4rem; /* mindre luft øverst end nederst */
+  padding: 2rem var(--sidepadding) 4rem; /* mindre luft øverst end nederst */
   background-color: var(--hvid);
   text-align: left;
 }
 
 .samtale-indhold {
-  margin-inline: auto;
+  margin-inline: 0; /* samme venstre kant som de andre bånd */
 }
 
 .samtale-indhold .kicker {
@@ -341,11 +341,11 @@ main .uforpligtende_samtale {
   font-size: var(--fs-label);
   font-weight: 600;
   color: var(--petroleum-moerk);
-  margin: 0 auto 0.6rem;
+  margin: 0 0 0.6rem;
 }
 
 .samtale-indhold h2 {
-  margin: 0 auto 1.2rem;
+  margin: 0 0 1.2rem;
 }
 
 .samtale-indhold p {
@@ -368,7 +368,7 @@ main .uforpligtende_samtale .samtale-indhold > * {
    + betyder "elementet lige efter". */
 @media (min-width: 700px) {
   main .uforpligtende_samtale {
-    padding: 2.5rem 2.5rem 6rem;
+    padding: 2.5rem var(--sidepadding) 6rem;
   }
 }
 

@@ -114,14 +114,15 @@ main .om-mig-kort {
   margin-bottom: 3rem;
 }
 
-/* Fotoet vises i sine egne proportioner (stående 2:3), så ansigtet ikke skæres af */
+/* Fotoet er beskåret til 4:5 (stående), så ansigtet og hænderne er med */
 .billede-kort img.kort-billede {
   width: 100%;
   object-fit: cover;
 }
 
 .om-mig-kort .kort-billede {
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 4 / 5; /* beskåret så Mette ses fra stranden og ned til knæene */
+  object-position: center top;
   max-width: 26rem;
 }
 

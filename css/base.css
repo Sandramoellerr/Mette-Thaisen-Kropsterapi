@@ -981,10 +981,10 @@ main .galleri {
 
 @keyframes karrusel-scroll {
   from {
-  transform: translateX(0);
+    transform: translateX(0);
   }
   to {
-  transform: translateX(-50%); /* -50% fordi billederne ligger to gange */
+    transform: translateX(-50%); /* -50% fordi billederne ligger to gange */
   }
 }
 
@@ -1029,7 +1029,9 @@ main .galleri {
 .js .reveal {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 1s ease, transform 1s ease;
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
 }
 
 .js .reveal.synlig {
@@ -1054,7 +1056,11 @@ main .galleri {
 .knap-lys,
 .book-knap,
 .book-knap-desktop {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .knap:hover,
@@ -1068,7 +1074,9 @@ main .galleri {
 .gruppe,
 .trin,
 .udtalelser blockquote {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .pris-kort:hover,
@@ -1293,7 +1301,9 @@ summary:focus-visible {
 .book-foto,
 .hvorfor-billede,
 .tryg-rum img {
-  transition: transform 0.9s ease, box-shadow 0.6s ease;
+  transition:
+    transform 0.9s ease,
+    box-shadow 0.6s ease;
   box-shadow: 0 16px 38px rgba(63, 95, 104, 0.16);
 }
 
@@ -1356,5 +1366,6 @@ summary:focus-visible {
     /* logoets figur i de rigtige farver: bordeaux streger og petroleum figur */
     background: url(../images/logoer/logo-ikon-farve.png) center / contain no-repeat;
     pointer-events: none;
+    margin-right: 9rem;
   }
 }

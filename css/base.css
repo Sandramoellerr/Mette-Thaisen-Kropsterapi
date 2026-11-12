@@ -62,12 +62,13 @@
   --fs-label: 0.75rem; /* små labels med store bogstaver */
   --fs-pris: 1.8rem; /* priser */
   /* SKRIFTTYPER – ét sted for hele sitet.
-     Fraunces er en blød, varm serif til overskrifter og tal;
-     Nunito Sans er en rolig, afrundet sans til al løbende tekst. */
-  --font-overskrift: "Lora", Georgia, "Times New Roman", serif;
-  --font-hero: "Fraunces", Georgia, "Times New Roman", serif; /* hero'en beholder sin egen skrift */
-  --font-tekst: "Nunito Sans", "Segoe UI", Arial, sans-serif;
-  --font-skrift: "Alex Brush", "Fraunces", cursive; /* kun signatur-båndet */
+     Lora (en blød, rolig serif) bruges ALLE steder – overskrifter,
+     brødtekst, menu og knapper – bare i forskellige vægte (400-700)
+     og kursiv. Kun de små underoverskrifter (labels med store
+     bogstaver) er sat i Nunito Sans. */
+  --font-tekst: "Lora", Georgia, "Times New Roman", serif;
+  --font-overskrift: var(--font-tekst);
+  --font-label: "Nunito Sans", "Segoe UI", Arial, sans-serif;
   --fade: 3.5rem;
   --sidepadding: max(1.8rem, calc((100% - 73rem) / 2)); /* indhold i midterspalte, bånd i fuld bredde */
 }
@@ -159,6 +160,12 @@ h3 {
   main section h2 {
     font-size: clamp(2.1rem, 3vw, 2.7rem);
   }
+}
+
+/* De små underoverskrifter (labels over overskrifterne) er i Nunito Sans */
+.kicker,
+.udmaerkelser-kicker {
+  font-family: var(--font-label);
 }
 
 /* Ét fremhævet ord i en overskrift: fed, i samme brune farve som teksten */
@@ -512,7 +519,6 @@ main .hero {
 /* Mobil: teksten har luft i siderne, men billedet trækkes ud til
    kanten med negativ margin (-1.5rem) */
 .hero {
-  --font-overskrift: var(--font-hero);
   padding: 0 1.5rem;
 }
 
@@ -885,7 +891,7 @@ footer {
 }
 
 footer h2 {
-  font-family: var(--font-tekst);
+  font-family: var(--font-label);
   font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.14em;

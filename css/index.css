@@ -106,7 +106,7 @@ main .om-mig-kort {
 .om-mig-kort h2::before {
   content: "Mød mig bag behandlingen";
   display: block;
-  font-family: var(--font-tekst);
+  font-family: var(--font-label);
   font-size: var(--fs-label);
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -433,13 +433,13 @@ main .uforpligtende_samtale .samtale-indhold > * {
 }
 
 /* clamp(mindst, ønsket, størst) = skriftstørrelsen vokser med
-   skærmbredden (9vw), men aldrig under 1.8rem eller over 3.4rem. */
+   skærmbredden (6.4vw), men aldrig under 1.4rem eller over 3.4rem. */
 .bjaelke h2 {
   margin-bottom: 0.3rem;
   white-space: nowrap;
-  font-family: var(--font-skrift);
-  font-weight: 400;
-  font-size: clamp(1.8rem, 9vw, 3.4rem);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 6.4vw, 3.4rem);
 }
 
 @media (min-width: 700px) {

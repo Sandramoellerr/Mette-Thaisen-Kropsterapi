@@ -43,7 +43,7 @@
 .om-intro figure img {
   width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 9px;
   margin-top: 2rem;
   aspect-ratio: 2 / 3;
   max-width: 26rem;
@@ -110,7 +110,7 @@
   max-width: 74rem;
   margin-inline: auto;
   background-color: var(--hvid);
-  border-radius: 20px;
+  border-radius: 9px;
   padding: 2.6rem 1.6rem;
   box-shadow: 0 18px 40px rgba(63, 95, 104, 0.18);
 }
@@ -301,7 +301,7 @@ main .certificering h2 {
    ============================================================ */
 
 .hvem-hjaelper {
-  background-color: var(--lyseblaa);
+  background-color: var(--hvid);
 }
 
 .hvem-hjaelper p,
@@ -320,7 +320,7 @@ main .certificering h2 {
 
 /* ============================================================
    4. CERTIFIKAT-BÅND
-   Petroleum bånd i fuld bredde med overskrift og logoer, centreret.
+   Lyseblåt bånd i fuld bredde med overskrift og logoer, centreret.
    ============================================================ */
 
 .udmaerkelser {
@@ -328,7 +328,7 @@ main .certificering h2 {
   margin-block: 0;
   padding-block: 4.5rem;
   padding-inline: var(--sidepadding);
-  background-color: var(--petroleum);
+  background-color: var(--lyseblaa);
   text-align: center;
 }
 
@@ -338,7 +338,6 @@ main .certificering h2 {
 }
 
 .udmaerkelser .udmaerkelser-kicker {
-  color: var(--hvid);
   max-width: none;
 }
 

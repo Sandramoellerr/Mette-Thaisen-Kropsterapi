@@ -6,7 +6,7 @@
 
    Afsnit:
    1. Intro (lys salvie bånd med velkomst og knapper)
-   2. Kontaktinfo (blåt bånd: foto + kontaktboks)
+   2. Kontaktinfo (creme bånd: foto + petroleum kontaktboks)
    3. Trygt rum (foto + tekst)
 
    #kontaktinfo beholder sit id, så andre sider kan linke direkte til
@@ -66,15 +66,14 @@
 .kontaktinfo {
   display: grid;
   gap: 2rem;
-  color: var(--creme);
-  background-color: var(--petroleum);
+  background-color: var(--creme);
 }
 
 .kontakt-foto {
   width: 100%;
   object-fit: cover;
   object-position: center 30%;
-  border-radius: 20px;
+  border-radius: 9px;
   aspect-ratio: 2 / 3;
   max-width: 26rem;
   min-height: 0;
@@ -82,7 +81,8 @@
 
 .kontakt-boks {
   background-color: var(--petroleum-moerk);
-  border-radius: 20px;
+  color: var(--creme);
+  border-radius: 9px;
   padding: 2rem 1.6rem;
 }
 
@@ -166,7 +166,7 @@
    ============================================================ */
 
 .tryg-rum {
-  background-color: var(--creme);
+  background-color: var(--hvid);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -184,7 +184,7 @@
 .tryg-rum img {
   width: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 9px;
   margin-block: 0.6rem;
   aspect-ratio: 3 / 2;
 }

@@ -709,7 +709,7 @@ main .hero {
 
 .forloeb-kort img,
 .historie img {
-  border-radius: 16px;
+  border-radius: 8px;
   margin: 1.2rem auto;
 }
 
@@ -744,7 +744,7 @@ main .hero {
    ============================================================ */
 
 details {
-  border-radius: 12px;
+  border-radius: 6px;
   margin: 0.6rem 0 1.2rem 0;
 }
 
@@ -1159,7 +1159,7 @@ summary:focus-visible {
   flex: 0 0 82%;
   scroll-snap-align: start;
   margin: 0;
-  border-radius: 20px;
+  border-radius: 9px;
   padding: 2.6rem 1.8rem 2rem;
   font-style: italic;
   line-height: 1.7;

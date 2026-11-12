@@ -91,7 +91,7 @@ main .om-mig-kort {
 
 .om-mig-kort img {
   order: 1;
-  border-radius: 16px;
+  border-radius: 8px;
   object-position: center 30%;
   margin: 4rem auto 0;
 }
@@ -165,7 +165,7 @@ main .om-mig-kort {
     contain: size;
     align-self: stretch;
     margin: 3rem 0 4rem;
-    border-radius: 18px;
+    border-radius: 8px;
   }
 
   .om-mig-kort .kort-tekst {
@@ -201,7 +201,7 @@ main .hjaelper-dig {
 .tjekliste {
   padding: 3rem 2rem;
   margin-top: 2rem;
-  border-radius: 24px;
+  border-radius: 10px;
   box-shadow: 0 14px 34px rgba(63, 95, 104, 0.1);
 }
 
@@ -478,7 +478,7 @@ main .balance-teaser {
 .balance-teaser img {
   object-fit: cover;
   object-position: center 30%;
-  border-radius: 20px;
+  border-radius: 9px;
   aspect-ratio: 3 / 2;
 }
 

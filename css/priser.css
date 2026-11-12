@@ -6,7 +6,7 @@
    Afsnit:
    1. Topbillede
    2. Nyhed-kort (varm introduktion)
-   3. Individuel behandling (blå bånd på computer)
+   3. Individuel behandling (lyseblåt bånd med hvide kort)
    4. Vælg den pris der passer til dig (sandfarvet bånd på computer)
    5. Book din tid
    6. Betingelser for afbestilling
@@ -50,7 +50,7 @@ main .sidebanner {
 
 .nyhed {
   background-color: var(--sand);
-  border-radius: 20px;
+  border-radius: 9px;
   box-shadow: 0 16px 40px rgba(63, 95, 104, 0.14);
   padding: 2rem 1.6rem;
   margin: -3.5rem 1.2rem 0;
@@ -140,7 +140,7 @@ main .sidebanner {
 
 .pris-kort {
   border: 1.5px solid var(--petroleum);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2rem 1.6rem;
   display: flex;
   flex-direction: column;
@@ -189,14 +189,17 @@ main .sidebanner {
   margin-inline: 0;
 }
 
-/* På computer er "Individuel behandling" et petroleum-bånd med lys tekst
-   (sektions-reglen i base.css giver bredde og luft). På mobil står
-   kortene på hvid. */
+/* "Individuel behandling" er et lyseblåt bånd (som "Et forløb hos mig" på
+   forsiden) med hvide kort. Sektions-reglen i base.css giver bredde og luft. */
+.individuel {
+  background-color: var(--lyseblaa);
+}
+
+.individuel .pris-kort {
+  background-color: var(--hvid);
+}
+
 @media (min-width: 700px) {
-  .individuel {
-    background-color: var(--petroleum);
-    color: var(--creme);
-  }
 
   /* SUBGRID: hvert kort har 6 dele (ikon, overskrift, 2 tekstlinjer, pris,
      knap). Kortene spænder over 6 rækker i det store grid og bruger
@@ -213,17 +216,7 @@ main .sidebanner {
     display: grid;
     grid-row: span 6;
     grid-template-rows: subgrid;
-    border-color: var(--petroleum-moerk);
-    background-color: rgba(253, 251, 246, 0.08);
     padding: 2.6rem 2rem;
-  }
-
-  /* Kortene får en svag fyldfarve på det blå bånd */
-
-  /* Lys tekst, fordi baggrunden er mørk */
-  .pris-kort .spar,
-  .pris-note {
-    color: var(--creme);
   }
 }
 
@@ -244,7 +237,7 @@ main .sidebanner {
 
 .gruppe {
   background-color: var(--salvie);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 2rem 1.6rem;
 }
 
@@ -326,7 +319,7 @@ main .sidebanner {
 .book-foto {
   object-fit: cover;
   object-position: center 40%; /* viser Mette og klienten i samtalen */
-  border-radius: 18px;
+  border-radius: 8px;
   aspect-ratio: 2 / 3;
   max-width: 24rem;
 }
@@ -473,15 +466,8 @@ main .sidebanner {
     margin-bottom: 2.5rem;
   }
 
-  /* På det blå bånd skal stregerne og ikonet være lyse */
-  .individuel .linje-titel::before,
-  .individuel .linje-titel::after {
-    background-color: var(--creme);
-  }
-
   .kort-ikon {
     margin-bottom: 1.6rem;
-    background-image: url(../images/logoer/logo-ikon-hvid.png);
     width: 30%;
   }
 }

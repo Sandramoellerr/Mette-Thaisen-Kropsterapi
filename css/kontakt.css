@@ -24,9 +24,7 @@
   margin: 0;
   padding-block: 5rem;
   padding-inline: var(--sidepadding);
-  padding-bottom: 7rem;
-  /* den grønne går blødt over i creme-båndet nedenunder */
-  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--creme));
+  background-color: var(--salvie-lys);
 }
 
 .kontakt-intro h1 {
@@ -46,7 +44,7 @@
 
 @media (min-width: 700px) {
   .kontakt-intro {
-    padding-block: 6.5rem 8.5rem;
+    padding-block: 6.5rem;
   }
 }
 

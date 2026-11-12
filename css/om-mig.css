@@ -17,15 +17,15 @@
    Kort tekst med et lille portræt ved siden – intet stort banner.
    ============================================================ */
 
-/* Salvie bånd i fuld bredde, som går blødt over i det beige bånd nedenunder */
+/* Lys salvie bånd i fuld bredde */
 .om-intro {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
   max-width: none;
   margin: 0;
-  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--creme));
-  padding: 4.5rem var(--sidepadding) 7rem;
+  background-color: var(--salvie-lys);
+  padding: 4.5rem var(--sidepadding);
 }
 
 /* Mobil: teksten skal vises FØR billedet, selvom billedet står

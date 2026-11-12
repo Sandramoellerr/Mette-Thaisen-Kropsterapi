@@ -833,10 +833,14 @@ details p:last-child {
   }
 }
 
+/* FOOTER – tydeligt hierarki:
+   1. spalte-overskrifter: store, fede og i lys salvie
+   2. brødtekst og links: almindelig størrelse i creme
+   3. nederste linje (copyright): lille og dæmpet */
 footer {
   background-color: var(--petroleum-moerk);
-  color: var(--hvid);
-  padding: 3.5rem 1.8rem 2rem;
+  color: var(--creme);
+  padding: 4rem 1.8rem 2rem;
 }
 
 /* Fire spalter på computer (logo, kontakt, find mig, sider). På mobil
@@ -850,11 +854,12 @@ footer {
 
 footer h2 {
   font-family: var(--font-label);
-  font-size: var(--fs-label);
-  font-weight: 700;
+  font-size: 0.95rem;
+  font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin: 0 0 0.9rem 0;
+  color: var(--salvie-lys);
+  margin: 0 0 1rem 0;
 }
 
 .footer-logo img {
@@ -862,12 +867,33 @@ footer h2 {
 }
 
 footer p {
-  margin: 0.3rem 0;
+  margin: 0;
   font-size: var(--fs-small);
+  line-height: 1.5;
 }
 
-.footer-kontakt p,
-.footer-adresse p {
+/* Alle tre spalter har samme rytme: overskrift, så rækker med samme
+   afstand imellem, så de flugter på tværs */
+.footer-kontakt,
+.footer-adresse,
+.footer-sider {
+  display: grid;
+  align-content: start;
+  gap: 0.9rem;
+}
+
+.footer-kontakt h2,
+.footer-adresse h2,
+.footer-sider h2 {
+  margin: 0 0 0.3rem;
+}
+
+/* Rollen under navnet er lidt fremhævet */
+.footer-kontakt p:first-of-type {
+  font-weight: 700;
+}
+
+.footer-kontakt p {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -880,20 +906,16 @@ footer p {
 }
 
 footer a {
-  color: var(--hvid);
+  color: var(--creme);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none; /* ingen understregning, før man peger på dem */
 }
 
 footer a:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-.footer-sider {
-  display: grid;
-  gap: 0.4rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .footer-sider a {
@@ -906,8 +928,8 @@ footer a:hover {
   margin: 2.6rem auto 0;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
-  font-size: var(--fs-note);
-  opacity: 0.75;
+  font-size: 0.8rem;
+  opacity: 0.6;
   text-align: left;
 }
 

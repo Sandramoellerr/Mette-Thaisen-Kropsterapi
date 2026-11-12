@@ -6,9 +6,7 @@
 
 /* Intro-båndet i lys salvie, som på de andre sider */
 .privatliv-intro {
-  padding-bottom: 7rem;
-  /* den grønne går blødt over i den hvide side nedenunder */
-  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--hvid));
+  background-color: var(--salvie-lys);
 }
 
 /* Afsnittene står på hvid med en tynd streg imellem – lidt mindre luft,

@@ -292,7 +292,7 @@ header nav details {
   color: var(--hvid);
   padding: 0.85rem 1.7rem; /* samme størrelse som .knap */
   font-size: 0.95rem;
-  border-radius: 30px;
+  border-radius: 6px;
   text-align: center;
 }
 
@@ -317,7 +317,7 @@ header nav details {
   text-decoration: none;
   font-size: 0.95rem;
   padding: 0.85rem 1.7rem; /* samme størrelse som .knap */
-  border-radius: 30px;
+  border-radius: 6px;
   text-align: center;
   background-color: var(--bordeaux);
   border-color: var(--bordeaux);
@@ -410,7 +410,7 @@ header nav details {
   color: var(--hvid);
   text-decoration: none;
   padding: 0.85rem 1.7rem;
-  border-radius: 30px; /* så høj værdi = helt runde ender */
+  border-radius: 6px; /* små, bløde hjørner – næsten firkantet */
   font-size: 0.95rem;
   text-align: center;
   margin-top: 0.5rem;
@@ -426,13 +426,13 @@ header nav details {
   color: var(--petroleum-moerk);
   text-decoration: none;
   padding: 0.85rem 1.7rem;
-  border-radius: 30px;
+  border-radius: 6px;
   font-size: 0.95rem;
   text-align: center;
   margin-top: 0.5rem;
   /* Kanten laves med en indvendig skygge i stedet for border, så den
      lyse knap bliver præcis lige så stor som den fyldte. */
-  box-shadow: inset 0 0 0 2px var(--petroleum-moerk);
+  box-shadow: inset 0 0 0 1px var(--petroleum-moerk);
 }
 
 .knap-lys:hover {

@@ -5,9 +5,9 @@
 /* Farverne ligger ét sted. Bruges som var(--navn) resten af siden.
    Vil du ændre en farve på hele sitet, skal du kun rette her. */
 :root {
-  --lyscreme: #f6f2e8;
-  --creme: #f5eee2; /* sidens baggrund */
-  --sand: #ece1cd; /* lidt mørkere beige til bokse */
+  --lyscreme: #f4f1ea;
+  --creme: #f3efe7; /* sidens baggrund */
+  --sand: #e9e2d3; /* lidt mørkere beige til bokse */
   --lyseblaa: #e4eef0; /* meget lys blå til bånd */
   --salvie-lys: #bcd6c9;
   --salvie: #93b9a7;
@@ -15,8 +15,8 @@
   --petroleum-moerk: #3f5f68; /* footer og mørke bånd */
   --bordeaux: #7c2c48; /* knapper og accent */
   --bordeaux-moerk: #5c1f36; /* hover på bordeaux */
-  --tekst: #5a4432; /* varm brun tekst (blødere end sort, men stadig tydelig) */
-  --hvid: #fdfbf6; /* en blød, varm "hvid" – ikke skarp hvid */
+  --tekst: #54463a; /* varm brun tekst (blødere end sort, men stadig tydelig) */
+  --hvid: #fbfaf7; /* en blød, varm "hvid" – ikke skarp hvid */
   /* SKRIFTSTØRRELSER – ét sted for hele sitet, ud fra hierarki.
      Alle overskrifter og tekster bruger disse, så de har samme
      størrelse på alle sider. Tallene bliver større fra 700px (se nedenfor). */

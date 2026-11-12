@@ -20,7 +20,9 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  background-color: var(--salvie-lys);
+  padding-bottom: 7rem;
+  /* den grønne går blødt over i creme-båndet nedenunder */
+  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--creme));
 }
 
 .manu-intro figure {
@@ -33,15 +35,6 @@
   border-radius: 9px;
   width: 100%;
   aspect-ratio: 3 / 2;
-}
-
-.manu-intro-tekst .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--petroleum-moerk);
-  margin-bottom: 0.4rem;
 }
 
 .manu-intro-tekst h1 {

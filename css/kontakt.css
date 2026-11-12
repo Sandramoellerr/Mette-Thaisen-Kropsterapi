@@ -24,15 +24,9 @@
   margin: 0;
   padding-block: 5rem;
   padding-inline: var(--sidepadding);
-  background-color: var(--salvie-lys);
-}
-
-.kontakt-intro .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  margin-bottom: 0.4rem;
+  padding-bottom: 7rem;
+  /* den grønne går blødt over i creme-båndet nedenunder */
+  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--creme));
 }
 
 .kontakt-intro h1 {
@@ -52,7 +46,7 @@
 
 @media (min-width: 700px) {
   .kontakt-intro {
-    padding-block: 6.5rem;
+    padding-block: 6.5rem 8.5rem;
   }
 }
 

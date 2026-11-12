@@ -58,19 +58,6 @@ main .sidebanner {
 }
 
 /* Lille pille-label over overskriften */
-.nyhed .kicker {
-  display: inline-block;
-  background-color: var(--petroleum);
-  color: var(--hvid);
-  font-size: var(--fs-label);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  padding: 0.35rem 0.9rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-}
-
 .nyhed h1 {
   margin-top: 0;
   font-size: var(--fs-h2); /* h1 i størrelse som sidens øvrige sektionstitler */
@@ -200,7 +187,6 @@ main .sidebanner {
 }
 
 @media (min-width: 700px) {
-
   /* SUBGRID: hvert kort har 6 dele (ikon, overskrift, 2 tekstlinjer, pris,
      knap). Kortene spænder over 6 rækker i det store grid og bruger
      "grid-template-rows: subgrid" = de låner forælderens rækker. Så står

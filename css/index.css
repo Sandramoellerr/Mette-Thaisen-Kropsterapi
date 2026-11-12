@@ -52,8 +52,7 @@
 
 /* ============================================================
    2. OM MIG – TEASER
-   Lys salvie bånd i fuld bredde med foto, en lille label over
-   overskriften og en signatur under teksten.
+   Lys salvie bånd i fuld bredde med foto og en signatur under teksten.
    ============================================================ */
 
 /* Båndet går helt ud til kanterne; indholdet står i midterspalten */
@@ -96,23 +95,9 @@ main .om-mig-kort {
   margin: 4rem auto 0;
 }
 
-/* Lille label OVER overskriften. Teksten kommer fra CSS'en
-   (content) og ikke fra HTML'en. */
 .om-mig-kort h2 {
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 0.6rem;
-}
-
-.om-mig-kort h2::before {
-  content: "Mød mig bag behandlingen";
-  display: block;
-  font-family: var(--font-label);
-  font-size: var(--fs-label);
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--petroleum-moerk);
-  margin-bottom: 2rem;
 }
 
 /* Signaturen "— Mette" sættes ind EFTER afsnittet med ::after */
@@ -335,15 +320,6 @@ main .uforpligtende_samtale {
   margin-inline: 0; /* samme venstre kant som de andre bånd */
 }
 
-.samtale-indhold .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--petroleum-moerk);
-  margin: 0 0 0.6rem;
-}
-
 .samtale-indhold h2 {
   margin: 0 0 1.2rem;
 }
@@ -480,15 +456,6 @@ main .balance-teaser {
   object-position: center 30%;
   border-radius: 9px;
   aspect-ratio: 3 / 2;
-}
-
-.balance-teaser-tekst .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--petroleum-moerk);
-  margin-bottom: 0.4rem;
 }
 
 .balance-teaser-tekst h2 {

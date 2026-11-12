@@ -50,14 +50,6 @@
   object-position: center 20%;
 }
 
-.om-intro-tekst .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  margin-bottom: 0.4rem;
-}
-
 .om-intro-tekst h1 {
   margin-bottom: 0.7rem;
 }
@@ -293,7 +285,6 @@ main .certificering h2 {
   font-weight: 600;
   color: var(--petroleum-moerk);
 }
-
 
 /* ============================================================
    4. CERTIFIKAT-BÅND

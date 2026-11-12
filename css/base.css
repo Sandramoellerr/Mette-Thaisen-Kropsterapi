@@ -1382,10 +1382,21 @@ summary:focus-visible {
 /* ============================================================
    12. DETALJER: BORDEAUX STREG OG LOGO-IKON
    To små detaljer, der går igen på tværs af siderne:
-   - en kort bordeaux streg over teksten i intro-båndene
+   - en kort bordeaux streg over teksten (kun på forsiden)
    - logo-ikonet (i logoets egne farver) som en stor detalje i højre side af de tekst-bånd,
      der ellers er tomme (kun på computer)
    ============================================================ */
+
+/* Den korte bordeaux streg står kun over teksten på forsiden ("Lad os tage en snak") */
+.samtale-indhold::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  margin-bottom: 1.4rem;
+  background-color: var(--bordeaux);
+  border-radius: 2px;
+}
 
 @media (min-width: 1000px) {
   main .uforpligtende_samtale,

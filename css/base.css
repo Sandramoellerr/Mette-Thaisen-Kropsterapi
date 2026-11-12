@@ -1,37 +1,4 @@
 /* ============================================================
-   METTE THAISEN – KROPSTERAPI
-   base.css  –  FÆLLES styling for ALLE sider
-
-   Hver side loader base.css FØRST og derefter sin egen fil
-   (fx css/priser.css). Når to regler rammer det samme og er lige
-   "stærke", vinder den, der står SIDST – derfor bygger sidernes
-   egne filer ovenpå denne.
-
-   Indhold:
-   1. Grundlag  – farver, tekst og sektioner
-   2. Header og navigation
-   3. Knapper
-   4. Hero og sidebanner (topbilleder)
-   5. Kort med billede
-   6. "Læs mere"-bokse (<details>)
-   7. Footer
-   8. Galleri-karrusel (lige over footeren)
-   9. Bløde overgange
-   10. Rolige animationer
-   11. Udtalelser ("Hvad andre siger" – bruges på forsiden og Om mig)
-   12. Bånd i fuld bredde og bløde farveskær
-   13. Billeder: blød skygge og zoom
-
-   NOTER TIL DIG SELV:
-   - rem  = størrelse i forhold til skriftstørrelsen (1rem ≈ 16px)
-   - @media (min-width: 700px) = "gælder kun på skærme, der er
-   mindst 700px brede" (tablet/computer). Uden media query =
-   mobil først, og større skærme bygger ovenpå.
-   - Vi bruger kun klasser (.navn) i vores selectors. id bruges
-   kun til spring-links (#balance, #ro, #nerver, #kontaktinfo).
-   ============================================================ */
-
-/* ============================================================
    1. GRUNDLAG
    ============================================================ */
 
@@ -41,6 +8,7 @@
   --lyscreme: #f6f2e8;
   --creme: #f5eee2; /* sidens baggrund */
   --sand: #ece1cd; /* lidt mørkere beige til bokse */
+  --lyseblaa: #e4eef0; /* meget lys blå til bånd */
   --salvie-lys: #bcd6c9;
   --salvie: #93b9a7;
   --petroleum: #5f8791;
@@ -62,14 +30,14 @@
   --fs-label: 0.75rem; /* små labels med store bogstaver */
   --fs-pris: 1.8rem; /* priser */
   /* SKRIFTTYPER – ét sted for hele sitet.
-     Lora (en blød, rolig serif) bruges ALLE steder – overskrifter,
-     brødtekst, menu og knapper – bare i forskellige vægte (400-700)
-     og kursiv. Kun de små underoverskrifter (labels med store
-     bogstaver) er sat i Nunito Sans. */
-  --font-tekst: "Lora", Georgia, "Times New Roman", serif;
+     Nunito (en blød, afrundet og rolig skrift) bruges ALLE steder –
+     overskrifter, brødtekst, menu og knapper – bare i forskellige
+     vægte (300-800). Kun de små underoverskrifter (labels med store
+     bogstaver) er sat i Nunito Sans, og signatur-båndet i skriveskrift. */
+  --font-tekst: "Nunito", "Nunito Sans", "Segoe UI", Arial, sans-serif;
   --font-overskrift: var(--font-tekst);
   --font-label: "Nunito Sans", "Segoe UI", Arial, sans-serif;
-  --fade: 3.5rem;
+  --font-skrift: "Alex Brush", cursive; /* kun signatur-båndet på forsiden */
   --sidepadding: max(1.8rem, calc((100% - 73rem) / 2)); /* indhold i midterspalte, bånd i fuld bredde */
 }
 
@@ -198,41 +166,27 @@ ol {
 }
 
 /* SEKTIONER
-   Alt hovedindhold ligger i ÉN centreret spalte:
-   - max-width holder linjerne kortere på store skærme
-   - margin-inline: auto centrerer spalten vandret
-   - margin-block giver luft mellem sektionerne
-   - padding giver luft indeni sektionen
+   Hver sektion er et BÅND i fuld bredde:
+   - baggrunden går helt ud til skærmens kanter
+   - indholdet står i midterspalten (--sidepadding = mindst 1.8rem
+     sideluft, aldrig bredere end 73rem)
+   - båndene sidder helt op ad hinanden (ingen hvide huller), og
+     farverne skifter: hvid, creme, lyseblå, lys salvie ...
    Undtagelser med egne regler: header, hero, det farvede bånd
    (.bjaelke) og footer. */
 main section,
 main .sidebanner {
-  max-width: 78rem;
-  margin-inline: auto;
-  margin-block: 4rem;
-  padding: 2.5rem 1.8rem;
-}
-
-/* Sektioner med farvet baggrund får ekstra luft indeni.
-   Selve farverne sættes i sidernes egne CSS-filer. */
-.forloebets-gang,
-.prisvalg,
-.tryg-rum {
-  padding: 4.5rem 1.8rem;
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
 }
 
 /* --- Tablet: fra 700px og op --- */
 @media (min-width: 700px) {
   main section,
   main .sidebanner {
-    margin-block: 8rem;
-    padding: 4rem 2.5rem;
-  }
-
-  .forloebets-gang,
-  .prisvalg,
-  .tryg-rum {
-    padding: 6rem 2.5rem;
+    padding-block: 6.5rem;
   }
 }
 
@@ -250,7 +204,7 @@ main .sidebanner {
 header {
   position: sticky; /* bliver stående øverst, når man scroller */
   top: 0;
-  background-color: var(--hvid);
+  background-color: var(--creme);
   padding: 0.8rem 1.2rem;
   z-index: 10; /* ligger ovenpå indholdet under headeren */
   border-bottom: 1px solid rgba(63, 95, 104, 0.15); /* tynd streg i stedet for skygge */
@@ -313,7 +267,7 @@ header nav details {
   top: 100%;
   margin-top: 0.6rem;
   z-index: 20; /* ovenpå hero-billedet lige under */
-  background-color: var(--hvid);
+  background-color: var(--creme);
   border-radius: 10px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   padding: 1rem 1.4rem;
@@ -1059,38 +1013,7 @@ main .galleri {
 }
 
 /* ============================================================
-   9. BLØDE OVERGANGE
-   De farvede bånd har ikke længere en skarp kant. Med mask-image
-   bliver båndets egen farve gradvist gennemsigtig mod kanten, så
-   den smelter sammen med sidens baggrund over/under.
-   --fade = hvor langt overgangen er (kortere end båndets
-   padding, så teksten aldrig bliver gennemsigtig).
-   Kanter mod et andet farvet bånd (fx grøn → sand) får ikke
-   overgang, ellers ville der stå en lys stribe imellem.
-   De mørkeblå bånd (signatur-båndet, book-båndet, priskortenes og
-   kontaktens bånd) fader IKKE – de har skarpe, rene kanter.
-   ============================================================ */
-
-/* Tone ud både øverst og nederst */
-.manu-intro {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent);
-}
-
-/* Kun øverst (båndet ligger op mod næste bånd eller galleriet nedenunder) */
-
-/* Kun nederst (båndet ligger op mod headeren eller et andet bånd ovenover) */
-.prisvalg,
-.historie,
-.sporgsmaal-svar,
-.chok-traume,
-.hvem-hjaelper {
-  -webkit-mask-image: linear-gradient(to top, transparent, #000 var(--fade));
-  mask-image: linear-gradient(to top, transparent, #000 var(--fade));
-}
-
-/* ============================================================
-   10. ROLIGE ANIMATIONER
+   9. ROLIGE ANIMATIONER
    Alt er langsomt og blødt – ingen hop eller blink. Det hele slås
    fra, hvis brugeren har bedt sit system om mindre bevægelse
    (se @media (prefers-reduced-motion) nederst).
@@ -1100,6 +1023,8 @@ main .galleri {
    Klassen .js sættes i <head>, og .reveal/.synlig sættes af script.js.
    Uden JavaScript er alt bare synligt fra start. */
 .js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -1110,6 +1035,7 @@ main .galleri {
 
 /* Kort/bokse i en gruppe kommer lidt efter hinanden */
 .js .reveal-barn {
+  opacity: 0; /* kun toning, ingen bevægelse – så kortene altid står på linje */
   transition: opacity 0.9s ease;
   transition-delay: calc(var(--nr, 0) * 0.12s);
 }
@@ -1194,7 +1120,7 @@ summary:focus-visible {
 }
 
 /* ============================================================
-   11. UDTALELSER ("Hvad andre siger")
+   10. UDTALELSER ("Hvad andre siger")
    Swipebar række af citat-kort i skiftende nuancer (sand → salvie → petroleum).
    Bruges på forsiden og på Om mig-siden.
    ============================================================ */
@@ -1335,95 +1261,7 @@ summary:focus-visible {
   display: none;
 }
 
-/* ============================================================
-   12. BÅND I FULD BREDDE OG BLØDE FARVESKÆR
-   De beige bånd har bløde farveskær bag sig, der langsomt driver.
-   ============================================================ */
-
-main .hjaelper-dig,
-#et-forloeb-hos-mig,
-.manu-intro,
-.chok-traume,
-.udmaerkelser,
-.udtalelser,
-.sporgsmaal-svar,
-.prisvalg {
-  position: relative;
-  overflow: clip; /* farveskærene bliver inde i deres eget bånd */
-  isolation: isolate; /* skærene ligger bag indholdet, men oven på båndets farve */
-}
-
-main .hjaelper-dig::before,
-#et-forloeb-hos-mig::before,
-.manu-intro::before,
-.chok-traume::before,
-.udmaerkelser::before,
-.udtalelser::before,
-.sporgsmaal-svar::before,
-.prisvalg::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: -14rem;
-  right: -12rem;
-  width: 40rem;
-  height: 40rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(95, 135, 145, 0.3), rgba(95, 135, 145, 0) 65%);
-  animation: skaer-drift 26s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-main .hjaelper-dig::after,
-#et-forloeb-hos-mig::after,
-.manu-intro::after,
-.chok-traume::after,
-.udmaerkelser::after,
-.udtalelser::after,
-.sporgsmaal-svar::after,
-.prisvalg::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  bottom: -16rem;
-  left: -12rem;
-  width: 36rem;
-  height: 36rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(124, 44, 72, 0.14), rgba(124, 44, 72, 0) 65%);
-  animation: skaer-drift 32s ease-in-out infinite alternate-reverse;
-  pointer-events: none;
-}
-
-@keyframes skaer-drift {
-  from {
-  transform: translate(0, 0) scale(1);
-  }
-  to {
-  transform: translate(-3rem, 2.5rem) scale(1.12);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  main .hjaelper-dig::before,
-  #et-forloeb-hos-mig::before,
-  .manu-intro::before,
-  .chok-traume::before,
-  .udmaerkelser::before,
-  .udtalelser::before,
-  .sporgsmaal-svar::before,
-  .prisvalg::before,
-  main .hjaelper-dig::after,
-  #et-forloeb-hos-mig::after,
-  .manu-intro::after,
-  .chok-traume::after,
-  .udmaerkelser::after,
-  .udtalelser::after,
-  .sporgsmaal-svar::after,
-  .prisvalg::after {
-    animation: none;
-  }
-
   .kort-billede:hover,
   .balance-teaser img:hover,
   .om-intro figure img:hover,
@@ -1438,7 +1276,7 @@ main .hjaelper-dig::after,
 }
 
 /* ============================================================
-   13. BILLEDER
+   11. BILLEDER
    Blød skygge, og de zoomer blidt, når man peger på dem.
    ============================================================ */
 

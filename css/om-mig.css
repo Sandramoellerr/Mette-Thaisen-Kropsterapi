@@ -224,11 +224,6 @@ main .certificering h2 {
   box-shadow: 0 16px 36px rgba(63, 95, 104, 0.18);
 }
 
-.billede-kort {
-  margin-top: 1rem;
-  margin-left: 2rem;
-}
-
 .historie-billeder .historie-foto-2 {
   z-index: 1;
   border: 5px solid var(--creme); /* lille lys kant, så de adskilles */
@@ -287,11 +282,6 @@ main .certificering h2 {
     right: 0;
   }
 
-  .billede-kort {
-    margin: 0;
-    margin-block: 10rem;
-    padding-inline: 10rem;
-  }
 }
 
 @media (min-width: 700px) {
@@ -311,16 +301,13 @@ main .certificering h2 {
    ============================================================ */
 
 .hvem-hjaelper {
-  margin-block: 0;
-  padding-block: 5rem; /* luft i top og bund */
-  padding-inline: 1.8rem; /* samme sideluft som resten af siden */
-  background-color: var(--hvid);
+  background-color: var(--lyseblaa);
 }
 
 .hvem-hjaelper p,
 .hvem-hjaelper h2 {
   max-width: 46rem;
-  margin-inline: auto; /* centrerer teksten */
+  margin-inline: 0; /* teksten starter fra samme venstre kant som resten */
 }
 
 .hvem-hjaelper-signatur {
@@ -330,12 +317,6 @@ main .certificering h2 {
   color: var(--petroleum-moerk);
 }
 
-@media (min-width: 800px) {
-  .hvem-hjaelper {
-    max-width: none;
-    padding-block: 9rem;
-  }
-}
 
 /* ============================================================
    4. CERTIFIKAT-BÅND

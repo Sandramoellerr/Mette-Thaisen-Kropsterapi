@@ -1,16 +1,22 @@
 /* ============================================================
    PRIVATLIVSPOLITIK – privatlivspolitik.html
-   Ren tekstside – ingen billeder. Genbruger den generiske
-   sektions-bredde/luft fra base.css.
+   Ren tekstside – ingen billeder. Genbruger sektions-reglen fra
+   base.css (bånd i fuld bredde).
    ============================================================ */
 
-.privatliv-intro,
-.privatliv-afsnit {
-  max-width: 52rem;
+/* Intro-båndet i lys salvie, som på de andre sider */
+.privatliv-intro {
+  background-color: var(--salvie-lys);
 }
 
-.privatliv-intro {
-  padding-bottom: 0;
+/* Afsnittene står på hvid med en tynd streg imellem – lidt mindre luft,
+   fordi det er en lang tekstside */
+.privatliv-afsnit {
+  padding-block: 3rem;
+}
+
+.privatliv-afsnit + .privatliv-afsnit {
+  border-top: 1px solid rgba(63, 95, 104, 0.15);
 }
 
 .privatliv-afsnit h3 {

@@ -108,7 +108,7 @@ main .sidebanner {
   .nyhed {
     width: calc(100% - 5rem); /* 2.5rem er luft i hver side på tablet */
     max-width: 74rem;
-    margin: -5rem auto 9rem; /* 9rem er luft ned til det blå bånd */
+    margin: -5rem auto 4rem; /* 4rem er luft ned til det blå bånd */
     padding: 3.5rem 4rem;
   }
 
@@ -189,19 +189,10 @@ main .sidebanner {
   margin-inline: 0;
 }
 
-/* Fælles for de to bånd på computer (.individuel og .prisvalg):
-   baggrunden går kant til kant, men indholdet holdes i en spalte.
-   max(2.5rem, calc((100% - 73rem) / 2)) = "sideluft er mindst 2.5rem,
-   men på store skærme bliver den så stor, at indholdet er 73rem bredt". */
+/* På computer er "Individuel behandling" et petroleum-bånd med lys tekst
+   (sektions-reglen i base.css giver bredde og luft). På mobil står
+   kortene på hvid. */
 @media (min-width: 700px) {
-  .individuel,
-  .prisvalg {
-    max-width: none;
-    margin-block: 0;
-    padding-block: 6rem;
-    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
-  }
-
   .individuel {
     background-color: var(--petroleum);
     color: var(--creme);
@@ -238,12 +229,10 @@ main .sidebanner {
 
 /* ============================================================
    4. VÆLG DEN PRIS DER PASSER TIL DIG
-   Tre grønne kort. På computer ligger de i et sandfarvet bånd.
+   Tre grønne kort på et creme-bånd.
    ============================================================ */
 
 .prisvalg {
-  background: none;
-  margin-top: 4rem;
   background-color: var(--creme);
 }
 
@@ -357,13 +346,6 @@ main .sidebanner {
   margin: 0;
 }
 
-/* Ugedagene står på en linje under knappens tekst */
-.book-knapper .knap span {
-  display: block;
-  font-size: var(--fs-label);
-  opacity: 0.85;
-}
-
 .book-kontakt {
   margin-top: 1.6rem;
   font-size: var(--fs-small);
@@ -394,10 +376,6 @@ main .sidebanner {
 
 /* Tablet: fotoet står stadig over teksten, men teksten er lidt større */
 @media (min-width: 700px) {
-  .book-cta {
-    margin-top: 9rem;
-  }
-
   .book-knapper {
     flex-direction: row;
     flex-wrap: wrap;
@@ -429,15 +407,11 @@ main .sidebanner {
 
 /* ============================================================
    6. BETINGELSER FOR AFBESTILLING
-   Lys sandfarvet boks med tynd kant.
+   Lyseblåt bånd i fuld bredde.
    ============================================================ */
 
 .betingelser {
-  border: 1.5px solid var(--petroleum);
-  border-radius: 18px;
-  margin: 4rem 1.2rem 3rem;
-  padding: 2.4rem 1.6rem 3rem;
-  background-color: var(--creme);
+  background-color: var(--lyseblaa);
 }
 
 .betingelser h2 {
@@ -449,17 +423,7 @@ main .sidebanner {
 .betingelser h2,
 .betingelser p {
   max-width: 44rem;
-  margin-inline: auto;
-}
-
-/* margin-inline: auto centrerer boksen i den normale spalte
-   (en fast margin på begge sider ville presse den til venstre) */
-@media (min-width: 700px) {
-  .betingelser {
-    width: calc(100% - 5rem);
-    margin: 9.6rem auto;
-    padding: 3.5rem 4rem 4rem;
-  }
+  margin-inline: 0;
 }
 
 /* ============================================================

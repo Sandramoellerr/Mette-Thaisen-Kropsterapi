@@ -5,28 +5,22 @@
    Header, footer, book-bånd og galleri er fælles (base.css).
 
    Afsnit:
-   1. Intro: hvad er manuvision   (lys beige bånd, foto + tekst)
-   2. Chok & traume terapi        (lys beige bånd, certifikater + tekst)
+   1. Intro: hvad er manuvision   (lys salvie bånd, foto + tekst)
+   2. Chok & traume terapi        (lyseblåt bånd, certifikater + tekst)
    3. Manuvision og forskning     (hvid = sidens baggrund)
-   4. Hvorfor Manuvision kropsterapi (foto + tekst)
+   4. Hvorfor Manuvision kropsterapi (cremefarvet bånd, foto + tekst)
    ============================================================ */
 
 /* ============================================================
    1. INTRO – foto og tekst
    ============================================================ */
 
-/* Sandfarvet bånd, der går kant til kant og støder op til headeren.
-   padding-inline med max(...) holder indholdet i midterspalten
-   (mindst 1.8rem sideluft, aldrig bredere end 73rem). */
+/* Lys salvie bånd i fuld bredde (sektions-reglen i base.css giver bredde og luft). */
 .manu-intro {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  max-width: none;
-  margin-block: 0;
-  padding-block: 4rem;
-  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
-  background-color: var(--creme);
+  background-color: var(--salvie-lys);
 }
 
 .manu-intro figure {
@@ -62,13 +56,6 @@
   margin-top: 0.6rem;
 }
 
-@media (min-width: 700px) {
-  .manu-intro {
-    padding-block: 6rem;
-    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
-  }
-}
-
 /* Computer: foto til venstre, tekst til højre.
    align-items: stretch = billedet er lige så højt som teksten.
    Billedet ligger absolut inde i figuren (position: absolute + inset: 0),
@@ -99,18 +86,11 @@
 
 /* ============================================================
    2. CHOK & TRAUME TERAPI
-   Lysegrønt bånd, der går kant til kant. Indholdet holdes i
-   midterspalten med max(...): sideluften er mindst 1.8rem
-   (2.5rem på computer), men vokser på store skærme, så indholdet
-   aldrig er bredere end 73rem.
+   Lyseblåt bånd i fuld bredde.
    ============================================================ */
 
 .chok-traume {
-  max-width: none;
-  margin-block: 0;
-  padding-block: 4.5rem;
-  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
-  background-color: var(--creme);
+  background-color: var(--lyseblaa);
 }
 
 .chok-traume-indhold {
@@ -137,11 +117,6 @@
 }
 
 @media (min-width: 700px) {
-  .chok-traume {
-    padding-block: 6rem;
-    padding-inline: max(2.5rem, calc((100% - 73rem) / 2));
-  }
-
   .chok-badges .badge {
     width: 150px;
   }
@@ -202,6 +177,7 @@
    ============================================================ */
 
 .hvorfor-manuvision {
+  background-color: var(--creme);
   display: grid;
   gap: 1.2rem; /* overskrift og afsnit hører sammen, så de står tæt */
 }

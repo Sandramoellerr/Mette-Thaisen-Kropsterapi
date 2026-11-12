@@ -13,16 +13,17 @@
 
 /* ============================================================
    1. INTRO
-   Kort tekst med et lille foto ved siden – intet stort banner.
+   Lys salvie bånd i fuld bredde med foto og kort tekst.
    ============================================================ */
 
 .forloeb-intro {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  max-width: 78rem;
-  margin: 4rem auto 0;
-  padding: 0 1.8rem;
+  max-width: none;
+  margin: 0;
+  padding: 4.5rem var(--sidepadding);
+  background-color: var(--salvie-lys);
 }
 
 .forloeb-intro figure {
@@ -55,7 +56,7 @@
   .forloeb-intro {
     flex-direction: row;
     gap: 3.5rem;
-    padding-inline: 2.5rem;
+    padding-block: 6.5rem;
     align-items: stretch;
   }
 
@@ -95,8 +96,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 5rem 0 0;
-  margin-top: 5rem;
+  margin: 0; /* sidder helt op ad intro-båndet, som ord-båndet på forsiden */
   padding: 1rem 1.8rem;
   gap: 0.3rem 1.2rem;
   background-color: var(--petroleum-moerk);
@@ -126,14 +126,13 @@
 
 @media (min-width: 700px) {
   .faner {
-    margin-top: 7rem;
     padding: 1rem 2.5rem;
   }
 }
 
 /* ============================================================
    3. SPØRGSMÅL / SVAR
-   Sandfarvet bånd i fuld bredde (samme farve som headeren).
+   Hvidt bånd i fuld bredde.
    Teksten holdes i en smal spalte, så linjerne er behagelige
    at læse.
    ============================================================ */
@@ -143,8 +142,8 @@
   /* ingen margin – sektionen skal støde direkte op til "Forløbets
      gang", så der ikke er en lys creme-stribe imellem */
   margin-block: 0;
-  padding: 5.5rem 0 4rem; /* luft mellem fanerne og første række */
-  background-color: var(--creme);
+  padding: 4.5rem 0;
+  background-color: var(--hvid);
 }
 
 /* Hver spørgsmålsgruppe holdes i samme spalte som resten af siden */
@@ -192,7 +191,7 @@
 
 @media (min-width: 700px) {
   .sporgsmaal-svar {
-    padding: 8rem 0 4rem; /* luft mellem fanerne og første række */
+    padding: 6.5rem 0;
   }
 
   .qa-gruppe {
@@ -221,7 +220,7 @@
 
 /* ============================================================
    4. FORLØBETS GANG
-   Sandfarvet sektion i FULD bredde (kant til kant). Indholdet
+   Cremefarvet sektion i FULD bredde (kant til kant). Indholdet
    holdes i samme spalte som resten (se reglen med brødtekst + trin-liste).
    Fire farvede trin-kort – samme grøn/blå-skala som "Mine ydelser".
    ============================================================ */
@@ -233,8 +232,8 @@
   /* ingen margin – sektionen skal støde helt op til "Spørgsmål/svar"
      ovenfor (ingen lys creme-stribe) og til footeren nedenfor */
   margin: 0;
-  padding: 0rem; /* ingen top-padding – den hvide bjælke er flush med toppen */
-  background-color: var(--hvid);
+  padding: 0 0 4.5rem; /* titel-feltet øverst har selv luft */
+  background-color: var(--creme);
 }
 
 /* Brødtekst og trin-liste holdes i midterspalten. Titel-bjælken og
@@ -251,7 +250,7 @@
 .forloebets-gang-top {
   position: relative;
   overflow: hidden;
-  padding-block: 3rem 0.5rem;
+  padding-block: 4.5rem 0.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -262,6 +261,7 @@
 }
 
 .trin-liste {
+  counter-reset: trin; /* tæller trinene 1, 2, 3, 4 */
   list-style: none;
   margin: 3rem 0;
   display: grid;
@@ -271,6 +271,7 @@
 .trin {
   border-radius: 16px;
   padding: 1.6rem 1.4rem;
+  counter-increment: trin;
 }
 
 .trin h3 {
@@ -322,7 +323,7 @@
 
 @media (min-width: 700px) {
   .forloebets-gang {
-    padding: 0 0 10rem;
+    padding: 0 0 6.5rem;
   }
 
   /* brødtekst og trin-liste får samme sideluft som overskriften (2.5rem),
@@ -337,7 +338,7 @@
      sektionen (også trin-listen og CTA-kortet), så luften hobede sig
      op nedover og gjorde hele sektionen rodet */
   .forloebets-gang-top {
-    padding-block: 8rem 1rem;
+    padding-block: 6.5rem 1rem;
     margin-bottom: 2.5rem;
   }
 
@@ -416,7 +417,8 @@
 .forloeb-gang-foto {
   object-fit: cover;
   border-radius: 24px;
-  margin-top: 2.4rem;
+  margin: 2.4rem 1.8rem 0; /* samme sideluft som resten af siden */
+  width: calc(100% - 3.6rem);
 }
 
 .forloeb-gang-foto,
@@ -430,7 +432,7 @@
     grid-column: 2 / 4;
     grid-row: 3;
     margin: 2.5rem 2.5rem 0;
-    width: calc(100% - 5rem);
+    width: calc((100% - 5rem) * 0.8); /* lidt smallere end spalten */
   }
 }
 
@@ -438,5 +440,12 @@
   .forloeb-gang-foto,
   .forloebets-gang .forloeb-gang-foto {
     aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 999px) {
+  .forloeb-gang-foto {
+    margin-inline: 2.5rem;
+    width: calc((100% - 5rem) * 0.85);
   }
 }

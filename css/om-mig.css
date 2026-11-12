@@ -208,37 +208,34 @@ main .certificering h2 {
   gap: 1.6rem;
 }
 
-/* fotogruppen – på mobil ligger foto 2 en anelse forskudt op og
-   ind over foto 1, så det ikke bare er to klodser oven på hinanden */
+/* fotogruppen: ét stort stående foto til venstre, og to liggende fotos
+   oven på hinanden til højre. De to til højre er tilsammen lige så høje
+   som det store, så top og bund flugter. */
 .historie-billeder {
-  position: relative;
   margin-top: 2rem;
-  display: flex;
+  display: grid;
+  grid-template-columns: 46fr 54fr;
   gap: 1.2rem;
-  align-items: flex-start;
 }
 
 .historie-billeder img {
+  width: 100%;
+  margin: 0;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 16px 36px rgba(63, 95, 104, 0.18);
 }
 
-.historie-billeder .historie-foto-2 {
-  z-index: 1;
-  border: 5px solid var(--creme); /* lille lys kant, så de adskilles */
-  position: static;
-  width: 58%;
+/* Fotos til højre står liggende (3:2), så de ikke skæres */
+.historie-billeder .historie-foto-2,
+.historie-billeder .historie-foto-3 {
   aspect-ratio: 3 / 2;
-  margin: 3rem 0 0;
-  border-width: 4px;
 }
 
-/* Foto 1 står stående (2:3) og foto 2 liggende (3:2), så ingen af dem skæres */
+/* Det store foto fylder begge rækker og er lige så højt som de to til højre */
 .historie-billeder .historie-foto-1 {
-  width: 42%;
-  aspect-ratio: 2 / 3;
-  margin: 0;
+  grid-row: span 2;
+  height: 100%;
 }
 
 /* knappen: bordeaux */
@@ -259,39 +256,19 @@ main .certificering h2 {
   /* to spalter: fotos til venstre, tekst til højre */
   .historie .kort-indhold {
     align-items: flex-start;
-    gap: 4rem;
+    gap: 3rem;
   }
 
   .historie .historie-venstre {
-    flex: 0 0 44%;
+    flex: 0 0 58%;
   }
 
-  /* fotogruppen får fast højde, så foto 2 kan ligge absolut forskudt */
-  .historie-billeder img {
-    border-radius: 6px;
-  }
-
-  .historie-billeder .historie-foto-1 {
-    top: 0;
-    left: 0;
-    z-index: 0;
-  }
-
-  .historie-billeder .historie-foto-2 {
-    top: 140px;
-    right: 0;
-  }
-
-}
-
-@media (min-width: 700px) {
-  .historie .historie-billeder {
+  .historie-billeder {
     gap: 1.8rem;
   }
 
-  .historie-billeder .historie-foto-2 {
-    margin: 4rem 0 0;
-    border-width: 6px;
+  .historie-billeder img {
+    border-radius: 6px;
   }
 }
 

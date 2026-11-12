@@ -3,6 +3,7 @@
    Ren tekstside – ingen billeder. Genbruger den generiske
    sektions-bredde/luft fra base.css.
    ============================================================ */
+
 .privatliv-intro,
 .privatliv-afsnit {
   max-width: 52rem;

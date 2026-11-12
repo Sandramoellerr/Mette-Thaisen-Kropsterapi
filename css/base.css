@@ -8,22 +8,27 @@
    egne filer ovenpå denne.
 
    Indhold:
-     1. Grundlag  – farver, tekst og sektioner
-     2. Header og navigation
-     3. Knapper
-     4. Hero og sidebanner (topbilleder)
-     5. Kort med billede
-     6. "Læs mere"-bokse (<details>)
-     7. Footer
-     8. Galleri-karrusel (lige over footeren)
+   1. Grundlag  – farver, tekst og sektioner
+   2. Header og navigation
+   3. Knapper
+   4. Hero og sidebanner (topbilleder)
+   5. Kort med billede
+   6. "Læs mere"-bokse (<details>)
+   7. Footer
+   8. Galleri-karrusel (lige over footeren)
+   9. Bløde overgange
+   10. Rolige animationer
+   11. Udtalelser ("Hvad andre siger" – bruges på forsiden og Om mig)
+   12. Bånd i fuld bredde og bløde farveskær
+   13. Billeder: blød skygge og zoom
 
    NOTER TIL DIG SELV:
    - rem  = størrelse i forhold til skriftstørrelsen (1rem ≈ 16px)
    - @media (min-width: 700px) = "gælder kun på skærme, der er
-     mindst 700px brede" (tablet/computer). Uden media query =
-     mobil først, og større skærme bygger ovenpå.
+   mindst 700px brede" (tablet/computer). Uden media query =
+   mobil først, og større skærme bygger ovenpå.
    - Vi bruger kun klasser (.navn) i vores selectors. id bruges
-     kun til spring-links (#balance, #ro, #nerver, #kontaktinfo).
+   kun til spring-links (#balance, #ro, #nerver, #kontaktinfo).
    ============================================================ */
 
 /* ============================================================
@@ -44,7 +49,6 @@
   --bordeaux-moerk: #5c1f36; /* hover på bordeaux */
   --tekst: #5a4432; /* varm brun tekst (blødere end sort, men stadig tydelig) */
   --hvid: #fdfbf6; /* en blød, varm "hvid" – ikke skarp hvid */
-
   /* SKRIFTSTØRRELSER – ét sted for hele sitet, ud fra hierarki.
      Alle overskrifter og tekster bruger disse, så de har samme
      størrelse på alle sider. Tallene bliver større fra 700px (se nedenfor). */
@@ -57,13 +61,15 @@
   --fs-note: 0.85rem; /* noter og små knapper */
   --fs-label: 0.75rem; /* små labels med store bogstaver */
   --fs-pris: 1.8rem; /* priser */
-
   /* SKRIFTTYPER – ét sted for hele sitet.
      Fraunces er en blød, varm serif til overskrifter og tal;
      Nunito Sans er en rolig, afrundet sans til al løbende tekst. */
-  --font-overskrift: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-overskrift: "Lora", Georgia, "Times New Roman", serif;
+  --font-hero: "Fraunces", Georgia, "Times New Roman", serif; /* hero'en beholder sin egen skrift */
   --font-tekst: "Nunito Sans", "Segoe UI", Arial, sans-serif;
   --font-skrift: "Alex Brush", "Fraunces", cursive; /* kun signatur-båndet */
+  --fade: 3.5rem;
+  --sidepadding: max(1.8rem, calc((100% - 73rem) / 2)); /* indhold i midterspalte, bånd i fuld bredde */
 }
 
 /* Fra 700px (tablet og computer) er teksten lidt større */
@@ -118,10 +124,10 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--creme);
   color: var(--tekst);
   font-family: var(--font-tekst);
   line-height: 1.6;
+  background-color: var(--hvid);
 }
 
 /* Overskrifter */
@@ -149,18 +155,21 @@ h3 {
   font-size: var(--fs-h3);
 }
 
+@media (min-width: 1000px) {
+  main section h2 {
+    font-size: clamp(2.1rem, 3vw, 2.7rem);
+  }
+}
+
 /* Ét fremhævet ord i en overskrift: fed, i samme brune farve som teksten */
 .ord-fremhaevet {
   font-weight: 700;
-  color: var(--tekst);
 }
 
 /* Brødtekst */
 p {
   max-width: 60ch;
   margin: 0 0 1em 0;
-  font-family: var(--font-tekst);
-  font-weight: 400;
   font-style: normal;
   font-size: var(--fs-p);
 }
@@ -199,7 +208,6 @@ main .sidebanner {
 
 /* Sektioner med farvet baggrund får ekstra luft indeni.
    Selve farverne sættes i sidernes egne CSS-filer. */
-.hvad-er-manuvision,
 .forloebets-gang,
 .prisvalg,
 .tryg-rum {
@@ -214,7 +222,6 @@ main .sidebanner {
     padding: 4rem 2.5rem;
   }
 
-  .hvad-er-manuvision,
   .forloebets-gang,
   .prisvalg,
   .tryg-rum {
@@ -232,6 +239,7 @@ main .sidebanner {
    - COMPUTER: logo + links (.skrivebord-links) + Book-knap
    CSS'en viser den ene og skjuler den anden.
    ============================================================ */
+
 header {
   position: sticky; /* bliver stående øverst, når man scroller */
   top: 0;
@@ -257,14 +265,11 @@ header nav {
 /* Logoet er ét billede – vi sætter kun højden, bredden følger med */
 .logo img {
   height: 90px;
-  width: auto;
 }
 
 /* <details> i menuen nulstilles, så de ikke får den sandfarvede
    "Læs mere"-boks fra afsnit 6. */
 header nav details {
-  background-color: transparent;
-  padding: 0;
   margin: 0;
 }
 
@@ -314,7 +319,6 @@ header nav details {
 .menu-links a {
   text-decoration: none;
   color: var(--tekst);
-  font-size: 1rem;
 }
 
 .menu-links a:hover {
@@ -333,39 +337,8 @@ header nav details {
 
 /* "Praktisk information" i mobilmenuen (kun mobil – på computer er
    punkterne helt almindelige links) */
-.praktisk-detaljer summary {
-  list-style: none;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 400;
-  color: var(--tekst);
-  text-decoration: none;
-}
-
-.praktisk-detaljer summary::-webkit-details-marker {
-  display: none;
-}
-
-.praktisk-detaljer summary::after {
-  content: "▾";
-  display: inline-block;
-  margin-left: 0.35rem;
-  font-size: 0.7em;
-}
-
-.praktisk-detaljer[open] summary::after {
-  content: "▴";
-}
 
 /* Undermenuen rykkes lidt ind og får en streg i venstre side */
-.praktisk-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  padding: 0.8rem 0 0 0.8rem;
-  border-left: 2px solid var(--sand);
-  margin-top: 0.5rem;
-}
 
 /* --- Computer-navigationen ---
    Vises først fra 700px (se media query nedenfor). */
@@ -437,7 +410,6 @@ header nav details {
 
 @media (min-width: 1000px) {
   header nav {
-    margin: 0;
     gap: 2rem;
   }
 
@@ -470,6 +442,7 @@ header nav details {
    er forskellig. Alle knapper på sitet bruger en af de to
    (også knapperne i menuen og i headeren).
    ============================================================ */
+
 .knap {
   display: inline-block;
   background-color: var(--bordeaux);
@@ -480,7 +453,6 @@ header nav details {
   font-size: 0.95rem;
   text-align: center;
   margin-top: 0.5rem;
-  margin-inline: auto;
 }
 
 .knap:hover {
@@ -511,7 +483,6 @@ header nav details {
    Bruges på forsiden, om-mig og manuvision. Understregningen er en
    border-bottom (ikke text-decoration), så vi selv styrer stregen. */
 .tekst-link {
-  color: var(--bordeaux);
   font-weight: 600;
   border-bottom: 1.5px solid var(--bordeaux);
   text-decoration: none;
@@ -541,6 +512,7 @@ main .hero {
 /* Mobil: teksten har luft i siderne, men billedet trækkes ud til
    kanten med negativ margin (-1.5rem) */
 .hero {
+  --font-overskrift: var(--font-hero);
   padding: 0 1.5rem;
 }
 
@@ -549,8 +521,8 @@ main .hero {
   line-height: 1.1;
   margin: 0 0 0.6rem; /* teksten under hører til overskriften, så den står tæt på */
 }
+
 .hero h2 {
-  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -563,6 +535,7 @@ main .hero {
   font-size: 1rem;
   font-weight: bold;
 }
+
 .hero figure {
   margin: 0 -1.5rem;
   height: 56vw; /* vw = procent af skærmbredden, så højden følger bredden */
@@ -590,17 +563,15 @@ main .hero {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, transparent 40%, rgba(245, 238, 226, 0.6) 100%);
     pointer-events: none;
   }
+
   .speciel-hero {
-    color: var(--petroleum-moerk);
     font-weight: 600;
-    margin-bottom: 0.4rem;
-    font-size: 1rem;
     font-weight: bold;
   }
 }
+
 .hero-tekst .kicker {
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -626,6 +597,7 @@ main .hero {
   font-size: var(--fs-h2);
   margin-bottom: 2px;
 }
+
 .hero ul {
   margin: 0 0 1.8rem;
 }
@@ -653,24 +625,6 @@ main .hero {
 }
 
 /* Sidebanner: kun et billede øverst, ingen tekst ovenpå */
-.sidebanner {
-  padding: 0;
-}
-
-.sidebanner figure {
-  margin: 0;
-}
-
-.sidebanner figure img {
-  width: 100%;
-  height: 50vw;
-  max-height: 320px;
-  object-fit: cover; /* fylder boksen og beskærer i stedet for at strække */
-}
-
-.sidebanner-tekst {
-  padding: 1.8rem 1.2rem;
-}
 
 /* --- Tablet: billedet øverst og teksten under, som på mobil,
    men med mere luft og en centreret tekstspalte --- */
@@ -706,19 +660,6 @@ main .hero {
 
   .hero .overskrift_ul {
     font-size: 1.25rem;
-  }
-
-  main .sidebanner {
-    padding: 0;
-  }
-
-  .sidebanner figure img {
-    height: 30vw;
-    max-height: 340px;
-  }
-
-  .sidebanner-tekst {
-    padding: 2.5rem 3rem;
   }
 }
 
@@ -801,20 +742,15 @@ main .hero {
 /* ============================================================
    5. KORT MED BILLEDE
    .billede-kort  = sektionen (forside: .om-mig-kort og
-                    .forloeb-kort, om mig: .historie)
+   .forloeb-kort, om mig: .historie)
    .kort-indhold  = wrapper med billede + tekst
    .kort-billede  = billedet, .kort-tekst = tekstdelen
    ============================================================ */
-.billede-kort {
-  text-align: start;
-}
 
 .forloeb-kort img,
 .historie img {
   border-radius: 16px;
   margin: 1.2rem auto;
-  width: 100%;
-  height: auto;
 }
 
 /* --- Tablet: billede og tekst side om side --- */
@@ -839,9 +775,6 @@ main .hero {
 
   .billede-kort img {
     margin: 0;
-    width: 100%;
-    height: 360px;
-    object-fit: cover;
   }
 }
 
@@ -849,10 +782,9 @@ main .hero {
    6. "LÆS MERE"-BOKSE (<details>)
    Bruges på forløb-, priser- og om mig-siden.
    ============================================================ */
+
 details {
-  background-color: var(--sand);
   border-radius: 12px;
-  padding: 0.9rem 1.1rem;
   margin: 0.6rem 0 1.2rem 0;
 }
 
@@ -862,6 +794,31 @@ details summary {
   color: var(--petroleum-moerk);
 }
 
+/* ============================================================
+   "Læs mere" – ingen boks og ingen trekant
+   Kun teksten med understregning.
+   ============================================================ */
+
+main details {
+  border-radius: 0;
+}
+
+main details summary {
+  display: inline-block;
+  list-style: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+main details summary::-webkit-details-marker {
+  display: none;
+}
+
+main details summary::marker {
+  content: "";
+}
+
 details p:last-child {
   margin-bottom: 0;
 }
@@ -869,34 +826,37 @@ details p:last-child {
 /* ============================================================
    7. FOOTER (ens på alle sider)
    ============================================================ */
+
 /* Book-bånd lige over galleriet: en lidt lysere blå end footeren, uden
    mellemrum, så bånd, galleri og footer hænger sammen. */
 .book-band {
   background-color: var(--petroleum);
   color: var(--hvid);
-  text-align: center;
   padding: 3.5rem 1.8rem 4rem;
-  margin: 0;
 }
 
 .book-band h2 {
-  color: var(--hvid);
   margin: 0 auto 0.6rem;
 }
 
+.book-band h2,
 .book-band p {
-  color: var(--hvid);
+  max-width: 34rem;
+}
+
+.book-band p {
   margin: 0 auto 1.6rem;
-  max-width: 26rem;
 }
 
 /* Hvid knap, så den står tydeligt mod den blå baggrund */
 .book-band .knap {
-  display: inline-block;
-  width: auto;
   margin: 0;
   background-color: var(--hvid);
   color: var(--bordeaux);
+  display: block;
+  width: fit-content;
+  margin-left: max(0px, calc((100% - 34rem) / 2));
+  margin-right: 0;
 }
 
 .book-band .knap:hover {
@@ -912,7 +872,6 @@ details p:last-child {
 footer {
   background-color: var(--petroleum-moerk);
   color: var(--hvid);
-  margin: 0;
   padding: 3.5rem 1.8rem 2rem;
 }
 
@@ -926,7 +885,6 @@ footer {
 }
 
 footer h2 {
-  color: var(--hvid);
   font-family: var(--font-tekst);
   font-size: var(--fs-label);
   font-weight: 700;
@@ -937,8 +895,6 @@ footer h2 {
 
 .footer-logo img {
   width: 150px;
-  max-width: 100%;
-  margin: 0;
 }
 
 footer p {
@@ -986,9 +942,9 @@ footer a:hover {
   margin: 2.6rem auto 0;
   padding-top: 1.4rem;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
-  text-align: center;
   font-size: var(--fs-note);
   opacity: 0.75;
+  text-align: left;
 }
 
 @media (min-width: 700px) {
@@ -1017,12 +973,9 @@ footer a:hover {
    sæt 2). Rækken glider 50% til venstre og starter så forfra – da
    sæt 2 er en kopi af sæt 1, ser det ud som en uendelig løkke.
    ============================================================ */
+
 .galleri {
-  margin-top: 0; /* galleriet sidder lige under book-båndet */
   margin-bottom: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  text-align: center;
 }
 
 /* Galleriet går kant til kant og har en baggrund, der glider fra
@@ -1030,18 +983,10 @@ footer a:hover {
    footer smelter blødt sammen. Selve billederne fader ikke. */
 main .galleri {
   max-width: none;
-  margin-inline: 0;
   padding-inline: 0;
   margin-top: -1px; /* dækker den tynde lyse streg mellem book-bånd og galleri */
   padding-block: 1.2rem;
   background: linear-gradient(to bottom, var(--petroleum), var(--petroleum-moerk));
-}
-
-.galleri .deko-blad {
-  display: block;
-  margin: 0 auto 0.8rem;
-  color: var(--salvie);
-  opacity: 0.8;
 }
 
 /* Rammen om billederne går helt ud til skærmens kanter (samme
@@ -1049,7 +994,6 @@ main .galleri {
    ud af rammen. mask-image laver en blød udtoning i begge sider. */
 .galleri-billeder {
   overflow: hidden;
-  width: 100%;
   /* Kun siderne toner ud – billederne må IKKE fade i top og bund. */
   -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
@@ -1066,20 +1010,17 @@ main .galleri {
 
 .galleri-billeder img {
   height: 260px;
-  width: auto;
   flex: 0 0 auto; /* billederne må hverken vokse eller skrumpe */
   object-fit: cover;
-  border-radius: 0;
   box-shadow: 0 14px 30px rgba(63, 95, 104, 0.16);
-  display: block;
 }
 
 @keyframes karrusel-scroll {
   from {
-    transform: translateX(0);
+  transform: translateX(0);
   }
   to {
-    transform: translateX(-50%); /* -50% fordi billederne ligger to gange */
+  transform: translateX(-50%); /* -50% fordi billederne ligger to gange */
   }
 }
 
@@ -1106,16 +1047,10 @@ main .galleri {
 
 /* --- Tablet: lidt større --- */
 @media (min-width: 700px) {
-  .galleri .deko-blad {
-    width: 36px;
-    height: 36px;
-  }
-
   .galleri-billeder img {
     height: 320px;
   }
 }
-
 
 /* ============================================================
    9. BLØDE OVERGANGE
@@ -1129,9 +1064,6 @@ main .galleri {
    De mørkeblå bånd (signatur-båndet, book-båndet, priskortenes og
    kontaktens bånd) fader IKKE – de har skarpe, rene kanter.
    ============================================================ */
-:root {
-  --fade: 3.5rem;
-}
 
 /* Tone ud både øverst og nederst */
 .manu-intro {
@@ -1140,10 +1072,6 @@ main .galleri {
 }
 
 /* Kun øverst (båndet ligger op mod næste bånd eller galleriet nedenunder) */
-.certificering {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
-  mask-image: linear-gradient(to bottom, transparent, #000 var(--fade));
-}
 
 /* Kun nederst (båndet ligger op mod headeren eller et andet bånd ovenover) */
 .prisvalg,
@@ -1166,8 +1094,6 @@ main .galleri {
    Klassen .js sættes i <head>, og .reveal/.synlig sættes af script.js.
    Uden JavaScript er alt bare synligt fra start. */
 .js .reveal {
-  opacity: 0;
-  transform: translateY(22px);
   transition: opacity 1s ease, transform 1s ease;
 }
 
@@ -1178,7 +1104,6 @@ main .galleri {
 
 /* Kort/bokse i en gruppe kommer lidt efter hinanden */
 .js .reveal-barn {
-  opacity: 0; /* kun toning, ingen bevægelse – så kortene altid står på linje */
   transition: opacity 0.9s ease;
   transition-delay: calc(var(--nr, 0) * 0.12s);
 }
@@ -1226,7 +1151,6 @@ main .galleri {
 
 /* Fokus: tydelig, blød ring til dem, der bruger tastaturet */
 a:focus-visible,
-button:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--petroleum);
   outline-offset: 3px;
@@ -1261,4 +1185,278 @@ summary:focus-visible {
 .hero .knap:hover {
   transform: none;
   box-shadow: none;
+}
+
+/* ============================================================
+   11. UDTALELSER ("Hvad andre siger")
+   Swipebar række af citat-kort i skiftende nuancer (sand → salvie → petroleum).
+   Bruges på forsiden og på Om mig-siden.
+   ============================================================ */
+
+.udtalelser {
+  background-color: var(--creme);
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
+}
+
+.udtalelser h2 {
+  margin-bottom: 0.6rem;
+}
+
+.udtalelser-intro {
+  max-width: 32rem;
+  font-style: italic;
+  color: var(--petroleum-moerk);
+  white-space: nowrap;
+  margin-bottom: 2rem;
+}
+
+.udtalelse-liste {
+  display: flex;
+  gap: 1.2rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem; /* luft til evt. scrollbar */
+}
+
+.udtalelser blockquote {
+  position: relative;
+  flex: 0 0 82%;
+  scroll-snap-align: start;
+  margin: 0;
+  border-radius: 20px;
+  padding: 2.6rem 1.8rem 2rem;
+  font-style: italic;
+  line-height: 1.7;
+  background-color: var(--sand); /* lyseste nuance */
+}
+
+.deko-citat {
+  display: block;
+  margin-bottom: 0.6rem;
+  opacity: 0.3;
+}
+
+.deko-citat path {
+  fill: currentColor;
+}
+
+/* Fem skiftende nuancer fra sidens eget farveskema, lysest til
+   mørkest, gentaget hver 5. kort.
+   :nth-child(5n + 2) = "kort nr. 2, 7, 12 ..." (n tæller 0, 1, 2 ...
+   og 5n + 2 giver så 2, 7, 12). Det er en genvej, så vi ikke skal
+   give hvert kort sin egen klasse. */
+.udtalelser blockquote:nth-child(5n + 2) {
+  background-color: var(--salvie-lys);
+}
+
+.udtalelser blockquote:nth-child(5n + 3) {
+  background-color: var(--salvie);
+}
+
+.udtalelser blockquote:nth-child(5n + 4) {
+  background-color: var(--petroleum);
+  color: var(--hvid);
+}
+
+.udtalelser blockquote:nth-child(5n + 5) {
+  background-color: var(--petroleum-moerk);
+  color: var(--hvid);
+}
+
+/* "Læs mere" i citaterne: fladt link i stedet for base.css' sandfarvede
+   boks, så det passer til kortets egen baggrundsfarve. Teksten i HTML'en
+   skjules (font-size: 0), og ::after viser "Læs mere"/"Luk" i stedet. */
+.udtalelser details {
+  margin: 0.8rem 0 0;
+}
+
+.udtalelser summary {
+  font-size: 0;
+  font-style: normal;
+  color: inherit;
+}
+
+.udtalelser summary::after {
+  content: "Læs mere";
+  font-size: var(--fs-note);
+  text-underline-offset: 3px;
+}
+
+.udtalelser details[open] summary::after {
+  content: "Luk";
+}
+
+.udtalelser details p {
+  margin: 0.8rem 0 0;
+}
+
+.udtalelser cite {
+  display: block;
+  margin-top: 1.1rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: var(--fs-note);
+  opacity: 0.75;
+}
+
+@media (min-width: 700px) {
+  .udtalelser-intro {
+    margin-bottom: 3rem;
+  }
+
+  .udtalelse-liste {
+    gap: 1.8rem;
+  }
+
+  .udtalelser blockquote {
+    flex: 0 0 31%;
+    padding: 3rem 2.4rem 2.6rem;
+  }
+
+  .deko-citat {
+    width: 42px;
+    height: 32px;
+    margin-bottom: 0.8rem;
+  }
+}
+
+.udtalelser::before,
+.udtalelser::after {
+  display: none;
+}
+
+/* ============================================================
+   12. BÅND I FULD BREDDE OG BLØDE FARVESKÆR
+   De beige bånd har bløde farveskær bag sig, der langsomt driver.
+   ============================================================ */
+
+main .hjaelper-dig,
+#et-forloeb-hos-mig,
+.manu-intro,
+.chok-traume,
+.udmaerkelser,
+.udtalelser,
+.sporgsmaal-svar,
+.prisvalg {
+  position: relative;
+  overflow: clip; /* farveskærene bliver inde i deres eget bånd */
+  isolation: isolate; /* skærene ligger bag indholdet, men oven på båndets farve */
+}
+
+main .hjaelper-dig::before,
+#et-forloeb-hos-mig::before,
+.manu-intro::before,
+.chok-traume::before,
+.udmaerkelser::before,
+.udtalelser::before,
+.sporgsmaal-svar::before,
+.prisvalg::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -14rem;
+  right: -12rem;
+  width: 40rem;
+  height: 40rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(95, 135, 145, 0.3), rgba(95, 135, 145, 0) 65%);
+  animation: skaer-drift 26s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+main .hjaelper-dig::after,
+#et-forloeb-hos-mig::after,
+.manu-intro::after,
+.chok-traume::after,
+.udmaerkelser::after,
+.udtalelser::after,
+.sporgsmaal-svar::after,
+.prisvalg::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  bottom: -16rem;
+  left: -12rem;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 44, 72, 0.14), rgba(124, 44, 72, 0) 65%);
+  animation: skaer-drift 32s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+}
+
+@keyframes skaer-drift {
+  from {
+  transform: translate(0, 0) scale(1);
+  }
+  to {
+  transform: translate(-3rem, 2.5rem) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main .hjaelper-dig::before,
+  #et-forloeb-hos-mig::before,
+  .manu-intro::before,
+  .chok-traume::before,
+  .udmaerkelser::before,
+  .udtalelser::before,
+  .sporgsmaal-svar::before,
+  .prisvalg::before,
+  main .hjaelper-dig::after,
+  #et-forloeb-hos-mig::after,
+  .manu-intro::after,
+  .chok-traume::after,
+  .udmaerkelser::after,
+  .udtalelser::after,
+  .sporgsmaal-svar::after,
+  .prisvalg::after {
+    animation: none;
+  }
+
+  .kort-billede:hover,
+  .balance-teaser img:hover,
+  .om-intro figure img:hover,
+  .manu-intro figure img:hover,
+  .forloeb-intro figure img:hover,
+  .kontakt-foto:hover,
+  .book-foto:hover,
+  .hvorfor-billede:hover,
+  .tryg-rum img:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   13. BILLEDER
+   Blød skygge, og de zoomer blidt, når man peger på dem.
+   ============================================================ */
+
+.kort-billede,
+.balance-teaser img,
+.om-intro figure img,
+.manu-intro figure img,
+.forloeb-intro figure img,
+.kontakt-foto,
+.book-foto,
+.hvorfor-billede,
+.tryg-rum img {
+  transition: transform 0.9s ease, box-shadow 0.6s ease;
+  box-shadow: 0 16px 38px rgba(63, 95, 104, 0.16);
+}
+
+.kort-billede:hover,
+.balance-teaser img:hover,
+.om-intro figure img:hover,
+.manu-intro figure img:hover,
+.forloeb-intro figure img:hover,
+.kontakt-foto:hover,
+.book-foto:hover,
+.hvorfor-billede:hover,
+.tryg-rum img:hover {
+  transform: scale(1.025);
 }

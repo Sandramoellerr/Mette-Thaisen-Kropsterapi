@@ -1,14 +1,15 @@
 /* ============================================================
    FORSIDEN – index.html
 
-   Sektioner der kun findes på forsiden:
-     0. Balance – lille "hint"-sektion lige under hero
-     1. Om mig – teaser (grønt kort med foto)
-     2. Det kan jeg hjælpe dig med (+ tjekliste)
-     3. Hvorfor Manuvision kropsterapi?
-     4. Bånd med signatur ("Mette Thaisen Kropsterapi")
-     5. Et forløb hos mig
-     6. Book en tid
+   Sektioner (oppefra og ned):
+   1. Ord-bånd lige under hero
+   2. Om mig – teaser
+   3. Det kan jeg hjælpe dig med (+ tjekliste)
+   4. Lad os tage en snak
+   5. Et forløb hos mig
+   6. Hvad andre siger
+   7. Bånd med signatur
+   8. Balance – lille "hint"-sektion
 
    Hero, header, footer og galleri ligger i base.css.
    Skrevet mobil-først: reglerne uden media query gælder mobil,
@@ -16,76 +17,58 @@
    ============================================================ */
 
 /* ============================================================
-   0. BALANCE – lille "hint"-sektion
-   Foto og en kort tekst, der peger videre ned til "Det kan jeg
-   hjælpe dig med" (linket herunder springer til det afsnit).
+   1. ORD-BÅND UNDER HERO
+   Smalt, lyst bånd med få ord adskilt af prikker.
    ============================================================ */
-.balance-teaser {
+
+.ord-baand {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 1.8rem;
   display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
-}
-
-.balance-teaser img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: center 30%;
-  border-radius: 20px;
-}
-
-.balance-teaser-tekst .kicker {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem 1.2rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   font-size: var(--fs-label);
-  font-weight: 600;
+  background-color: var(--creme);
   color: var(--petroleum-moerk);
-  margin-bottom: 0.4rem;
 }
 
-.balance-teaser-tekst h2 {
-  margin-bottom: 0.6rem;
+.ord-baand li + li::before {
+  content: "●";
+  font-size: 0.55em;
+  margin-right: 1.2rem;
+  vertical-align: middle;
+  opacity: 0.7;
 }
 
-/* Linket peger op på siden (til "Et forløb hos mig" ovenfor), så det får
-   en lille pil op foran teksten i stedet for ned-pilen, de andre "læs
-   mere"-links bruger. */
-.balance-teaser-tekst .tekst-link-op::before {
-  content: "↑";
-  display: inline-block;
-  margin-right: 0.4rem;
-}
-
-/* Computer: foto til venstre, tekst til højre, lige så høj som fotoet */
-@media (min-width: 700px) {
-  .balance-teaser {
-    flex-direction: row;
-    align-items: center;
-    gap: 3.5rem;
-  }
-
-  .balance-teaser img {
-    flex: 0 0 42%;
-    min-width: 0; /* uden denne kan billedet ikke krympe under sin egen naturlige bredde */
-    height: 320px;
-  }
-
-  .balance-teaser-tekst {
-    flex: 1;
-    min-width: 0; /* samme for teksten, så lange ord ikke skubber layoutet bredere */
-  }
+/* Hero'en har selv 3.5rem luft under sig. Den trækkes tilbage her,
+   så båndet sidder helt op ad hero'en (og hero'en ikke skal røres). */
+.hero + .ord-baand {
+  margin-top: -3.5rem;
 }
 
 /* ============================================================
-   1. OM MIG – TEASER
-   Grønt kort med foto, en lille label over overskriften og en
-   signatur under teksten.
+   2. OM MIG – TEASER
+   Lys salvie bånd i fuld bredde med foto, en lille label over
+   overskriften og en signatur under teksten.
    ============================================================ */
-.om-mig-kort {
+
+/* Båndet går helt ud til kanterne; indholdet står i midterspalten */
+main .om-mig-kort {
+  max-width: none;
+  margin: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
   background-color: var(--salvie-lys);
-  margin-top: 3rem;
-  box-shadow: 0 16px 38px rgba(63, 95, 104, 0.16);
-  padding: 1.4rem;
+}
+
+@media (min-width: 700px) {
+  main .om-mig-kort {
+    padding-block: 6.5rem;
+  }
 }
 
 /* Mobil: billede og tekst under hinanden (flex-direction: column) */
@@ -93,8 +76,6 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin: 0;
-  max-width: none;
   align-items: stretch;
   text-align: left;
 }
@@ -105,27 +86,14 @@
    tilsvarende order, så det altid kommer efter teksten. */
 .om-mig-kort .kort-tekst {
   order: -1;
+  padding: 0 0.6rem 0.8rem;
 }
 
 .om-mig-kort img {
   order: 1;
-}
-
-/* Billedet er kvadratisk (aspect-ratio: 1 / 1) og beskæres pænt
-   med object-fit: cover. object-position flytter udsnittet, så
-   ansigtet bliver i billedet. */
-.om-mig-kort img {
   border-radius: 16px;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
   object-position: center 30%;
   margin: 4rem auto 0;
-}
-
-.om-mig-kort .kort-tekst {
-  padding: 0 0.6rem 0.8rem;
 }
 
 /* Lille label OVER overskriften. Teksten kommer fra CSS'en
@@ -153,25 +121,27 @@
   display: block;
   margin-top: 1rem;
   font-family: var(--font-overskrift);
-  font-style: italic;
   font-size: 1.25rem;
   color: var(--petroleum-moerk);
 }
 
 .om-mig-kort .knap-lys {
-  margin-inline: 0;
   margin-bottom: 3rem;
+}
+
+/* Fotoet vises i sine egne proportioner (stående 2:3), så ansigtet ikke skæres af */
+.billede-kort img.kort-billede {
+  width: 100%;
+  object-fit: cover;
+}
+
+.om-mig-kort .kort-billede {
+  aspect-ratio: 2 / 3;
+  max-width: 26rem;
 }
 
 /* --- Tablet/computer: tekst til venstre, foto til højre --- */
 @media (min-width: 700px) {
-  .om-mig-kort {
-    padding: 6rem;
-    border-radius: 1rem;
-    margin-inline: auto;
-    margin-top: 4rem;
-  }
-
   /* row-reverse = billedet (som står først i HTML) havner til højre.
      order nulstilles her, så mobilens "tekst først"-rækkefølge ikke
      blander sig i row-reverse. */
@@ -192,9 +162,6 @@
      Marginerne (3rem/4rem) svarer til luften over og under teksten. */
   .om-mig-kort img {
     flex: 0 0 42%;
-    width: 42%;
-    aspect-ratio: auto;
-    height: auto;
     contain: size;
     align-self: stretch;
     margin: 3rem 0 4rem;
@@ -202,18 +169,33 @@
   }
 
   .om-mig-kort .kort-tekst {
-    flex: 1;
     align-self: center;
     padding: 1rem 1.4rem;
   }
 }
 
 /* ============================================================
-   2. DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
+   3. DET KAN JEG HJÆLPE DIG MED (+ tjekliste)
+   Lys beige bånd med tekst til venstre og et mørkere beige kort til højre.
    ============================================================ */
-.hjaelper-dig {
-  max-width: 52rem;
-  margin-bottom: 1rem;
+
+main .hjaelper-dig {
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
+  background-color: var(--creme);
+}
+
+@media (min-width: 700px) {
+  main .hjaelper-dig {
+    padding-block: 6.5rem;
+  }
+}
+
+main .hjaelper-dig::before,
+main .hjaelper-dig::after {
+  display: none; /* ingen blå farveskær i dette bånd */
 }
 
 .hjaelper-dig-tekst p:last-child {
@@ -222,15 +204,19 @@
 
 /* Tjeklisten: sandfarvet kort med prikker foran hvert punkt */
 .tjekliste {
-  background-color: var(--sand);
-  border-radius: 16px;
   padding: 3rem 2rem;
   margin-top: 2rem;
+  border-radius: 24px;
+  box-shadow: 0 14px 34px rgba(63, 95, 104, 0.1);
+}
+
+main .hjaelper-dig .tjekliste {
+  background-color: var(--sand);
 }
 
 .tjekliste h3 {
-  text-align: center;
   margin-bottom: 2rem;
+  text-align: left;
 }
 
 .tjekliste ul {
@@ -260,64 +246,8 @@
   background-color: var(--bordeaux);
 }
 
-/* Båndet går helt ud til skærmens kanter (samme calc-trick som hero'en),
-   og indholdet står i en smal, centreret spalte */
-main .uforpligtende_samtale {
-  max-width: none;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  margin-bottom: 0;
-  padding: 4rem 1.5rem;
-  background-color: var(--salvie-lys);
-  text-align: center;
-}
-
-.samtale-indhold {
-  max-width: 38rem;
-  margin-inline: auto;
-}
-
-.samtale-indhold .kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: var(--fs-label);
-  font-weight: 600;
-  color: var(--petroleum-moerk);
-  margin: 0 auto 0.6rem;
-}
-
-.samtale-indhold h2 {
-  margin: 0 auto 1.2rem;
-}
-
-/* margin-inline: auto centrerer afsnittet, som ellers har max-width: 60ch */
-.samtale-indhold p {
-  margin-inline: auto;
-  line-height: 1.7;
-}
-
-.samtale-indhold .knap-lys {
-  margin-top: 1.2rem;
-}
-
-/* Sektionen lige efter båndet skal sidde helt op ad det, uden mellemrum.
-   + betyder "elementet lige efter". */
-main .uforpligtende_samtale + section {
-  margin-top: 0;
-}
-
-@media (min-width: 700px) {
-  main .uforpligtende_samtale {
-    padding: 6rem 2.5rem;
-  }
-}
-
 /* --- Tablet/computer: tekst og tjekliste ved siden af hinanden --- */
 @media (min-width: 700px) {
-  .hjaelper-dig {
-    max-width: 68rem;
-  }
-
   .hjaelper-dig-indhold {
     display: flex;
     align-items: flex-start;
@@ -349,7 +279,6 @@ main .uforpligtende_samtale + section {
   .hjaelper-dig {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
-    grid-template-rows: auto 1fr; /* evt. ekstra højde går til teksten, ikke under overskriften */
     column-gap: 4rem;
   }
 
@@ -392,48 +321,103 @@ main .uforpligtende_samtale + section {
 }
 
 /* ============================================================
-   3. HVORFOR MANUVISION KROPSTERAPI?
-   Bånd med lys baggrund.
+   4. LAD OS TAGE EN SNAK
+   Hvidt bånd i fuld bredde med en smal tekstspalte.
    ============================================================ */
-.hvorfor-manuvision {
-  max-width: 52rem;
-  margin-top: 3rem;
+
+/* Hvidt bånd i fuld bredde; teksten står i en smal spalte */
+main .uforpligtende_samtale {
+  max-width: none;
   margin-bottom: 0;
-  padding-block: 5rem; /* mere luft i top og bund */
-  background-color: var(--lyscreme);
-  border-bottom: 3px solid var(--salvie-lys);
+  padding: 4rem 1.5rem;
+  background-color: var(--hvid);
+  text-align: left;
 }
 
-.hvorfor-manuvision h2 {
-  margin-bottom: 1.6rem;
+.samtale-indhold {
+  margin-inline: auto;
 }
 
-.hvorfor-manuvision p {
-  margin-bottom: 1.4rem; /* luft mellem afsnittene */
+.samtale-indhold .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin: 0 auto 0.6rem;
 }
 
-/* Computer: baggrunden går ud til skærmens kanter (max-width: none),
-   mens teksten holdes i en smallere, centreret spalte. */
+.samtale-indhold h2 {
+  margin: 0 auto 1.2rem;
+}
+
+.samtale-indhold p {
+  line-height: 1.7;
+}
+
+.samtale-indhold .knap-lys {
+  margin-top: 1.2rem;
+}
+
+main .uforpligtende_samtale .samtale-indhold {
+  max-width: 40rem;
+}
+
+main .uforpligtende_samtale .samtale-indhold > * {
+  max-width: none;
+}
+
+/* Sektionen lige efter båndet skal sidde helt op ad det, uden mellemrum.
+   + betyder "elementet lige efter". */
 @media (min-width: 700px) {
-  .hvorfor-manuvision {
-    max-width: none;
-    margin-inline: 0;
-    padding-block: 8rem;
-    margin-top: 0;
-  }
-
-  .hvorfor-manuvision h2,
-  .hvorfor-manuvision p {
-    max-width: 56rem;
-    margin-inline: auto;
+  main .uforpligtende_samtale {
+    padding: 6rem 2.5rem;
   }
 }
 
 /* ============================================================
-   4. BÅND MED SIGNATUR
+   5. ET FORLØB HOS MIG
+   Lys beige bånd med foto og tekst.
+   ============================================================ */
+
+#et-forloeb-hos-mig {
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
+  background-color: var(--creme);
+}
+
+@media (min-width: 700px) {
+  #et-forloeb-hos-mig {
+    padding-block: 6.5rem;
+  }
+}
+
+.forloeb-kort img {
+  margin-top: 2rem;
+}
+
+.forloeb-kort .kort-billede {
+  aspect-ratio: 3 / 2;
+}
+
+/* ============================================================
+   6. HVAD ANDRE SIGER
+   Udtalelserne (fælles med Om mig-siden) ligger i base.css. På forsiden ligger
+   de på hvid, så to beige bånd ikke støder sammen.
+   ============================================================ */
+
+#et-forloeb-hos-mig + .udtalelser {
+  background-color: var(--hvid);
+}
+
+/* ============================================================
+   7. BÅND MED SIGNATUR
    Hele båndet er ét stort link til bookingsystemet.
    Teksten står i skriveskrift, så den ligner en underskrift.
    ============================================================ */
+
 .bjaelke {
   display: block;
   background-color: var(--petroleum-moerk);
@@ -442,7 +426,6 @@ main .uforpligtende_samtale + section {
   text-align: center;
   padding: 3.5rem 1.5rem;
   transition: filter 0.2s ease;
-  margin: 0;
 }
 
 .bjaelke:hover {
@@ -459,149 +442,81 @@ main .uforpligtende_samtale + section {
   font-size: clamp(1.8rem, 9vw, 3.4rem);
 }
 
-.bjaelke p {
-  margin: 0;
-}
-
 @media (min-width: 700px) {
   .bjaelke {
     padding: 4.5rem 2rem;
   }
 }
 
-.balance-teaser {
-  background-color: var(--sand);
-  padding: 3.5rem 1.8rem; /* mobil: kantet kasse med ekstra luft i top og bund */
-  margin-block: 6rem; /* mere lys luft over og under kassen */
-}
-
-/* padding: 8rem på alle sider var for meget på tablet (700-999px) –
-   billede + tekst + den brede luft kunne ikke være der i bredden, så
-   siden fik vandret scroll. Luften trappes op i to trin i stedet. */
-@media (min-width: 700px) {
-  .balance-teaser {
-    border-radius: 16px; /* runde hjørner først fra tablet */
-    padding: 3rem;
-    margin-block: 8rem; /* samme luft som de andre sektioner */
-  }
-}
-
-@media (min-width: 1000px) {
-  .balance-teaser {
-    padding: 8rem;
-  }
-}
 /* ============================================================
-   5. ET FORLØB HOS MIG
-   ============================================================ */
-#et-forloeb-hos-mig {
-  background-color: var(--creme); /* samme som sidens baggrund */
-  padding-block: 4rem; /* luft i top og bund */
-  margin-bottom: 0; /* sidder helt op ad det mørke bånd nedenunder */
-}
-.forloeb-kort img {
-  margin-top: 2rem;
-}
-@media (min-width: 700px) {
-  #et-forloeb-hos-mig {
-    max-width: none;
-    padding: 11rem 8.2rem; /* top/bund, sider */
-    margin-bottom: 0;
-  }
-}
-
-
-/* ============================================================
-   FORSIDE I NYT OPSLAG: ord-bånd og "tre veje ind"
+   8. BALANCE – lille "hint"-sektion
+   Foto og en kort tekst, der peger videre op til "Et forløb hos mig".
    ============================================================ */
 
-/* Smalt mørkt bånd med få ord, adskilt af prikker */
-.ord-baand {
-  list-style: none;
-  margin: 0;
-  padding: 1rem 1.8rem;
-  background-color: var(--petroleum-moerk);
-  color: var(--creme);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.3rem 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: var(--fs-label);
-}
-
-.ord-baand li + li::before {
-  content: "●";
-  font-size: 0.55em;
-  margin-right: 1.2rem;
-  vertical-align: middle;
-  opacity: 0.7;
-}
-
-/* Sandfarvet bånd med tre hvide kort */
-.tre-veje {
+main .balance-teaser {
   max-width: none;
-  margin-block: 0 4rem;
-  background-color: var(--sand);
-  padding-block: 4rem;
-  padding-inline: max(1.8rem, calc((100% - 73rem) / 2));
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
+  background-color: var(--hvid);
 }
 
-.tre-veje h2 {
-  text-align: center;
-  margin-inline: auto;
-  margin-bottom: 2.2rem;
+@media (min-width: 700px) {
+  main .balance-teaser {
+    padding-block: 6.5rem;
+  }
 }
 
-.veje-liste {
-  display: grid;
-  gap: 1.2rem;
-}
-
-.vej-kort {
+.balance-teaser {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  background-color: var(--hvid);
-  border-radius: 24px;
-  padding: 2rem 1.8rem;
+  gap: 1.6rem;
 }
 
-.vej-nr {
-  margin: 0 0 1rem;
-  color: var(--petroleum);
-  font-family: var(--font-overskrift);
-  font-size: var(--fs-small);
-  letter-spacing: 0.1em;
+.balance-teaser img {
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 20px;
+  aspect-ratio: 3 / 2;
 }
 
-.vej-kort h3 {
-  margin-bottom: 0.7rem;
+.balance-teaser-tekst .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--fs-label);
+  font-weight: 600;
+  color: var(--petroleum-moerk);
+  margin-bottom: 0.4rem;
 }
 
-.vej-kort .knap {
-  margin: auto 0 0; /* knappen skubbes ned i bunden, så alle tre står på linje */
+.balance-teaser-tekst h2 {
+  margin-bottom: 0.6rem;
 }
 
-.vej-tekst {
-  font-size: var(--fs-small);
-  margin-bottom: 1.6rem;
+/* Linket peger op på siden (til "Et forløb hos mig" ovenfor), så det får
+   en lille pil op foran teksten i stedet for ned-pilen, de andre "læs
+   mere"-links bruger. */
+.balance-teaser-tekst .tekst-link-op::before {
+  content: "↑";
+  display: inline-block;
+  margin-right: 0.4rem;
 }
 
+/* Computer: foto til venstre, tekst til højre, lige så høj som fotoet */
 @media (min-width: 700px) {
-  .tre-veje {
-    padding-block: 5.5rem;
-  }
-}
-
-@media (min-width: 1000px) {
-  .veje-liste {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.6rem;
+  .balance-teaser {
+    flex-direction: row;
+    align-items: center;
+    gap: 3.5rem;
   }
 
-  .vej-kort {
-    padding: 2.4rem 2.2rem;
+  .balance-teaser img {
+    flex: 0 0 42%;
+    min-width: 0; /* uden denne kan billedet ikke krympe under sin egen naturlige bredde */
+  }
+
+  .balance-teaser-tekst {
+    flex: 1;
+    min-width: 0; /* samme for teksten, så lange ord ikke skubber layoutet bredere */
   }
 }

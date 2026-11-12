@@ -1,27 +1,31 @@
 /* ============================================================
    OM MIG – om-mig.html
-   Samme designsprog som forsiden: salviegrønne bånd/kort,
-   hvide inder-paneler, runde hjørner og god luft.
 
-   Afsnit:
-     1. Intro ("Om mig")
-     2. Certificering – grønt bånd med hvidt kort + rundt mærke
-     3. Min historie – foto + tekst
-     4. Certificeret og registreret hos – grønt logo-bånd
-     5. Udtalelser
+   Sektioner (oppefra og ned):
+   1. Intro ("Om mig")
+   2. Certificering
+   3. Min historie
+   3a. Hvem kan jeg hjælpe
+   4. Certifikat-bånd (logoer)
+
+   "Hvad andre siger" (udtalelser) ligger i base.css, fordi den også bruges på forsiden.
+   Skrevet mobil-først: @media (min-width: 700px) bygger ovenpå til tablet/computer.
    ============================================================ */
 
 /* ============================================================
    1. INTRO ("Om mig")
    Kort tekst med et lille portræt ved siden – intet stort banner.
    ============================================================ */
+
+/* Salvie bånd i fuld bredde, som går blødt over i det beige bånd nedenunder */
 .om-intro {
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  max-width: 78rem;
-  margin: 3.5rem auto 0;
-  padding: 0 1.8rem;
+  max-width: none;
+  margin: 0;
+  background: linear-gradient(to bottom, var(--salvie-lys) calc(100% - 6rem), var(--creme));
+  padding: 4.5rem var(--sidepadding) 7rem;
 }
 
 /* Mobil: teksten skal vises FØR billedet, selvom billedet står
@@ -38,12 +42,12 @@
 
 .om-intro figure img {
   width: 100%;
-  aspect-ratio: 4 / 5; /* stående format, så portrættet ikke bliver beskåret til et bredt udsnit */
-  height: auto;
   object-fit: cover;
-  object-position: center 25%;
   border-radius: 20px;
   margin-top: 2rem;
+  aspect-ratio: 2 / 3;
+  max-width: 26rem;
+  object-position: center 20%;
 }
 
 .om-intro-tekst .kicker {
@@ -51,13 +55,11 @@
   letter-spacing: 0.16em;
   font-size: var(--fs-label);
   font-weight: 600;
-  color: var(--petroleum-moerk);
   margin-bottom: 0.4rem;
 }
 
 .om-intro-tekst h1 {
   margin-bottom: 0.7rem;
-  margin-top: 2rem;
 }
 
 @media (min-width: 700px) {
@@ -65,9 +67,8 @@
     flex-direction: row-reverse;
     align-items: center;
     gap: 3.5rem;
-    margin-top: 5.5rem;
-    padding-inline: 2.5rem;
   }
+
   /* order nulstilles her, så mobilens "tekst først"-rækkefølge ikke
      blander sig i row-reverse (billedet skal stå til højre, som det
      gjorde før). */
@@ -75,10 +76,12 @@
   .om-intro-tekst {
     order: 0;
   }
+
   .om-intro figure {
     flex: 0 0 36%;
     max-width: 22rem; /* portrættet må ikke blive for stort på store skærme */
   }
+
   .om-intro-tekst {
     flex: 1;
   }
@@ -89,15 +92,20 @@
    Grønt bånd i FULD bredde (som en sektion) → hvidt kort i midten
    → rundt Manuvision-mærke der stikker op over kortets hjørne.
    ============================================================ */
+
+/* Lige under intro-båndet: ingen luft imellem, så farverne går i et */
 .certificering {
-  background-color: var(--salvie-lys);
   max-width: none;
   margin: 6rem 0 0;
   padding: 5rem 1.6rem;
+  background-color: var(--creme);
+}
+
+.om-intro + .certificering {
+  margin-top: 0;
 }
 
 .certificering-indhold {
-  display: block; /* overskriver flex fra base */
   position: relative;
   max-width: 74rem;
   margin-inline: auto;
@@ -111,17 +119,12 @@
   position: absolute;
   top: -34px;
   right: -8px;
-  width: 88px;
   height: 88px;
-  margin: 0;
-  padding: 0;
   border-radius: 50%;
-  background: none;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 }
 
 .certificering h2 {
-  line-height: 1.4;
   margin-bottom: 1.4rem;
   padding-right: 3.5rem; /* plads til mærket på mobil */
 }
@@ -137,6 +140,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   font-size: var(--fs-small);
 }
+
 .certificering li:last-child {
   border-bottom: none;
 }
@@ -146,34 +150,43 @@
 .certificering-kurser {
   margin-top: 1.4rem;
 }
+
 .certificering-kurser li {
-  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+/* Den lange tekst i kortet er en forklaring, ikke en stor overskrift */
+main .certificering h2 {
+  font-size: clamp(1.15rem, 1.6vw, 1.45rem);
   line-height: 1.5;
 }
 
 @media (min-width: 700px) {
   .certificering {
-    margin-top: 8rem;
-    padding: 8rem 2.5rem;
+    padding: 5rem 2.5rem;
   }
-  .certificering-indhold {
-    padding: 4rem 3.5rem;
-  }
+
   .certificering .badge {
-    width: 120px;
     height: 120px;
     top: -50px;
     right: -20px;
   }
+
   .certificering h2 {
     padding-right: 0;
   }
+
   .certificering ul {
     columns: 2;
     column-gap: 3.5rem;
   }
+
   .certificering li {
     break-inside: avoid;
+  }
+
+  .certificering-indhold {
+    padding: 3rem 3.5rem;
   }
 }
 
@@ -183,6 +196,10 @@
    Desktop: venstre spalte med de to forskudte fotos + knap,
    højre spalte med overskrift og tekst.
    ============================================================ */
+
+.historie {
+  background-color: var(--hvid);
+}
 
 /* venstre spalte: fotos + knap */
 .historie-venstre {
@@ -196,28 +213,37 @@
 .historie-billeder {
   position: relative;
   margin-top: 2rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
 }
 
 .historie-billeder img {
-  display: block;
-  width: 100%;
-  height: 240px;
   object-fit: cover;
   border-radius: 8px;
-  margin: 0;
   box-shadow: 0 16px 36px rgba(63, 95, 104, 0.18);
 }
+
 .billede-kort {
   margin-top: 1rem;
   margin-left: 2rem;
 }
 
 .historie-billeder .historie-foto-2 {
-  width: 50%;
-  margin: -2.5rem 1rem 0 auto; /* trukket op og skubbet til højre */
-  position: relative;
   z-index: 1;
   border: 5px solid var(--creme); /* lille lys kant, så de adskilles */
+  position: static;
+  width: 58%;
+  aspect-ratio: 3 / 2;
+  margin: 3rem 0 0;
+  border-width: 4px;
+}
+
+/* Foto 1 står stående (2:3) og foto 2 liggende (3:2), så ingen af dem skæres */
+.historie-billeder .historie-foto-1 {
+  width: 42%;
+  aspect-ratio: 2 / 3;
+  margin: 0;
 }
 
 /* knappen: bordeaux */
@@ -232,51 +258,35 @@
 
 @media (min-width: 700px) {
   .historie {
-    margin-top: 8rem;
-    background-color: var(--sand);
     max-width: none;
   }
 
   /* to spalter: fotos til venstre, tekst til højre */
   .historie .kort-indhold {
-    flex-direction: row;
     align-items: flex-start;
     gap: 4rem;
-    max-width: none;
   }
+
   .historie .historie-venstre {
     flex: 0 0 44%;
   }
-  .historie .historie-tekst {
-    flex: 1;
-  }
 
   /* fotogruppen får fast højde, så foto 2 kan ligge absolut forskudt */
-  .historie .historie-billeder {
-    height: 440px;
-  }
   .historie-billeder img {
-    height: 300px;
     border-radius: 6px;
   }
+
   .historie-billeder .historie-foto-1 {
-    position: absolute;
-    width: 64%;
     top: 0;
     left: 0;
-    margin: 0;
     z-index: 0;
   }
+
   .historie-billeder .historie-foto-2 {
-    position: absolute;
-    width: 60%;
     top: 140px;
     right: 0;
-    left: auto;
-    margin: 0;
-    z-index: 1;
-    border: 8px solid var(--creme);
   }
+
   .billede-kort {
     margin: 0;
     margin-block: 10rem;
@@ -284,15 +294,27 @@
   }
 }
 
+@media (min-width: 700px) {
+  .historie .historie-billeder {
+    gap: 1.8rem;
+  }
+
+  .historie-billeder .historie-foto-2 {
+    margin: 4rem 0 0;
+    border-width: 6px;
+  }
+}
+
 /* ============================================================
    3a. HVEM KAN JEG HJÆLPER
    Enkel tekst-sektion – ingen billeder, bare god læsbarhed.
    ============================================================ */
+
 .hvem-hjaelper {
-  background-color: var(--salvie-lys);
   margin-block: 0;
   padding-block: 5rem; /* luft i top og bund */
   padding-inline: 1.8rem; /* samme sideluft som resten af siden */
+  background-color: var(--hvid);
 }
 
 .hvem-hjaelper p,
@@ -314,20 +336,33 @@
     padding-block: 9rem;
   }
 }
+
 /* ============================================================
    4. CERTIFIKAT-BÅND
+   Petroleum bånd i fuld bredde med overskrift og logoer, centreret.
    ============================================================ */
+
 .udmaerkelser {
-  background-color: var(--sand);
-  padding: 6rem 1.8rem;
+  max-width: none;
+  margin-block: 0;
+  padding-block: 4.5rem;
+  padding-inline: var(--sidepadding);
+  background-color: var(--petroleum);
   text-align: center;
 }
 
-.udmaerkelser .deko-blad {
-  display: block;
-  margin: 0 auto 0.8rem;
-  color: var(--petroleum-moerk);
-  opacity: 0.6;
+.udmaerkelser::before,
+.udmaerkelser::after {
+  display: none;
+}
+
+.udmaerkelser .udmaerkelser-kicker {
+  color: var(--hvid);
+  max-width: none;
+}
+
+.udmaerkelser .logo-baand {
+  justify-content: center;
 }
 
 .udmaerkelser-kicker {
@@ -335,14 +370,12 @@
   letter-spacing: 0.16em;
   font-size: var(--fs-label);
   font-weight: 600;
-  color: var(--petroleum-moerk);
   margin: 0 0 2rem;
 }
 
 /* logoerne ved siden af hinanden */
 .logo-baand {
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 1.2rem;
 }
@@ -350,7 +383,6 @@
 /* logoerne */
 .logo-baand img {
   height: 70px;
-  width: auto;
   object-fit: contain;
   transition: transform 0.25s ease;
 }
@@ -361,19 +393,8 @@
 
 /* desktop */
 @media (min-width: 700px) {
-  .udmaerkelser {
-    padding: 3rem 2.5rem 11rem;
-    background-color: var(--creme);
-  }
-
   .udmaerkelser-kicker {
-    max-width: none;
     font-size: var(--fs-card);
-  }
-
-  .udmaerkelser .deko-blad {
-    width: 40px;
-    height: 40px;
   }
 
   .logo-baand {
@@ -382,139 +403,5 @@
 
   .logo-baand img {
     height: 150px;
-  }
-}
-
-/* ============================================================
-   5. UDTALELSER
-   Swipebar vandret række af citat-kort i skiftende nuancer fra
-   sidens eget farveskema (sand → salvie → petroleum), lysest
-   til mørkest, i stedet for en fast grid-opstilling.
-   ============================================================ */
-.udtalelser h2 {
-  margin-bottom: 0.6rem;
-  margin-left: 3rem;
-}
-
-.udtalelser-intro {
-  max-width: 32rem;
-  font-style: italic;
-  color: var(--petroleum-moerk);
-  margin-left: 3rem;
-  white-space: nowrap;
-  margin-bottom: 2rem;
-}
-
-.udtalelse-liste {
-  display: flex;
-  gap: 1.2rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.5rem; /* luft til evt. scrollbar */
-}
-
-.udtalelser blockquote {
-  position: relative;
-  flex: 0 0 82%;
-  scroll-snap-align: start;
-  margin: 0;
-  border-radius: 20px;
-  padding: 2.6rem 1.8rem 2rem;
-  font-style: italic;
-  line-height: 1.7;
-  background-color: var(--sand); /* lyseste nuance */
-  color: var(--tekst);
-}
-
-.deko-citat {
-  display: block;
-  margin-bottom: 0.6rem;
-  opacity: 0.3;
-}
-
-.deko-citat path {
-  fill: currentColor;
-}
-
-/* Fem skiftende nuancer fra sidens eget farveskema, lysest til
-   mørkest, gentaget hver 5. kort.
-   :nth-child(5n + 2) = "kort nr. 2, 7, 12 ..." (n tæller 0, 1, 2 ...
-   og 5n + 2 giver så 2, 7, 12). Det er en genvej, så vi ikke skal
-   give hvert kort sin egen klasse. */
-.udtalelser blockquote:nth-child(5n + 2) {
-  background-color: var(--salvie-lys);
-  color: var(--tekst);
-}
-.udtalelser blockquote:nth-child(5n + 3) {
-  background-color: var(--salvie);
-  color: var(--tekst);
-}
-.udtalelser blockquote:nth-child(5n + 4) {
-  background-color: var(--petroleum);
-  color: var(--hvid);
-}
-.udtalelser blockquote:nth-child(5n + 5) {
-  background-color: var(--petroleum-moerk);
-  color: var(--hvid);
-}
-
-/* "Læs mere" i citaterne: fladt link i stedet for base.css' sandfarvede
-   boks, så det passer til kortets egen baggrundsfarve. Teksten i HTML'en
-   skjules (font-size: 0), og ::after viser "Læs mere"/"Luk" i stedet. */
-.udtalelser details {
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  margin: 0.8rem 0 0;
-}
-
-.udtalelser summary {
-  font-size: 0;
-  font-style: normal;
-  color: inherit;
-}
-
-.udtalelser summary::after {
-  content: "Læs mere";
-  font-size: var(--fs-note);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.udtalelser details[open] summary::after {
-  content: "Luk";
-}
-
-.udtalelser details p {
-  margin: 0.8rem 0 0;
-}
-
-.udtalelser cite {
-  display: block;
-  margin-top: 1.1rem;
-  font-style: normal;
-  font-weight: 600;
-  font-size: var(--fs-note);
-  color: inherit;
-  opacity: 0.75;
-}
-
-@media (min-width: 700px) {
-  .udtalelser-intro {
-    margin-bottom: 3rem;
-  }
-  .udtalelse-liste {
-    gap: 1.8rem;
-  }
-  .udtalelser blockquote {
-    flex: 0 0 31%;
-    padding: 3rem 2.4rem 2.6rem;
-  }
-  .deko-citat {
-    width: 42px;
-    height: 32px;
-    margin-bottom: 0.8rem;
   }
 }

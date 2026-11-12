@@ -5,21 +5,26 @@
    Header, footer, book-bånd og galleri er fælles (base.css).
 
    Afsnit:
-     1. Intro (centreret velkomst med knapper)
-     2. Kontaktinfo (blåt bånd: foto + kontaktboks)
-     3. Trygt rum (foto + tekst)
+   1. Intro (lys salvie bånd med velkomst og knapper)
+   2. Kontaktinfo (blåt bånd: foto + kontaktboks)
+   3. Trygt rum (foto + tekst)
 
    #kontaktinfo beholder sit id, så andre sider kan linke direkte til
    kontaktoplysningerne.
    ============================================================ */
 
-
 /* ============================================================
    1. INTRO
    ============================================================ */
+
+/* Lys salvie bånd i fuld bredde – alt starter fra samme venstre kant */
 .kontakt-intro {
-  text-align: center;
-  margin-top: 3rem;
+  text-align: left;
+  max-width: none;
+  margin: 0;
+  padding-block: 5rem;
+  padding-inline: var(--sidepadding);
+  background-color: var(--salvie-lys);
 }
 
 .kontakt-intro .kicker {
@@ -27,40 +32,29 @@
   letter-spacing: 0.16em;
   font-size: var(--fs-label);
   font-weight: 600;
-  color: var(--petroleum-moerk);
   margin-bottom: 0.4rem;
 }
 
-/* h1 og p har max-width (60ch), så vi centrerer dem med margin: auto */
 .kontakt-intro h1 {
-  margin: 0 auto 1rem;
+  margin: 0 0 1.2rem;
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
+  line-height: 1.2;
 }
 
 .kontakt-intro p {
-  margin-inline: auto;
+  max-width: 36rem;
 }
 
 .kontakt-intro .hero-knapper {
-  justify-content: center;
-  margin-top: 1.6rem;
-}
-
-/* .knap og .knap-lys har margin-inline: auto i base.css. I en flex-række
-   fordeler auto-marginerne al ledig plads og skubber knapperne langt fra
-   hinanden – derfor nulstiller vi dem her, så gap: 0.8rem styrer afstanden. */
-.kontakt-intro .knap,
-.kontakt-intro .knap-lys {
-  margin-inline: 0;
+  justify-content: flex-start;
+  margin-top: 2rem;
 }
 
 @media (min-width: 700px) {
   .kontakt-intro {
-    margin-top: 5rem;
+    padding-block: 6.5rem;
   }
-
-
 }
-
 
 /* ============================================================
    2. KONTAKTINFO
@@ -68,6 +62,7 @@
    indholdet i midterspalten (mindst 1.8rem sideluft, aldrig bredere
    end 73rem).
    ============================================================ */
+
 .kontaktinfo {
   display: grid;
   gap: 2rem;
@@ -81,10 +76,12 @@
 
 .kontakt-foto {
   width: 100%;
-  height: 300px;
   object-fit: cover;
   object-position: center 30%;
   border-radius: 20px;
+  aspect-ratio: 2 / 3;
+  max-width: 26rem;
+  min-height: 0;
 }
 
 .kontakt-boks {
@@ -127,7 +124,6 @@
   margin-bottom: 1.2rem;
   border-bottom: 1px solid rgba(253, 251, 246, 0.2);
   font-size: var(--fs-p);
-  line-height: 1.6;
 }
 
 /* Sidste punkt behøver ingen streg */
@@ -140,7 +136,6 @@
 /* Links i boksen: samme farve som teksten, men understreget */
 .kontakt-boks dd a {
   color: inherit;
-  text-decoration: underline;
   text-underline-offset: 3px;
 }
 
@@ -157,7 +152,6 @@
   .kontakt-boks {
     padding: 3rem 3rem;
   }
-
 }
 
 /* Computer: foto til venstre, boks til højre (grid 1 : 1).
@@ -169,18 +163,12 @@
     gap: 3rem;
     align-items: stretch;
   }
-
-  .kontakt-foto {
-    height: auto;
-    min-height: 26rem;
-    contain: size;
-  }
 }
-
 
 /* ============================================================
    3. TRYGT RUM
    ============================================================ */
+
 .tryg-rum {
   display: flex;
   flex-direction: column;
@@ -198,18 +186,10 @@
 
 .tryg-rum img {
   width: 100%;
-  height: 240px;
   object-fit: cover;
   border-radius: 20px;
   margin-block: 0.6rem;
-}
-
-@media (min-width: 700px) {
-  .tryg-rum img {
-    height: 340px;
-  }
-
-
+  aspect-ratio: 3 / 2;
 }
 
 /* Computer: tekst til venstre, foto til højre.
@@ -223,7 +203,6 @@
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto auto auto 1fr;
     column-gap: 4rem;
-    row-gap: 1rem;
     justify-items: start;
     min-height: 24rem;
   }
@@ -231,7 +210,6 @@
   .tryg-rum img {
     grid-column: 2;
     grid-row: 1 / -1;
-    height: 100%;
     margin: 0;
   }
 
@@ -248,5 +226,11 @@
   .tryg-rum .knap-lys {
     grid-column: 1;
     grid-row: 4;
+  }
+}
+
+@media (min-width: 1000px) {
+  .tryg-rum img {
+    align-self: center;
   }
 }
